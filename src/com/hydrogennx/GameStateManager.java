@@ -1,24 +1,31 @@
 package com.hydrogennx;
 
 import javax.swing.*;
-import java.awt.*;
 
-public class FirstJump {
+/**
+ * Handles the state of the game, transferring between menus and scenes as necessary.
+ * Also handles transferring data between the Action phase and Turn phase, which is
+ * probably a little sloppy. Definitely sloppy. We should fix that sometime.
+ */
+public class GameStateManager {
 
     GameState gameState;
+    GameSetting gameSetting = GameSetting.LOCAL_PRACTICE;
     JFrame gameWindow = new JFrame("First Jump");
+
+    Attack attackToDefendAgainst;
 
     public static void main(String[] args) {
 
         System.out.println("Hello World!");
 
-        FirstJump gameInstance = new FirstJump();
+        GameStateManager gameInstance = new GameStateManager();
 
         gameInstance.startLoop();
 
     }
 
-    public FirstJump() {
+    public GameStateManager() {
 
         gameState = GameState.MENU;
 
@@ -32,8 +39,10 @@ public class FirstJump {
         switch (gameState) {
             case MENU:
                 return new MainMenu(this).getMainPanel();
-            case PRACTICE:
-                return new PracticeState(this).getMainPanel();
+            case TURN:
+                return new TurnPhase(this).getMainPanel();
+            case ACTION:
+                return new ActionPhase(this, attackToDefendAgainst).getMainPanel();
             default:
                 return null;
         }
@@ -60,6 +69,13 @@ public class FirstJump {
         if (this.gameState != gameState) {
             this.gameState = gameState;
             updateGameWindow();
+        }
+    }
+
+    public void queueAttack(Attack attack) {
+        if (gameSetting == GameSetting.LOCAL_PRACTICE) {
+            attackToDefendAgainst = attack;
+            changeGameState(GameState.ACTION);
         }
     }
 }

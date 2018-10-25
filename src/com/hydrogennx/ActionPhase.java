@@ -2,24 +2,31 @@ package com.hydrogennx;
 
 import javax.swing.*;
 
+/**
+ * The ActionPhase. This handles its own game loop and all instances on screen.
+ * It is essentially a very short and small game in and of itself.
+ */
 public class ActionPhase extends Phase {
 
     final static int TARGET_FRAMES_PER_SECOND = 60;
     final static int TARGET_NANOSECONDS_PER_FRAME = 1000000000 / TARGET_FRAMES_PER_SECOND;
 
-    GameStateManager gameStateManager;
+    GameManager gameManager;
+
     private JPanel mainPanel;
     private JPanel innerPanel;
 
-    public ActionPhase(GameStateManager gameStateManager, Attack attackToDefendAgainst) {
+    public ActionPhase(GameManager gameManager) {
 
-        this.gameStateManager = gameStateManager;
+        this.gameManager = gameManager;
         play();
 
     }
 
     //Method borrowed from Stack Overflow: https://stackoverflow.com/questions/18283199/java-main-game-loop
     public void play() {
+
+        System.out.println("Currently in action phase loop.");
 
         long lastLoopTime = System.nanoTime();
         long lastFpsTime = 0;

@@ -1,5 +1,8 @@
 package com.hydrogennx;
 
+/**
+ * Indicates what the player is looking at.
+ */
 public enum GameState {
 
     //Indicates that the player is in the main menu.

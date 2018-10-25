@@ -1,6 +1,11 @@
 package com.hydrogennx;
 
-public enum GameSetting {
+/**
+ * Defines the context under which the game is played.
+ * When a move is decided, it makes a difference whether the player is host or client in how the game must respond.
+ * Additionally, local practice games act entirely differently, in that the player receives their own attacks.
+ */
+public enum GameContext {
 
     //A game is not currently going on.
     INACTIVE,

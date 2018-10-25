@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * The main menu. Other significant menus should probably be given their own GUI form.
+ * As of right now this only exists to go to practice.
+ */
 public class MainMenu extends Phase {
 
     JPanel mainPanel;
@@ -11,23 +15,23 @@ public class MainMenu extends Phase {
     private JButton practiceButton;
     private JButton quitButton;
 
-    private GameStateManager gameStateManager;
+    private FirstJump firstJump;
 
-    public MainMenu(GameStateManager gameStateManager) {
+    public MainMenu(FirstJump firstJump) {
 
-        this.gameStateManager = gameStateManager;
+        this.firstJump = firstJump;
 
         quitButton.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent e) {
-               gameStateManager.changeGameState(GameState.DONE);
+               firstJump.changeGameState(GameState.DONE);
            }
         });
 
         practiceButton.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent e) {
-               gameStateManager.changeGameState(GameState.TURN);
+               firstJump.startLocalPractice();
            }
         });
 

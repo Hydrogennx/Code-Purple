@@ -1,7 +1,7 @@
-package com.hydrogennx.game;
+package com.hydrogennx;
 
 /**
- * Represents any object that appears during the Bullet Hell sessions, including bullets and the player.
+ * Represents any object that appears during the ActionPhase, including bullets and the player.
  */
 public abstract class GameEntity {
 

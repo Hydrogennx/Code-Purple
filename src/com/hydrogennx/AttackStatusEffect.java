@@ -1,5 +1,10 @@
 package com.hydrogennx;
 
+/**
+ * An attack status effect.
+ * If added to an attack sequence, the player has these affects added the entire game.
+ * Where we're going to define what they actually do... is a good question.
+ */
 public enum AttackStatusEffect {
 
     //User takes constant damage.

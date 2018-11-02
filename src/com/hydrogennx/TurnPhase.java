@@ -14,15 +14,15 @@ public class TurnPhase extends Phase {
     JPanel mainPanel;
     private JButton funAttackButton;
 
-    GameManager gameManager;
+    GameInstance gameInstance;
 
     private FirstJump firstJump;
 
     private ActionPhase actionPhase;
 
-    public TurnPhase(GameManager gameManager) {
+    public TurnPhase(GameInstance gameInstance) {
 
-        this.gameManager = gameManager;
+        this.gameInstance = gameInstance;
 
         funAttackButton.addActionListener(new ActionListener() {
             @Override
@@ -36,7 +36,7 @@ public class TurnPhase extends Phase {
     private void performAttack(AttackSequence attackSequence) {
         List<AttackSequence> attackSequences = new ArrayList<AttackSequence>();
         attackSequences.add(attackSequence);
-        gameManager.queueAttack(attackSequences);
+        gameInstance.queueAttack(attackSequences);
     }
 
     public JPanel getMainPanel() {

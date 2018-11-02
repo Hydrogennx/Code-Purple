@@ -6,11 +6,11 @@ import java.util.List;
  * An abstract class. This holds all relevant information about the current game.
  * This class is never used directly -- instead, a LocalPracticeManager, ClientManager or HostManager should be created.
  */
-public abstract class GameManager {
+public abstract class GameInstance {
 
     FirstJump firstJump;
 
-    public GameManager(FirstJump firstJump) {
+    public GameInstance(FirstJump firstJump) {
         this.firstJump = firstJump;
     }
 

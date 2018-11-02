@@ -11,14 +11,14 @@ public class ActionPhase extends Phase {
     final static int TARGET_FRAMES_PER_SECOND = 60;
     final static int TARGET_NANOSECONDS_PER_FRAME = 1000000000 / TARGET_FRAMES_PER_SECOND;
 
-    GameManager gameManager;
+    GameInstance gameInstance;
 
     private JPanel mainPanel;
     private JPanel innerPanel;
 
-    public ActionPhase(GameManager gameManager) {
+    public ActionPhase(GameInstance gameInstance) {
 
-        this.gameManager = gameManager;
+        this.gameInstance = gameInstance;
         play();
 
     }

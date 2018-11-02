@@ -10,7 +10,7 @@ public class FirstJump {
     GameContext gameContext;
     GameState gameState;
 
-    GameManager gameManager;
+    GameInstance gameInstance;
 
     JFrame gameWindow = new JFrame("First Jump");
 
@@ -29,7 +29,7 @@ public class FirstJump {
         gameState = GameState.MENU;
         gameContext = GameContext.INACTIVE;
 
-        gameManager = null;
+        gameInstance = null;
 
         updateGameWindow();
 
@@ -46,9 +46,9 @@ public class FirstJump {
             case MENU:
                 return new MainMenu(this).getMainPanel();
             case TURN:
-                return new TurnPhase(gameManager).getMainPanel();
+                return new TurnPhase(gameInstance).getMainPanel();
             case ACTION:
-                return new ActionPhase(gameManager).getMainPanel();
+                return new ActionPhase(gameInstance).getMainPanel();
             default:
                 return null;
         }
@@ -76,7 +76,7 @@ public class FirstJump {
     }
 
     public void startLocalPractice() {
-        gameManager = new LocalPracticeManager(this);
+        gameInstance = new LocalPracticeManager(this);
         changeGameState(GameState.TURN);
     }
 

@@ -10,5 +10,8 @@ public class Test extends Application {
     @Override
     public void start(Stage primaryStage) {
 
+        System.out.println("Run successfully.");
+        primaryStage.show();
+
     }
 }

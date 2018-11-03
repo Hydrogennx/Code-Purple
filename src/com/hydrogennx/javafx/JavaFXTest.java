@@ -7,8 +7,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 
-public class Test extends Application {
+public class JavaFXTest extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -17,12 +18,16 @@ public class Test extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        Parent testWindow = FXMLLoader.load(getClass().getResource("TestWindow.fxml"));
-        primaryStage.setTitle("First Jump JavaFX Test");
-        primaryStage.setScene(new Scene(testWindow));
+        System.out.println("Hello World!");
+
+        URL resource = getClass().getResource("JavaFXTest.fxml");
+        System.out.println(resource);
+        Parent mainWindow = FXMLLoader.load(resource);
+
+        primaryStage.setTitle("First Jump JavaFX MainMenu");
+        primaryStage.setScene(new Scene(mainWindow));
         primaryStage.show();
 
-        System.out.println("JavaFX test successful.");
 
     }
 }

@@ -1,6 +1,6 @@
 package com.hydrogennx.swing;
 
-import com.hydrogennx.GameManager;
+import com.hydrogennx.SwingGameManager;
 import com.hydrogennx.GameState;
 import com.hydrogennx.Phase;
 
@@ -19,9 +19,9 @@ public class MainMenu extends Phase {
     private JButton practiceButton;
     private JButton quitButton;
 
-    private GameManager gameManager;
+    private SwingGameManager gameManager;
 
-    public MainMenu(GameManager gameManager) {
+    public MainMenu(SwingGameManager gameManager) {
 
         this.gameManager = gameManager;
 

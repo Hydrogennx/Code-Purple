@@ -18,7 +18,7 @@ public class TurnPhase extends Phase {
 
     GameInstance gameInstance;
 
-    private GameManager gameManager;
+    private SwingGameManager gameManager;
 
     private ActionPhase actionPhase;
 

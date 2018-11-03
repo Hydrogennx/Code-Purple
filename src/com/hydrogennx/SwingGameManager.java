@@ -9,7 +9,7 @@ import javax.swing.*;
 /**
  * The top-level class. This creates and destroys content panes, the various game managers, and the like.
  */
-public class GameManager {
+public class SwingGameManager {
 
     GameContext gameContext;
     GameState gameState;
@@ -22,13 +22,13 @@ public class GameManager {
 
         System.out.println("Hello World!");
 
-        GameManager gameInstance = new GameManager();
+        SwingGameManager gameManager = new SwingGameManager();
 
-        gameInstance.startLoop();
+        gameManager.startLoop();
 
     }
 
-    public GameManager() {
+    public SwingGameManager() {
 
         gameState = GameState.MENU;
         gameContext = GameContext.INACTIVE;
@@ -62,7 +62,7 @@ public class GameManager {
      * Removes the current game window, and opens a new one according to the current game state.
      * This method should only be called when the game state changes from one to another.
      */
-    private void updateGameWindow() {
+    protected void updateGameWindow() {
 
         if (gameState == GameState.DONE) {
             gameWindow.dispose();
@@ -75,12 +75,12 @@ public class GameManager {
 
     }
 
-    private void startLoop() {
+    protected void startLoop() {
         //TODO something should be here, probably
     }
 
     public void startLocalPractice() {
-        gameInstance = new LocalPracticeManager(this);
+        gameInstance = new LocalPracticeInstance(this);
         changeGameState(GameState.TURN);
     }
 

@@ -8,10 +8,10 @@ import java.util.List;
  */
 public abstract class GameInstance {
 
-    FirstJump firstJump;
+    GameManager gameManager;
 
-    public GameInstance(FirstJump firstJump) {
-        this.firstJump = firstJump;
+    public GameInstance(GameManager gameManager) {
+        this.gameManager = gameManager;
     }
 
     //TODO create a ClientManager and a HostManager when we are ready to begin netcode.

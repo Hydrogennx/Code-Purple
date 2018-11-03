@@ -1,4 +1,8 @@
-package com.hydrogennx;
+package com.hydrogennx.swing;
+
+import com.hydrogennx.GameManager;
+import com.hydrogennx.GameState;
+import com.hydrogennx.Phase;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,23 +19,23 @@ public class MainMenu extends Phase {
     private JButton practiceButton;
     private JButton quitButton;
 
-    private FirstJump firstJump;
+    private GameManager gameManager;
 
-    public MainMenu(FirstJump firstJump) {
+    public MainMenu(GameManager gameManager) {
 
-        this.firstJump = firstJump;
+        this.gameManager = gameManager;
 
         quitButton.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent e) {
-               firstJump.changeGameState(GameState.DONE);
+               gameManager.changeGameState(GameState.DONE);
            }
         });
 
         practiceButton.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent e) {
-               firstJump.startLocalPractice();
+               gameManager.startLocalPractice();
            }
         });
 

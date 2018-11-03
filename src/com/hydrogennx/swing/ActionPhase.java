@@ -1,4 +1,7 @@
-package com.hydrogennx;
+package com.hydrogennx.swing;
+
+import com.hydrogennx.GameInstance;
+import com.hydrogennx.Phase;
 
 import javax.swing.*;
 

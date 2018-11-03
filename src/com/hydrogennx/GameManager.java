@@ -1,11 +1,15 @@
 package com.hydrogennx;
 
+import com.hydrogennx.swing.ActionPhase;
+import com.hydrogennx.swing.MainMenu;
+import com.hydrogennx.swing.TurnPhase;
+
 import javax.swing.*;
 
 /**
  * The top-level class. This creates and destroys content panes, the various game managers, and the like.
  */
-public class FirstJump {
+public class GameManager {
 
     GameContext gameContext;
     GameState gameState;
@@ -18,13 +22,13 @@ public class FirstJump {
 
         System.out.println("Hello World!");
 
-        FirstJump gameInstance = new FirstJump();
+        GameManager gameInstance = new GameManager();
 
         gameInstance.startLoop();
 
     }
 
-    public FirstJump() {
+    public GameManager() {
 
         gameState = GameState.MENU;
         gameContext = GameContext.INACTIVE;

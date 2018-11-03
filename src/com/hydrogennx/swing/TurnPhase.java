@@ -1,4 +1,6 @@
-package com.hydrogennx;
+package com.hydrogennx.swing;
+
+import com.hydrogennx.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,7 +18,7 @@ public class TurnPhase extends Phase {
 
     GameInstance gameInstance;
 
-    private FirstJump firstJump;
+    private GameManager gameManager;
 
     private ActionPhase actionPhase;
 

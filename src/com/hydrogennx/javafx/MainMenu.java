@@ -46,6 +46,10 @@ public class MainMenu implements Initializable {
         return mainWindow;
     }
 
+    public void exitButtonPressed() throws Exception {
+        gameManager.stop();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //TODO do things here

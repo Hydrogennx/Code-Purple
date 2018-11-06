@@ -6,10 +6,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.hydrogennx.JavaFXGameManager">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.hydrogennx.javafx.MainMenu">
   <children>
-    <Label layoutX="232.0" layoutY="142.0" text="This is the whole game lol" />
-    <Button layoutX="230.0" layoutY="190.0" mnemonicParsing="false" text="Ok great lemme play it" />
-    <Button layoutX="242.0" layoutY="227.0" mnemonicParsing="false" text="Ew I'm leaving bye" />
+    <Label fx:id="titleLabel" layoutX="232.0" layoutY="142.0" text="This is the whole game lol" />
+    <Button fx:id="playButton" layoutX="230.0" layoutY="190.0" mnemonicParsing="false" text="Ok great lemme play it" />
+    <Button fx:id="exitButton" layoutX="242.0" layoutY="227.0" mnemonicParsing="false" onAction="#exitButtonPressed" text="Ew I'm leaving bye" />
   </children>
 </AnchorPane>

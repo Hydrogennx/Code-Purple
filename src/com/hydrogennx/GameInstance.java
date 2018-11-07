@@ -1,6 +1,7 @@
 package com.hydrogennx;
 
 import com.hydrogennx.javafx.ActionPhase;
+import com.hydrogennx.javafx.ScreenFramework;
 import com.hydrogennx.javafx.TurnPhase;
 import javafx.scene.Parent;
 
@@ -13,10 +14,10 @@ import java.util.List;
  */
 public abstract class GameInstance {
 
-    SwingGameManager gameManager;
+    GameManager gameManager;
     GameState gameState;
 
-    public GameInstance(SwingGameManager gameManager) {
+    public GameInstance(GameManager gameManager) {
         this.gameManager = gameManager;
     }
 
@@ -24,20 +25,20 @@ public abstract class GameInstance {
 
     public abstract void queueAttack(List<AttackSequence> attacksToDefendAgainst);
 
-    //FIXME this only works with the JavaFX version of the game, and should be removed if we finish with Swing.
-    public Parent getCurrentWindow() {
-        try {
-            switch (gameState) {
-                case TURN:
-                    return new TurnPhase(this).getMainWindow();
-                case ACTION:
-                    return new ActionPhase(this).getMainWindow();
-                default:
-                    return null; //should not happen
-            }
-        } catch (IOException e) {
-            return null; //should not happen
+    public void updateScreen() {
+        switch (gameState) {
+            case TURN:
+                gameManager.screenFramework.graphicsManager.setScreen("TURN_PHASE");
+            case ACTION:
+                gameManager.screenFramework.graphicsManager.setScreen("ACTION_PHASE");
+            default:
+                return; //should not happen
         }
+    }
+
+    protected void changeGameState(GameState gameState) {
+        this.gameState = gameState;
+        //TODO change how the game behaves based on this gamestate change.
     }
 
 }

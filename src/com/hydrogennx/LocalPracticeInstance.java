@@ -10,13 +10,13 @@ public class LocalPracticeInstance extends GameInstance {
 
     List<AttackSequence> attackSequencesToDefendAgainst;
 
-    public LocalPracticeInstance(SwingGameManager gameManager) {
+    public LocalPracticeInstance(GameManager gameManager) {
         super(gameManager);
     }
 
     public void queueAttack(List<AttackSequence> attackSequencesToDefendAgainst) {
         this.attackSequencesToDefendAgainst = attackSequencesToDefendAgainst;
-        gameManager.changeGameState(GameState.ACTION);
+        changeGameState(GameState.ACTION);
     }
 
 

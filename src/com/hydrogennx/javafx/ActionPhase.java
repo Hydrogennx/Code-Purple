@@ -15,6 +15,14 @@ public class ActionPhase extends WindowController implements Initializable {
 
     public ActionPhase() throws IOException {
 
+
+
+    }
+
+    public void setGameInstance(GameInstance gameInstance) {
+        if (gameInstance != null) {
+            this.gameInstance = gameInstance;
+        }
     }
 
     @Override

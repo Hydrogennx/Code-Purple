@@ -39,7 +39,7 @@ public class GameManager extends Application {
         gameContext = GameContext.INACTIVE;
 
         screenFramework.setGameManager(this);
-        screenFramework.loadAll();
+        screenFramework.loadMenus();
 
         gameInstance = null;
 
@@ -51,6 +51,9 @@ public class GameManager extends Application {
         switch (gameContext) {
             case INACTIVE:
                 screenFramework.graphicsManager.setScreen("MAIN_MENU");
+                break;
+            default:
+                gameInstance.updateScreen();
         }
     }
 
@@ -65,10 +68,22 @@ public class GameManager extends Application {
     }
 
     public void startLocalPractice() {
+        gameContext = GameContext.LOCAL_PRACTICE;
+        gameInstance = new LocalPracticeInstance(this);
+
+        screenFramework.loadGameScreens();
+
+        updateScreen();
 
     }
 
     protected void startLoop() {
+
+    }
+
+    public GameInstance getGameInstance() {
+
+        return gameInstance;
 
     }
 }

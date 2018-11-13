@@ -56,4 +56,9 @@ public class WindowControllerManager extends StackPane {
         return true;
     }
 
+    public Node getScreen(String id) {
+
+        return screens.get(id);
+
+    }
 }

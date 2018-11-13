@@ -29,8 +29,10 @@ public abstract class GameInstance {
         switch (gameState) {
             case TURN:
                 gameManager.screenFramework.graphicsManager.setScreen("TURN_PHASE");
+                break;
             case ACTION:
                 gameManager.screenFramework.graphicsManager.setScreen("ACTION_PHASE");
+                break;
             default:
                 return; //should not happen
         }
@@ -38,7 +40,7 @@ public abstract class GameInstance {
 
     protected void changeGameState(GameState gameState) {
         this.gameState = gameState;
-        //TODO change how the game behaves based on this gamestate change.
+        gameManager.updateScreen();
     }
 
 }

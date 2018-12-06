@@ -9,20 +9,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hydrogennx.javafx.ActionPhase">
+<AnchorPane prefHeight="507.0" prefWidth="618.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hydrogennx.javafx.ActionPhase">
   <children>
       <ProgressBar fx:id="healthBar" layoutX="33.0" layoutY="15.0" prefWidth="200.0" progress="1.0" AnchorPane.leftAnchor="32.0" />
       <ImageView fitHeight="8.0" fitWidth="8.0" layoutX="14.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="20.0">
          <image>
-            <Image url="@../../../../res/heart.png" />
+            <Image url="file:/C:/Users/Joshua/Documents/GitHub/FirstJump/res/heart.png" />
          </image>
       </ImageView>
-      <Pane fx:id="mainPane" layoutX="14.0" layoutY="39.0" prefHeight="354.0" prefWidth="577.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0">
+      <Pane fx:id="mainPane" layoutX="12.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0">
          <children>
           <Label layoutX="171.0" layoutY="200.0" text="Action! ...You will be able to move, someday." />
-            <ImageView fx:id="mainCharacter" fitHeight="32.0" fitWidth="32.0" layoutX="273.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="characterSprite" fitHeight="32.0" fitWidth="32.0" layoutX="273.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../res/coward.png" />
+                  <Image url="file:/C:/Users/Joshua/Documents/GitHub/FirstJump/res/coward.png" />
                </image>
             </ImageView>
          </children>

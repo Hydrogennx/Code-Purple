@@ -1,8 +1,12 @@
 package com.hydrogennx;
 
 import com.hydrogennx.javafx.*;
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 /**
@@ -78,6 +82,23 @@ public class GameManager extends Application {
     }
 
     protected void startLoop() {
+
+        final long startNanoTime = System.nanoTime();
+
+        new AnimationTimer()
+        {
+            public void handle(long currentNanoTime)
+            {
+                double t = (currentNanoTime - startNanoTime) / 1000000000.0;
+
+                if (getGameInstance() != null) {
+
+                    getGameInstance().update(t);
+
+                }
+
+            }
+        }.start();
 
     }
 

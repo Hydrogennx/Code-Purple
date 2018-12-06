@@ -17,9 +17,10 @@ import java.util.HashMap;
 public class WindowControllerManager extends StackPane {
 
     private HashMap<String, Node> screens = new HashMap<>();
+    private HashMap<String, WindowController> controllers = new HashMap<>();
     private Node currentScreen;
 
-    public WindowController loadScreen(String id, String resourceId) {
+    public void loadScreen(String id, String resourceId) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(resourceId));
 
@@ -27,15 +28,11 @@ public class WindowControllerManager extends StackPane {
             WindowController windowController = loader.getController();
             windowController.setManager(this);
             screens.put(id, mainWindow);
-
-            return windowController;
+            controllers.put(id, windowController);
 
         } catch (IOException e) {
             System.err.println("Unable to load screen.");
             e.printStackTrace();
-
-            return null;
-
         }
     }
 
@@ -59,6 +56,12 @@ public class WindowControllerManager extends StackPane {
     public Node getScreen(String id) {
 
         return screens.get(id);
+
+    }
+
+    public WindowController getController(String id) {
+
+        return controllers.get(id);
 
     }
 }

@@ -26,15 +26,21 @@ public class ScreenFramework {
     }
 
     public void loadMenus() {
-        MainMenu mainMenu = (MainMenu) graphicsManager.loadScreen(MAIN_MENU_ID, MAIN_MENU_FILE);
+
+        graphicsManager.loadScreen(MAIN_MENU_ID, MAIN_MENU_FILE);
+
+        MainMenu mainMenu = (MainMenu) graphicsManager.getController(MAIN_MENU_ID);
         mainMenu.setGameManager(gameManager);
 
     }
 
     public void loadGameScreens() {
 
-        TurnPhase turnPhase = (TurnPhase) graphicsManager.loadScreen(TURN_PHASE_ID, TURN_PHASE_FILE);
-        ActionPhase actionPhase = (ActionPhase) graphicsManager.loadScreen(ACTION_PHASE_ID, ACTION_PHASE_FILE);
+        graphicsManager.loadScreen(TURN_PHASE_ID, TURN_PHASE_FILE);
+        graphicsManager.loadScreen(ACTION_PHASE_ID, ACTION_PHASE_FILE);
+
+        TurnPhase turnPhase = (TurnPhase) graphicsManager.getController(TURN_PHASE_ID);
+        ActionPhase actionPhase = (ActionPhase) graphicsManager.getController(ACTION_PHASE_ID);
 
         turnPhase.setGameInstance(gameManager.getGameInstance());
         actionPhase.setGameInstance(gameManager.getGameInstance());

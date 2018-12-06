@@ -28,10 +28,10 @@ public abstract class GameInstance {
     public void updateScreen() {
         switch (gameState) {
             case TURN:
-                gameManager.screenFramework.graphicsManager.setScreen("TURN_PHASE");
+                gameManager.screenFramework.graphicsManager.setScreen(ScreenFramework.TURN_PHASE_ID);
                 break;
             case ACTION:
-                gameManager.screenFramework.graphicsManager.setScreen("ACTION_PHASE");
+                gameManager.screenFramework.graphicsManager.setScreen(ScreenFramework.ACTION_PHASE_ID);
                 break;
             default:
                 return; //should not happen
@@ -41,6 +41,18 @@ public abstract class GameInstance {
     protected void changeGameState(GameState gameState) {
         this.gameState = gameState;
         gameManager.updateScreen();
+    }
+
+    public void update(double time) {
+
+        if (gameState == GameState.ACTION) {
+
+            //TODO get and update the ActionPhase.
+
+            actionPhase.update(time);
+
+        }
+
     }
 
 }

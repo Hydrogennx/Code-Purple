@@ -1,5 +1,6 @@
 package com.hydrogennx.javafx;
 
+import com.hydrogennx.ControllableCharacter;
 import com.hydrogennx.GameInstance;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +25,7 @@ public class ActionPhase extends WindowController implements Initializable {
     private Pane mainPane;
 
     @FXML
-    private ImageView mainCharacter;
+    private ImageView characterSprite;
 
     public ActionPhase() throws IOException {
 
@@ -43,4 +44,9 @@ public class ActionPhase extends WindowController implements Initializable {
         //TODO do things
         healthBar.setProgress(0.5);
     }
+
+    public void update(double time) {
+        healthBar.setProgress(healthBar.getProgress() - 0.01);
+    }
+
 }

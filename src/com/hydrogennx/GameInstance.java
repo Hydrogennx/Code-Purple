@@ -48,6 +48,7 @@ public abstract class GameInstance {
         if (gameState == GameState.ACTION) {
 
             //TODO get and update the ActionPhase.
+            ActionPhase actionPhase = (ActionPhase) gameManager.screenFramework.graphicsManager.getController(ScreenFramework.ACTION_PHASE_ID);
 
             actionPhase.update(time);
 

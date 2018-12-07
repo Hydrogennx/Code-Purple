@@ -11,12 +11,9 @@ import java.util.List;
  */
 public abstract class AttackSequence {
 
-    AttackType attackType;
-
     List<AttackStatusEffect> modifiers;
 
-    public AttackSequence(AttackType attackType) {
-        this.attackType = attackType;
+    public AttackSequence() {
         this.modifiers = new ArrayList<>();
     }
 

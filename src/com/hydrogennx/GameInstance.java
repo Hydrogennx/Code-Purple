@@ -2,10 +2,7 @@ package com.hydrogennx;
 
 import com.hydrogennx.javafx.ActionPhase;
 import com.hydrogennx.javafx.ScreenFramework;
-import com.hydrogennx.javafx.TurnPhase;
-import javafx.scene.Parent;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -28,10 +25,10 @@ public abstract class GameInstance {
     public void updateScreen() {
         switch (gameState) {
             case TURN:
-                gameManager.screenFramework.graphicsManager.setScreen(ScreenFramework.TURN_PHASE_ID);
+                gameManager.screenFramework.wcm.setScreen(ScreenFramework.TURN_PHASE_ID);
                 break;
             case ACTION:
-                gameManager.screenFramework.graphicsManager.setScreen(ScreenFramework.ACTION_PHASE_ID);
+                gameManager.screenFramework.wcm.setScreen(ScreenFramework.ACTION_PHASE_ID);
                 break;
             default:
                 return; //should not happen
@@ -48,7 +45,7 @@ public abstract class GameInstance {
         if (gameState == GameState.ACTION) {
 
             //TODO get and update the ActionPhase.
-            ActionPhase actionPhase = (ActionPhase) gameManager.screenFramework.graphicsManager.getController(ScreenFramework.ACTION_PHASE_ID);
+            ActionPhase actionPhase = (ActionPhase) gameManager.screenFramework.wcm.getController(ScreenFramework.ACTION_PHASE_ID);
 
             actionPhase.update(time);
 

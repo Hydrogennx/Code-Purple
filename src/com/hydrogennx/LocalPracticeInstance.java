@@ -18,7 +18,7 @@ public class LocalPracticeInstance extends GameInstance {
 
         gameState = GameState.TURN;
 
-        gameManager.screenFramework.graphicsManager.getScreen(ScreenFramework.ACTION_PHASE_ID);
+        gameManager.screenFramework.wcm.getScreen(ScreenFramework.ACTION_PHASE_ID);
 
     }
 
@@ -26,7 +26,7 @@ public class LocalPracticeInstance extends GameInstance {
         this.attackSequencesToDefendAgainst = attackSequencesToDefendAgainst;
         changeGameState(GameState.ACTION);
 
-        ActionPhase actionPhase = (ActionPhase) gameManager.screenFramework.graphicsManager.getController(ScreenFramework.ACTION_PHASE_ID);
+        ActionPhase actionPhase = (ActionPhase) gameManager.screenFramework.wcm.getController(ScreenFramework.ACTION_PHASE_ID);
         actionPhase.addAttackSequences(attackSequencesToDefendAgainst);
 
     }

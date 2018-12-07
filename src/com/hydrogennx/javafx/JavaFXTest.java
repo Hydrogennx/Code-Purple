@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Testing app. Will be removed soon.
+ */
 public class JavaFXTest extends WindowController implements Initializable {
 
     @FXML

@@ -17,10 +17,13 @@ public class TestBullet extends Bullet {
 
         ImageView imageView = new ImageView();
 
+        //TODO create and use a bullet image rather than a heart image
         imageView.setImage(new Image("file:res/heart.png"));
 
         Random random = new Random();
 
+        //TODO have the test bullet initialized with context awareness
+        //TODO set the test bullet to be in a random location ON THE TOP OF THE BOARD, rather than some corner of it
         imageView.setX(random.nextInt(100));
         imageView.setY(random.nextInt(100));
 

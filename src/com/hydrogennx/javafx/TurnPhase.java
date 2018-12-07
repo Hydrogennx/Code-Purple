@@ -1,7 +1,6 @@
 package com.hydrogennx.javafx;
 
 import com.hydrogennx.AttackSequence;
-import com.hydrogennx.AttackType;
 import com.hydrogennx.GameInstance;
 import com.hydrogennx.TestBullet;
 import javafx.fxml.FXML;
@@ -30,7 +29,7 @@ public class TurnPhase extends WindowController implements Initializable {
     public void funAttack() {
 
         List<AttackSequence> attacks = new ArrayList<>();
-        attacks.add(new AttackSequence(AttackType.TEST) {
+        attacks.add(new AttackSequence() {
 
             double lastAttackTime = -1;
             ActionPhase actionPhase;

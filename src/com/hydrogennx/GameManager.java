@@ -3,10 +3,7 @@ package com.hydrogennx;
 import com.hydrogennx.javafx.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 /**
@@ -54,7 +51,7 @@ public class GameManager extends Application {
     public void updateScreen() {
         switch (gameContext) {
             case INACTIVE:
-                screenFramework.graphicsManager.setScreen("MAIN_MENU");
+                screenFramework.wcm.setScreen("MAIN_MENU");
                 break;
             default:
                 gameInstance.updateScreen();
@@ -64,7 +61,7 @@ public class GameManager extends Application {
     protected void updateGameWindow() {
 
         primaryStage.setTitle("First Jump JavaFX MainMenu");
-        primaryStage.setScene(new Scene(screenFramework.graphicsManager));
+        primaryStage.setScene(new Scene(screenFramework.wcm));
         primaryStage.show();
 
         updateScreen();

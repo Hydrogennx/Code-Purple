@@ -12,9 +12,9 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hydrogennx.javafx.TurnPhase">
   <children>
       <ProgressBar layoutX="42.0" layoutY="13.0" prefWidth="200.0" progress="1.0" AnchorPane.leftAnchor="48.0" />
-      <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0">
          <image>
-            <Image url="@../../../../res/heart.png" />
+            <Image url="file:res/heart.png" />
          </image>
       </ImageView>
       <Label layoutX="12.0" layoutY="34.0" text="You" AnchorPane.topAnchor="34.0" />
@@ -25,13 +25,13 @@
          </children>
       </Pane>
       <ProgressBar layoutX="358.0" layoutY="12.0" prefWidth="200.0" progress="1.0" AnchorPane.rightAnchor="48.0" />
-      <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="570.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="570.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="14.0">
          <image>
-            <Image url="@../../../../res/heart-grayscale.png" />
+            <Image url="file:res/heart-grayscale.png" />
          </image>
       </ImageView>
-      <Text layoutX="371.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The guy she tells you not to worry about" />
-      <Pane layoutX="400.0" layoutY="92.0" prefHeight="74.0" prefWidth="184.0">
+      <Text layoutX="371.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The guy she tells you not to worry about" AnchorPane.rightAnchor="14.763671875" />
+      <Pane layoutX="400.0" layoutY="92.0" prefHeight="74.0" prefWidth="184.0" AnchorPane.rightAnchor="16.0">
          <children>
             <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="28.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -150,6 +150,6 @@
             </ImageView>
          </children>
       </Pane>
-      <Text layoutX="400.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This isn't anything close to live btw" />
+      <Text layoutX="400.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This isn't anything close to live btw" AnchorPane.rightAnchor="15.52734375" />
   </children>
 </AnchorPane>

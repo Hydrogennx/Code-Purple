@@ -1,17 +1,19 @@
 package com.hydrogennx.javafx;
 
-import com.hydrogennx.ControllableCharacter;
+import com.hydrogennx.AttackSequence;
+import com.hydrogennx.Bullet;
 import com.hydrogennx.GameInstance;
+import com.hydrogennx.TestBullet;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ActionPhase extends WindowController implements Initializable {
@@ -26,6 +28,9 @@ public class ActionPhase extends WindowController implements Initializable {
 
     @FXML
     private ImageView characterSprite;
+
+    private List<AttackSequence> attackSequences = new ArrayList<>();
+    private List<Bullet> bullets;
 
     public ActionPhase() throws IOException {
 
@@ -43,10 +48,44 @@ public class ActionPhase extends WindowController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         //TODO do things
         healthBar.setProgress(0.5);
+
     }
 
+    /**
+     * Update method run every game frame.
+     * As of right now, it decreases the user's health a bit and tells the attackSequences to update.
+     * @param time
+     */
     public void update(double time) {
         healthBar.setProgress(healthBar.getProgress() - 0.01);
+
+        for (AttackSequence attackSequence : attackSequences) {
+
+            attackSequence.update(time);
+
+        }
+
     }
 
+    /**
+     * Register the attacks that this action phase should use.
+     * @param attackSequences
+     */
+    public void addAttackSequences(List<AttackSequence> attackSequences) {
+
+        this.attackSequences.addAll(attackSequences);
+
+        for (AttackSequence attackSequence : attackSequences) {
+
+            attackSequence.startAttack(this);
+
+        }
+
+    }
+
+    public void spawnBullet(Bullet bullet) {
+
+        mainPane.getChildren().add(bullet);
+
+    }
 }

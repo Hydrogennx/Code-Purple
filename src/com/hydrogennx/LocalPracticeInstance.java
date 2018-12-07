@@ -1,5 +1,6 @@
 package com.hydrogennx;
 
+import com.hydrogennx.javafx.ActionPhase;
 import com.hydrogennx.javafx.ScreenFramework;
 
 import java.util.List;
@@ -24,6 +25,10 @@ public class LocalPracticeInstance extends GameInstance {
     public void queueAttack(List<AttackSequence> attackSequencesToDefendAgainst) {
         this.attackSequencesToDefendAgainst = attackSequencesToDefendAgainst;
         changeGameState(GameState.ACTION);
+
+        ActionPhase actionPhase = (ActionPhase) gameManager.screenFramework.graphicsManager.getController(ScreenFramework.ACTION_PHASE_ID);
+        actionPhase.addAttackSequences(attackSequencesToDefendAgainst);
+
     }
 
 

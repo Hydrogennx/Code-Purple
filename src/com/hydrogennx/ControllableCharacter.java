@@ -23,15 +23,28 @@ public class ControllableCharacter extends Group {
 
         getChildren().add(sprite);
 
-        setOnKeyPressed(new EventHandler<KeyEvent>() {
+        setDefaultMovement();
 
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.ENTER) {
-                    System.out.println("Enter Pressed");
-                }
+    }
+
+    /**
+     * A temporary method that will hard-code the movement of ControllableCharacter to certain keys.
+     * Ideally, the player would be able to change keybinds however they please.
+     */
+    public void setDefaultMovement() {
+
+        setOnKeyPressed(event -> {
+
+            System.out.println("Key pressed!");
+
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                System.out.println("Enter Pressed");
             }
+
+
         });
+
+        requestFocus();
 
     }
 

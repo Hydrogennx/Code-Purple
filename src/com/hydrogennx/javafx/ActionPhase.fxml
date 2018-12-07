@@ -22,7 +22,7 @@
       <GameActionPane fx:id="gamePane" layoutX="12.0" prefHeight="600.0" prefWidth="600.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0">
          <children>
           <Label layoutX="171.0" layoutY="200.0" text="Action! ...You will be able to move, someday." />
-             <ControllableCharacter layoutX="170.0" layoutY="200.0" />
+             <ControllableCharacter fx:id="controllableCharacter" layoutX="170.0" layoutY="200.0" />
          </children>
       </GameActionPane>
       <Label layoutX="241.0" layoutY="16.0" text="100 / 100 (probably not really)" AnchorPane.leftAnchor="240.0">

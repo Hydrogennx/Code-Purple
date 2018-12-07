@@ -23,7 +23,7 @@ public class ActionPhase extends WindowController implements Initializable {
     private GameActionPane gamePane;
 
     @FXML
-    private ImageView characterSprite;
+    private ControllableCharacter controllableCharacter;
 
     private List<AttackSequence> attackSequences = new ArrayList<>();
 
@@ -41,8 +41,10 @@ public class ActionPhase extends WindowController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //TODO do things
-        healthBar.setProgress(0.5);
+
+
+
+        healthBar.setProgress(1);
 
     }
 

@@ -4,6 +4,7 @@ import com.hydrogennx.javafx.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -19,13 +20,12 @@ public class GameManager extends Application {
     GameInstance gameInstance;
 
     Stage primaryStage;
+    Scene primaryScene;
 
     public static void main(String[] args) { launch(args); }
 
     @Override
     public void start(Stage primaryStage) {
-
-        System.out.println("Hello World!");
 
         this.primaryStage = primaryStage;
 
@@ -60,9 +60,12 @@ public class GameManager extends Application {
 
     protected void updateGameWindow() {
 
+        primaryScene = new Scene(screenFramework.wcm);
+
         primaryStage.setTitle("First Jump JavaFX MainMenu");
-        primaryStage.setScene(new Scene(screenFramework.wcm));
+        primaryStage.setScene(primaryScene);
         primaryStage.show();
+
 
         updateScreen();
 

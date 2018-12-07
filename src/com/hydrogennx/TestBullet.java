@@ -11,24 +11,38 @@ import java.util.Random;
  */
 public class TestBullet extends Bullet {
 
-    public TestBullet() {
+    double velocity = 0;
 
-        System.out.println("Creating a new test bullet.");
+    public TestBullet(GameActionPane context, AttackSequence source) {
 
-        ImageView imageView = new ImageView();
+        super(context, source);
 
-        //TODO create and use a bullet image rather than a heart image
-        imageView.setImage(new Image("file:res/heart.png"));
+        //TODO create a dictionary for image ids rather than hard-coding them.
+        sprite.setImage(new Image("file:res/falling-bullet.png"));
 
         Random random = new Random();
 
         //TODO have the test bullet initialized with context awareness
         //TODO set the test bullet to be in a random location ON THE TOP OF THE BOARD, rather than some corner of it
-        imageView.setX(random.nextInt(100));
-        imageView.setY(random.nextInt(100));
-
-        this.getChildren().add(imageView);
+        sprite.setX(random.nextInt((int) context.getWidth()));
+        System.out.println(context.getWidth());
+        sprite.setY(0);
 
     }
 
+    @Override
+    public void update(double time) {
+
+        velocity += 0.1;
+        velocity /= 1.05;
+
+        sprite.setY(sprite.getY() + velocity);
+
+        if (sprite.getY() > context.getHeight()) {
+
+            context.destroyBullet(this);
+
+        }
+
+    }
 }

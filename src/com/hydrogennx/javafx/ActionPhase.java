@@ -1,14 +1,10 @@
 package com.hydrogennx.javafx;
 
-import com.hydrogennx.AttackSequence;
-import com.hydrogennx.Bullet;
-import com.hydrogennx.GameInstance;
-import com.hydrogennx.TestBullet;
+import com.hydrogennx.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,13 +20,12 @@ public class ActionPhase extends WindowController implements Initializable {
     private ProgressBar healthBar;
 
     @FXML
-    private Pane mainPane;
+    private GameActionPane gamePane;
 
     @FXML
     private ImageView characterSprite;
 
     private List<AttackSequence> attackSequences = new ArrayList<>();
-    private List<Bullet> bullets;
 
     public ActionPhase() throws IOException {
 
@@ -57,7 +52,9 @@ public class ActionPhase extends WindowController implements Initializable {
      * @param time
      */
     public void update(double time) {
-        healthBar.setProgress(healthBar.getProgress() - 0.01);
+        healthBar.setProgress(healthBar.getProgress() - 0.001);
+
+        gamePane.update(time);
 
         for (AttackSequence attackSequence : attackSequences) {
 
@@ -83,9 +80,9 @@ public class ActionPhase extends WindowController implements Initializable {
 
     }
 
-    public void spawnBullet(Bullet bullet) {
+    public GameActionPane getGameActionPane() {
 
-        mainPane.getChildren().add(bullet);
+        return gamePane;
 
     }
 }

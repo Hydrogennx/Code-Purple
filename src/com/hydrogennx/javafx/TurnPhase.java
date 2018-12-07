@@ -50,15 +50,13 @@ public class TurnPhase extends WindowController implements Initializable {
 
                 if (time - lastAttackTime > 0.1) {
 
-                    TestBullet testBullet = new TestBullet();
+                    TestBullet testBullet = new TestBullet(actionPhase.getGameActionPane(), this);
 
-                    actionPhase.spawnBullet(testBullet);
+                    actionPhase.getGameActionPane().spawnBullet(testBullet);
 
                     lastAttackTime = time;
 
                 }
-
-                System.out.println(lastAttackTime);
 
             }
 

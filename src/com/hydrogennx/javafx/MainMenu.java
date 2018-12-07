@@ -35,6 +35,7 @@ public class MainMenu extends WindowController implements Initializable {
     @FXML
     public void exitButtonPressed() {
         //TODO actually exit the app
+        gameManager.exit();
     }
 
     @FXML

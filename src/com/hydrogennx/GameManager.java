@@ -104,4 +104,10 @@ public class GameManager extends Application {
         return gameInstance;
 
     }
+
+    public void exit() {
+
+        primaryStage.close();
+
+    }
 }

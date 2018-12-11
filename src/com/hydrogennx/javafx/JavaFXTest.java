@@ -1,32 +1,31 @@
 package com.hydrogennx.javafx;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ResourceBundle;
 
-public class JavaFXTest extends Application {
+/**
+ * Testing app. Will be removed soon.
+ */
+public class JavaFXTest extends WindowController implements Initializable {
 
-    public static void main(String[] args) {
-        launch(args);
+    @FXML
+    public void sayHi() {
+        System.out.println("Hello world!");
     }
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void initialize(URL location, ResourceBundle resources) {
 
-        System.out.println("Hello World!");
-
-        URL resource = getClass().getResource("JavaFXTest.fxml");
-        System.out.println(resource);
-        Parent mainWindow = FXMLLoader.load(resource);
-
-        primaryStage.setTitle("First Jump JavaFX MainMenu");
-        primaryStage.setScene(new Scene(mainWindow));
-        primaryStage.show();
 
 
     }

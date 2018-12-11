@@ -9,5 +9,6 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.hydrogennx.javafx.JavaFXTest">
   <children>
     <Label layoutX="291.0" layoutY="192.0" text="Yay" />
+    <Button fx:id="sayButton" layoutX="273.0" layoutY="228.0" mnemonicParsing="false" onAction="#sayHi" text="Button" />
   </children>
 </AnchorPane>

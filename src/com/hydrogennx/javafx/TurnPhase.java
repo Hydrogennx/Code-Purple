@@ -1,38 +1,74 @@
 package com.hydrogennx.javafx;
 
+import com.hydrogennx.AttackSequence;
 import com.hydrogennx.GameInstance;
-import javafx.fxml.FXMLLoader;
+import com.hydrogennx.TestBullet;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
-public class TurnPhase implements Initializable {
+public class TurnPhase extends WindowController implements Initializable {
 
-    /*
-    FIXME right now, every time turnPhase is created, an entirely new TurnPhase.fxml file is loaded.
-    These should be created on initialization, and then shown on screen as appropriate.
-    For now, JavaFXGameManager will just do this, and then handle IOExceptions as they come up.
-    */
-    private Parent mainWindow;
     private GameInstance gameInstance;
 
-    public TurnPhase(GameInstance gameInstance) throws IOException {
+    public TurnPhase() throws IOException {
 
-        mainWindow = FXMLLoader.load(getClass().getResource("TurnPhase.fxml"));
-
-        this.gameInstance = gameInstance;
-
-    }
-
-    public Parent getMainWindow() {
-        return mainWindow;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+    }
+
+    @FXML
+    public void funAttack() {
+
+        List<AttackSequence> attacks = new ArrayList<>();
+        attacks.add(new AttackSequence() {
+
+            double lastAttackTime = -1;
+            ActionPhase actionPhase;
+
+            @Override
+            public void startAttack(ActionPhase actionPhase) { //TODO don't feed it an entire action phase, geez
+
+                this.actionPhase = actionPhase;
+
+            }
+
+            @Override
+            public void update(double time) {
+
+                if (lastAttackTime == -1) {
+                    lastAttackTime = time;
+                }
+
+                if (time - lastAttackTime > 0.1) {
+
+                    TestBullet testBullet = new TestBullet(actionPhase.getGameActionPane(), this);
+
+                    actionPhase.getGameActionPane().spawnBullet(testBullet);
+
+                    lastAttackTime = time;
+
+                }
+
+            }
+
+        });
+
+        gameInstance.queueAttack(attacks);
+
+    }
+
+    public void setGameInstance(GameInstance gameInstance) {
+        if (this.gameInstance == null) {
+            this.gameInstance = gameInstance;
+        }
     }
 }

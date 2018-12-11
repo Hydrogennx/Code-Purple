@@ -1,10 +1,8 @@
 package com.hydrogennx;
 
 import com.hydrogennx.javafx.ActionPhase;
-import com.hydrogennx.javafx.TurnPhase;
-import javafx.scene.Parent;
+import com.hydrogennx.javafx.ScreenFramework;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -13,10 +11,10 @@ import java.util.List;
  */
 public abstract class GameInstance {
 
-    SwingGameManager gameManager;
+    GameManager gameManager;
     GameState gameState;
 
-    public GameInstance(SwingGameManager gameManager) {
+    public GameInstance(GameManager gameManager) {
         this.gameManager = gameManager;
     }
 
@@ -24,20 +22,35 @@ public abstract class GameInstance {
 
     public abstract void queueAttack(List<AttackSequence> attacksToDefendAgainst);
 
-    //FIXME this only works with the JavaFX version of the game, and should be removed if we finish with Swing.
-    public Parent getCurrentWindow() {
-        try {
-            switch (gameState) {
-                case TURN:
-                    return new TurnPhase(this).getMainWindow();
-                case ACTION:
-                    return new ActionPhase(this).getMainWindow();
-                default:
-                    return null; //should not happen
-            }
-        } catch (IOException e) {
-            return null; //should not happen
+    public void updateScreen() {
+        switch (gameState) {
+            case TURN:
+                gameManager.screenFramework.wcm.setScreen(ScreenFramework.TURN_PHASE_ID);
+                break;
+            case ACTION:
+                gameManager.screenFramework.wcm.setScreen(ScreenFramework.ACTION_PHASE_ID);
+                break;
+            default:
+                return; //should not happen
         }
+    }
+
+    protected void changeGameState(GameState gameState) {
+        this.gameState = gameState;
+        gameManager.updateScreen();
+    }
+
+    public void update(double time) {
+
+        if (gameState == GameState.ACTION) {
+
+            //TODO get and update the ActionPhase.
+            ActionPhase actionPhase = (ActionPhase) gameManager.screenFramework.wcm.getController(ScreenFramework.ACTION_PHASE_ID);
+
+            actionPhase.update(time);
+
+        }
+
     }
 
 }

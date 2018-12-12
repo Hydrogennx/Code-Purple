@@ -22,6 +22,8 @@ public class LocalPracticeInstance extends GameInstance {
 
         mainPlayer.addEnemy(mainPlayer); //you are your own worst enemy, because you are your only enemy
 
+        allPlayers.add(mainPlayer);
+
         gameState = GameState.TURN;
 
         gameManager.screenFramework.wcm.getScreen(ScreenFramework.ACTION_PHASE_ID);

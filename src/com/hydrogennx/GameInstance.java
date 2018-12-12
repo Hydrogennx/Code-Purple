@@ -3,6 +3,7 @@ package com.hydrogennx;
 import com.hydrogennx.javafx.ActionPhase;
 import com.hydrogennx.javafx.ScreenFramework;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,6 +14,11 @@ public abstract class GameInstance {
 
     GameManager gameManager;
     GameState gameState;
+
+    /**
+     * List of all players, in order of index.
+     */
+    List<Player> players = new ArrayList<>();
 
     public GameInstance(GameManager gameManager) {
         this.gameManager = gameManager;

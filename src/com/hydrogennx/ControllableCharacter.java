@@ -23,8 +23,6 @@ public class ControllableCharacter extends Group {
 
         getChildren().add(sprite);
 
-        setDefaultMovement();
-
     }
 
     /**
@@ -32,6 +30,8 @@ public class ControllableCharacter extends Group {
      * Ideally, the player would be able to change keybinds however they please.
      */
     public void setDefaultMovement() {
+
+        System.out.println("Default movement set!");
 
         setOnKeyPressed(event -> {
 
@@ -48,4 +48,11 @@ public class ControllableCharacter extends Group {
 
     }
 
+    /**
+     * Resets this controllableCharacter to be indistinguishable from a newly created one.
+     */
+    public void reset() {
+
+
+    }
 }

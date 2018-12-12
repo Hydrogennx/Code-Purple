@@ -4,7 +4,6 @@ import com.hydrogennx.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.net.URL;
@@ -59,6 +58,8 @@ public class ActionPhase extends WindowController implements Initializable {
             attackStartTime = time;
 
             startAttacks();
+
+            controllableCharacter.setDefaultMovement();
         }
 
         gamePane.update(time);
@@ -78,7 +79,20 @@ public class ActionPhase extends WindowController implements Initializable {
         if (attackSequences.isEmpty()) {
             System.out.println("All attacks are over!");
             gameInstance.endAttack();
+            reset();
         }
+
+    }
+
+    /**
+     * Resets this ActionPhase to be indistinguishible from a newly created one.
+     * Some variables are not reset, because their values should have already been previously, and instances where they are not should be detected and solved, not forgotten.
+     */
+    private void reset() {
+
+        attackStartTime = 0;
+        controllableCharacter.reset();
+        gamePane.reset();
 
     }
 

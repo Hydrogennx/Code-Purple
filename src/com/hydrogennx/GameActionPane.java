@@ -57,4 +57,19 @@ public class GameActionPane extends Pane {
         bulletsToRemove.clear();
 
     }
+
+    /**
+     * Resets the game pane to be indistinguishable from a newly created one.
+     */
+    public void reset() {
+
+        for (Node child : getChildren()) {
+            if (child instanceof Bullet) {
+                bulletsToRemove.add((Bullet) child);
+            }
+        }
+
+        removeDeletedBullets();
+
+    }
 }

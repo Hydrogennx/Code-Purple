@@ -16,7 +16,7 @@ public abstract class GameInstance {
     GameState gameState;
 
     /**
-     * List of all players, in order of index.
+     * List of all players, in no particular order.
      */
     List<Player> players = new ArrayList<>();
 

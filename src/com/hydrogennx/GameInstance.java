@@ -18,15 +18,11 @@ public abstract class GameInstance {
     /**
      * List of all players, in no particular order.
      */
-    List<Player> players = new ArrayList<>();
+    List<Player> allPlayers = new ArrayList<>();
 
     public GameInstance(GameManager gameManager) {
         this.gameManager = gameManager;
     }
-
-    //TODO create a ClientManager and a HostManager when we are ready to begin netcode.
-
-    public abstract void queueAttack(List<AttackSequence> attackSequences);
 
     public void updateScreen() {
         switch (gameState) {
@@ -59,5 +55,11 @@ public abstract class GameInstance {
 
     }
 
+    //TODO create a ClientManager and a HostManager when we are ready to begin netcode.
+
+    public abstract void queueAttack(List<AttackSequence> attackSequences);
     public abstract void endAttack();
+
+    public abstract Player getCurrentPlayer();
+
 }

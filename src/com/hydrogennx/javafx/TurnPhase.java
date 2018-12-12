@@ -6,6 +6,7 @@ import com.hydrogennx.GameInstance;
 import com.hydrogennx.TestBullet;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ProgressBar;
 
 import java.io.IOException;
 import java.net.URL;
@@ -16,6 +17,9 @@ import java.util.ResourceBundle;
 public class TurnPhase extends WindowController implements Initializable {
 
     private GameInstance gameInstance;
+
+    @FXML
+    private ProgressBar mainHealthBar;
 
     public TurnPhase() throws IOException {
 
@@ -66,6 +70,17 @@ public class TurnPhase extends WindowController implements Initializable {
         });
 
         gameInstance.queueAttack(attacks);
+
+    }
+
+    /**
+     * Updates the state of things in the TurnPhase.
+     * As TurnPhase does not include any live action, this does not have to be called 60 times a second,
+     * and is instead run whenever the game switches to it.
+     */
+    public void updateState() {
+
+        mainHealthBar.setProgress(gameInstance.getCurrentPlayer().getHealth());
 
     }
 

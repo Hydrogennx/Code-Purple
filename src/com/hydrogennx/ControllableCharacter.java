@@ -14,6 +14,9 @@ import javafx.scene.input.KeyEvent;
  */
 public class ControllableCharacter extends Group {
 
+    Player controllingPlayer;
+    GameActionPane context;
+
     ImageView sprite;
 
     public ControllableCharacter() {
@@ -38,13 +41,26 @@ public class ControllableCharacter extends Group {
             System.out.println("Key pressed!");
 
             if (event.getCode().equals(KeyCode.ENTER)) {
-                System.out.println("Enter Pressed");
+                System.out.println("Ow.");
+                controllingPlayer.registerDamage(0.1);
             }
 
 
         });
 
         requestFocus();
+
+    }
+
+    public void setContext(GameActionPane context) {
+
+        this.context = context;
+
+    }
+
+    public void setControllingPlayer(Player controllingPlayer) {
+
+        this.controllingPlayer = controllingPlayer;
 
     }
 

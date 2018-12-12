@@ -3,6 +3,7 @@ package com.hydrogennx;
 import com.hydrogennx.javafx.ActionPhase;
 import com.hydrogennx.javafx.ScreenFramework;
 import com.hydrogennx.javafx.TurnPhase;
+import javafx.scene.paint.Color;
 
 import java.util.List;
 
@@ -12,10 +13,14 @@ import java.util.List;
  */
 public class LocalPracticeInstance extends GameInstance {
 
-    List<AttackSequence> attackSequencesToDefendAgainst;
+    Player mainPlayer;
 
     public LocalPracticeInstance(GameManager gameManager) {
         super(gameManager);
+
+        mainPlayer = new Player(Color.AQUA, "Practice");
+
+        mainPlayer.addEnemy(mainPlayer); //you are your own worst enemy, because you are your only enemy
 
         gameState = GameState.TURN;
 
@@ -25,7 +30,6 @@ public class LocalPracticeInstance extends GameInstance {
 
     @Override
     public void queueAttack(List<AttackSequence> attackSequences) {
-        this.attackSequencesToDefendAgainst = attackSequences;
         changeGameState(GameState.ACTION);
 
         ActionPhase actionPhase = (ActionPhase) gameManager.screenFramework.wcm.getController(ScreenFramework.ACTION_PHASE_ID);
@@ -39,9 +43,13 @@ public class LocalPracticeInstance extends GameInstance {
         changeGameState(GameState.TURN);
 
         TurnPhase turnPhase = (TurnPhase) gameManager.screenFramework.wcm.getController(ScreenFramework.TURN_PHASE_ID);
-        //TODO transfer health and status debuffs between games
-        //turnPhase.updatePlayerData();
+        turnPhase.updateState();
 
+    }
+
+    @Override
+    public Player getCurrentPlayer() {
+        return mainPlayer;
     }
 
 

@@ -52,7 +52,7 @@ public class ActionPhase extends WindowController implements Initializable {
      * @param time
      */
     public void update(double time) {
-        healthBar.setProgress(healthBar.getProgress() - 0.001);
+        healthBar.setProgress(gameInstance.getCurrentPlayer().getHealth());
 
         if (attackStartTime == 0) {
             attackStartTime = time;
@@ -60,6 +60,8 @@ public class ActionPhase extends WindowController implements Initializable {
             startAttacks();
 
             controllableCharacter.setDefaultMovement();
+            controllableCharacter.setContext(gamePane);
+            controllableCharacter.setControllingPlayer(gameInstance.getCurrentPlayer());
         }
 
         gamePane.update(time);

@@ -43,6 +43,9 @@ public class GameActionPane extends Pane {
 
     }
 
+    /**
+     * Removes bullets queued for deletion.
+     */
     private void removeDeletedBullets() {
 
         for (Bullet bullet : bulletsToRemove) {

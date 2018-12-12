@@ -1,6 +1,7 @@
 package com.hydrogennx.javafx;
 
 import com.hydrogennx.AttackSequence;
+import com.hydrogennx.GameActionPane;
 import com.hydrogennx.GameInstance;
 import com.hydrogennx.TestBullet;
 import javafx.fxml.FXML;
@@ -31,32 +32,34 @@ public class TurnPhase extends WindowController implements Initializable {
         List<AttackSequence> attacks = new ArrayList<>();
         attacks.add(new AttackSequence() {
 
-            double lastAttackTime = -1;
-            ActionPhase actionPhase;
+            double lastAttackTime;
+            int numAttacks;
 
             @Override
-            public void startAttack(ActionPhase actionPhase) { //TODO don't feed it an entire action phase, geez
+            public void startAttack(GameActionPane context, double time) {
 
-                this.actionPhase = actionPhase;
+                super.startAttack(context, time);
+
+                this.lastAttackTime = attackStartTime;
 
             }
 
             @Override
-            public void update(double time) {
+            public boolean attackStep(double time) {
 
-                if (lastAttackTime == -1) {
-                    lastAttackTime = time;
-                }
+                if (time - lastAttackTime > 0.1 && numAttacks < 80) {
 
-                if (time - lastAttackTime > 0.1) {
+                    TestBullet testBullet = new TestBullet(context, this);
 
-                    TestBullet testBullet = new TestBullet(actionPhase.getGameActionPane(), this);
-
-                    actionPhase.getGameActionPane().spawnBullet(testBullet);
+                    context.spawnBullet(testBullet);
 
                     lastAttackTime = time;
 
+                    numAttacks++;
+
                 }
+
+                return true;
 
             }
 

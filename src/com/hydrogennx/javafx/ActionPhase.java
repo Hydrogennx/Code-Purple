@@ -25,6 +25,7 @@ public class ActionPhase extends WindowController implements Initializable {
     @FXML
     private ControllableCharacter controllableCharacter;
 
+    private double attackStartTime;
     private List<AttackSequence> attackSequences = new ArrayList<>();
 
     public ActionPhase() throws IOException {
@@ -42,8 +43,6 @@ public class ActionPhase extends WindowController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
-
         healthBar.setProgress(1);
 
     }
@@ -56,11 +55,54 @@ public class ActionPhase extends WindowController implements Initializable {
     public void update(double time) {
         healthBar.setProgress(healthBar.getProgress() - 0.001);
 
+        if (attackStartTime == 0) {
+            attackStartTime = time;
+
+            startAttacks();
+        }
+
         gamePane.update(time);
 
         for (AttackSequence attackSequence : attackSequences) {
 
-            attackSequence.update(time);
+            boolean attackStillActive = attackSequence.update(time);
+
+            if (!attackStillActive) {
+                System.out.println("Attack is over!");
+            }
+
+        }
+
+        clearAttacks();
+
+        if (attackSequences.isEmpty()) {
+            System.out.println("All attacks are over!");
+            gameInstance.endAttack();
+        }
+
+    }
+
+    private void clearAttacks() {
+
+        List<AttackSequence> attackSequencesToRemove = new ArrayList<>();
+
+        for (AttackSequence attackSequence : attackSequences) {
+            if (!attackSequence.isOngoing()) {
+                attackSequencesToRemove.add(attackSequence);
+            }
+        }
+
+        for (AttackSequence attackSequence : attackSequencesToRemove) {
+            attackSequences.remove(attackSequence);
+        }
+
+    }
+
+    public void startAttacks() {
+
+        for (AttackSequence attackSequence : attackSequences) {
+
+            attackSequence.startAttack(gamePane, attackStartTime);
 
         }
 
@@ -73,12 +115,6 @@ public class ActionPhase extends WindowController implements Initializable {
     public void addAttackSequences(List<AttackSequence> attackSequences) {
 
         this.attackSequences.addAll(attackSequences);
-
-        for (AttackSequence attackSequence : attackSequences) {
-
-            attackSequence.startAttack(this);
-
-        }
 
     }
 

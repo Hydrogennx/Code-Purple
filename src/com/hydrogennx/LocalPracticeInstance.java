@@ -2,6 +2,7 @@ package com.hydrogennx;
 
 import com.hydrogennx.javafx.ActionPhase;
 import com.hydrogennx.javafx.ScreenFramework;
+import com.hydrogennx.javafx.TurnPhase;
 
 import java.util.List;
 
@@ -22,12 +23,24 @@ public class LocalPracticeInstance extends GameInstance {
 
     }
 
-    public void queueAttack(List<AttackSequence> attackSequencesToDefendAgainst) {
-        this.attackSequencesToDefendAgainst = attackSequencesToDefendAgainst;
+    @Override
+    public void queueAttack(List<AttackSequence> attackSequences) {
+        this.attackSequencesToDefendAgainst = attackSequences;
         changeGameState(GameState.ACTION);
 
         ActionPhase actionPhase = (ActionPhase) gameManager.screenFramework.wcm.getController(ScreenFramework.ACTION_PHASE_ID);
-        actionPhase.addAttackSequences(attackSequencesToDefendAgainst);
+        actionPhase.addAttackSequences(attackSequences);
+
+    }
+
+
+    @Override
+    public void endAttack() {
+        changeGameState(GameState.TURN);
+
+        TurnPhase turnPhase = (TurnPhase) gameManager.screenFramework.wcm.getController(ScreenFramework.TURN_PHASE_ID);
+        //TODO transfer health and status debuffs between games
+        //turnPhase.updatePlayerData();
 
     }
 

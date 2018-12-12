@@ -53,6 +53,7 @@ public class ControllableCharacter extends Group {
      */
     public void reset() {
 
+        //nothing needs to be done, you can't even move the character lol
 
     }
 }

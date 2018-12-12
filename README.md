@@ -9,9 +9,9 @@ A two-player strategic bullet hell game for the BPA competition.
  * Implement multiple attacks via button
  * Create graphics for attacks and their bullets
  * Turn the buttons into ImageButtons
- * Save health across ActionPhases (or at all)
  * Begin HotseatInstance and/or HostInstance / ClientInstance
 
+## TODO (Turn Phase):
  * Run strategic half of the game by everyone
  * Create Purple bars for Primary and Bonus
  * Prevent using certain attacks if Purple is low enough

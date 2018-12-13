@@ -60,7 +60,7 @@ public class ActionPhase extends WindowController implements Initializable {
             startAttacks();
 
             controllableCharacter.setDefaultMovement();
-            controllableCharacter.setContext(gamePane);
+            gamePane.setCharacter(controllableCharacter);
             controllableCharacter.setControllingPlayer(gameInstance.getCurrentPlayer());
         }
 

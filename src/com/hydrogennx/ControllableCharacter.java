@@ -20,6 +20,8 @@ public class ControllableCharacter extends Group {
     public double xSpeed = 0;
     public double ySpeed = 0;
 
+    public double invulnerabilityFrames = 0;
+
     Player controllingPlayer;
     GameActionPane context;
 
@@ -81,6 +83,10 @@ public class ControllableCharacter extends Group {
         sprite.setX(sprite.getX() + xSpeed);
         sprite.setY(sprite.getY() + ySpeed);
 
+        if (isInvulnerable()) {
+            invulnerabilityFrames--;
+        }
+
     }
 
     public void setContext(GameActionPane context) {
@@ -101,6 +107,28 @@ public class ControllableCharacter extends Group {
     public void reset() {
 
         //nothing needs to be done, you can't even move the character lol
+
+    }
+
+    public Player getPlayer() {
+
+        return controllingPlayer;
+
+    }
+
+    public boolean isInvulnerable() {
+
+        return invulnerabilityFrames > 0;
+
+    }
+
+    public void registerHit(double damage) {
+
+        if (isInvulnerable()) return;
+
+        getPlayer().registerDamage(damage);
+
+        invulnerabilityFrames = 60;
 
     }
 }

@@ -14,6 +14,8 @@ public class GameActionPane extends Pane {
 
     List<Bullet> bulletsToRemove = new ArrayList<>();
 
+    ControllableCharacter controllableCharacter;
+
     public void spawnBullet(Bullet bullet) {
 
         getChildren().add(bullet);
@@ -70,6 +72,20 @@ public class GameActionPane extends Pane {
         }
 
         removeDeletedBullets();
+
+    }
+
+    public void setCharacter(ControllableCharacter controllableCharacter) {
+
+        this.controllableCharacter = controllableCharacter;
+
+        controllableCharacter.setContext(this);
+
+    }
+
+    public ControllableCharacter getCharacter() {
+
+        return controllableCharacter;
 
     }
 }

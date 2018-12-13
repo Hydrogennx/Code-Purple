@@ -11,6 +11,8 @@ import java.util.Random;
  */
 public class TestBullet extends Bullet {
 
+    public static final double DAMAGE = 0.2; //20%
+
     double velocity = 0;
 
     public TestBullet(GameActionPane context, AttackSequence source) {
@@ -43,6 +45,19 @@ public class TestBullet extends Bullet {
             context.destroyBullet(this);
 
         }
+
+        if (collidingWithPlayer()) {
+
+            context.destroyBullet(this);
+            context.getCharacter().registerHit(DAMAGE);
+
+        }
+
+    }
+
+    private boolean collidingWithPlayer() {
+
+        return getBoundsInParent().intersects(context.getCharacter().getBoundsInParent());
 
     }
 }

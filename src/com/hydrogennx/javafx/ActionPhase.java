@@ -41,7 +41,8 @@ public class ActionPhase extends WindowController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        gamePane.setScaleY(-1);
+
+        //gamePane.setScaleY(-1);
         healthBar.setProgress(1);
 
     }

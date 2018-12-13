@@ -13,15 +13,19 @@ import java.util.Random;
  */
 public abstract class Bullet extends Group {
 
+    double damage;
+
     GameActionPane context;
     AttackSequence source;
 
     ImageView sprite = new ImageView();
 
-    public Bullet(GameActionPane context, AttackSequence source) {
+    public Bullet(GameActionPane context, AttackSequence source, double damage) {
 
         this.context = context;
         this.source = source;
+
+        this.damage = damage;
 
         this.getChildren().add(sprite);
 

@@ -51,16 +51,16 @@ public class ControllableCharacter extends Group {
             double speed = TOP_SPEED / FRAMES_TO_FULL_SPEED;
             switch(event.getCode()) {
                 case W:
-                    ySpeed = speed;
+                    ySpeed += speed;
                     break;
                 case S:
-                    ySpeed = -speed;
+                    ySpeed -= speed;
                     break;
                 case A:
-                    xSpeed = speed;
+                    xSpeed -= speed;
                     break;
                 case D:
-                    xSpeed = -speed;
+                    xSpeed += speed;
                     break;
                 case ENTER:
                     System.out.println("Ow.");
@@ -69,6 +69,28 @@ public class ControllableCharacter extends Group {
             }
             
 
+
+        });
+
+        setOnKeyReleased(event -> {
+
+            System.out.println("Key released!");
+
+            double speed = TOP_SPEED / FRAMES_TO_FULL_SPEED;
+            switch(event.getCode()) {
+                case W:
+                    ySpeed += -speed;
+                    break;
+                case S:
+                    ySpeed -= -speed;
+                    break;
+                case A:
+                    xSpeed -= -speed;
+                    break;
+                case D:
+                    xSpeed += -speed;
+                    break;
+            }
 
         });
 

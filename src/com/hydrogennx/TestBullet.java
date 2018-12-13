@@ -11,23 +11,18 @@ import java.util.Random;
  */
 public class TestBullet extends Bullet {
 
-    public static final double DAMAGE = 0.2; //20%
-
     double velocity = 0;
 
     public TestBullet(GameActionPane context, AttackSequence source) {
 
-        super(context, source);
+        super(context, source, 0.2);
 
         //TODO create a dictionary for image ids rather than hard-coding them.
         sprite.setImage(new Image("file:res/falling-bullet.png"));
 
         Random random = new Random();
 
-        //TODO have the test bullet initialized with context awareness
-        //TODO set the test bullet to be in a random location ON THE TOP OF THE BOARD, rather than some corner of it
         sprite.setX(random.nextInt((int) context.getWidth()));
-        System.out.println(context.getWidth());
         sprite.setY(0);
 
     }
@@ -49,7 +44,7 @@ public class TestBullet extends Bullet {
         if (collidingWithPlayer()) {
 
             context.destroyBullet(this);
-            context.getCharacter().registerHit(DAMAGE);
+            context.getCharacter().registerHit(damage);
 
         }
 

@@ -14,6 +14,12 @@ import javafx.scene.input.KeyEvent;
  */
 public class ControllableCharacter extends Group {
 
+    public static final double FRAMES_TO_FULL_SPEED = 4;
+    public static final double TOP_SPEED = 16;
+
+    public double xSpeed = 0;
+    public double ySpeed = 0;
+
     Player controllingPlayer;
     GameActionPane context;
 
@@ -40,15 +46,40 @@ public class ControllableCharacter extends Group {
 
             System.out.println("Key pressed!");
 
+            double speed = TOP_SPEED / FRAMES_TO_FULL_SPEED;
+
             if (event.getCode().equals(KeyCode.ENTER)) {
                 System.out.println("Ow.");
                 controllingPlayer.registerDamage(0.1);
+            }
+
+            if (event.getCode().equals(KeyCode.W)) {
+                ySpeed = -speed;
+            }
+
+            if (event.getCode().equals(KeyCode.S)) {
+                ySpeed = speed;
+            }
+
+            if (event.getCode().equals(KeyCode.A)) {
+                xSpeed = -speed;
+            }
+
+            if (event.getCode().equals(KeyCode.D) ) {
+                xSpeed = speed;
             }
 
 
         });
 
         requestFocus();
+
+    }
+
+    public void update(double time) {
+
+        sprite.setX(sprite.getX() + xSpeed);
+        sprite.setY(sprite.getY() + ySpeed);
 
     }
 

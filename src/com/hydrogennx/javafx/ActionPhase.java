@@ -76,6 +76,8 @@ public class ActionPhase extends WindowController implements Initializable {
 
         }
 
+        controllableCharacter.update(time);
+
         clearAttacks();
 
         if (attackSequences.isEmpty()) {

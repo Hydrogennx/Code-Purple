@@ -47,27 +47,25 @@ public class ControllableCharacter extends Group {
             System.out.println("Key pressed!");
 
             double speed = TOP_SPEED / FRAMES_TO_FULL_SPEED;
-
-            if (event.getCode().equals(KeyCode.ENTER)) {
-                System.out.println("Ow.");
-                controllingPlayer.registerDamage(0.1);
+            switch(event.getCode()) {
+                case W:
+                    ySpeed = speed;
+                    break;
+                case S:
+                    ySpeed = -speed;
+                    break;
+                case A:
+                    xSpeed = speed;
+                    break;
+                case D:
+                    xSpeed = -speed;
+                    break;
+                case ENTER:
+                    System.out.println("Ow.");
+                    controllingPlayer.registerDamage(0.1);
+                    break;
             }
-
-            if (event.getCode().equals(KeyCode.W)) {
-                ySpeed = -speed;
-            }
-
-            if (event.getCode().equals(KeyCode.S)) {
-                ySpeed = speed;
-            }
-
-            if (event.getCode().equals(KeyCode.A)) {
-                xSpeed = -speed;
-            }
-
-            if (event.getCode().equals(KeyCode.D) ) {
-                xSpeed = speed;
-            }
+            
 
 
         });

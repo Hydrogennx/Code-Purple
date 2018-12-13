@@ -100,8 +100,8 @@ public class ControllableCharacter extends Group {
 
     public void update(double time) {
 
-        sprite.setX(sprite.getX() + xSpeed);
-        sprite.setY(sprite.getY() + ySpeed);
+        setLayoutX(getLayoutX() + xSpeed);
+        setLayoutY(getLayoutY() + ySpeed);
 
         if (isInvulnerable()) {
             invulnerabilityFrames--;
@@ -113,16 +113,16 @@ public class ControllableCharacter extends Group {
 
     private void keepSpriteInBounds() {
 
-        if (sprite.getX() < 0) {
-            sprite.setX(0);
-        } else if (sprite.getX() > context.getWidth()) {
-            sprite.setX(context.getWidth());
+        if (getLayoutX() < 0) {
+            setLayoutX(0);
+        } else if (getLayoutX() > context.getWidth()) {
+            setLayoutX(context.getWidth());
         }
 
-        if (sprite.getY() < 0) {
-            sprite.setY(0);
-        } else if (sprite.getY() > context.getHeight()) {
-            sprite.setY(context.getHeight());
+        if (getLayoutY() < 0) {
+            setLayoutY(0);
+        } else if (getLayoutY() > context.getHeight()) {
+            setLayoutY(context.getHeight());
         }
 
     }
@@ -167,6 +167,12 @@ public class ControllableCharacter extends Group {
         getPlayer().registerDamage(damage);
 
         invulnerabilityFrames = 60;
+
+    }
+
+    public boolean isDead() {
+
+        return getPlayer().getHealth() <= 0;
 
     }
 }

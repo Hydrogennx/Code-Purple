@@ -21,7 +21,6 @@
       </ImageView>
       <GameActionPane fx:id="gamePane" layoutX="12.0" prefHeight="600.0" prefWidth="600.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0">
          <children>
-          <Label layoutX="171.0" layoutY="200.0" text="Action! ...You will be able to move, someday." />
              <ControllableCharacter fx:id="controllableCharacter" layoutX="170.0" layoutY="200.0" />
          </children>
       </GameActionPane>

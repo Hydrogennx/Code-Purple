@@ -87,6 +87,10 @@ public class ActionPhase extends WindowController implements Initializable {
             reset();
         }
 
+        if (controllableCharacter.isDead()) {
+            gameInstance.registerDefeat();
+        }
+
     }
 
     /**

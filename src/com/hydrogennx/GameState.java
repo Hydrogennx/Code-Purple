@@ -14,7 +14,6 @@ public enum GameState {
     //Indicates that the player is executing their turn.
     ACTION,
 
-    //Indicates that the window has been closed, and cleanup is (or should be) in progress.
-    DONE;
-
+    //Game is over, you are looking at stats and chatting with the other player
+    GAME_OVER;
 }

@@ -113,4 +113,11 @@ public class GameManager extends Application {
         primaryStage.close();
 
     }
+
+    public void stopGame() {
+
+        gameContext = GameContext.INACTIVE;
+        gameInstance = null;
+
+    }
 }

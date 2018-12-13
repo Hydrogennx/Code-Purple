@@ -32,6 +32,9 @@ public abstract class GameInstance {
             case ACTION:
                 gameManager.screenFramework.wcm.setScreen(ScreenFramework.ACTION_PHASE_ID);
                 break;
+            case GAME_OVER:
+                gameManager.screenFramework.wcm.setScreen(ScreenFramework.GAME_OVER_ID);
+                break;
             default:
                 return; //should not happen
         }
@@ -58,6 +61,9 @@ public abstract class GameInstance {
 
     public abstract void queueAttack(List<AttackSequence> attackSequences);
     public abstract void endAttack();
+    public abstract void registerDefeat();
+
+    public abstract void endGame();
 
     public abstract Player getCurrentPlayer();
 

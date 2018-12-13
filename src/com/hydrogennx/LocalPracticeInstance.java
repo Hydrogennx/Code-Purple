@@ -50,6 +50,22 @@ public class LocalPracticeInstance extends GameInstance {
     }
 
     @Override
+    public void registerDefeat() {
+
+        changeGameState(GameState.GAME_OVER);
+
+    }
+
+    @Override
+    public void endGame() {
+
+        gameManager.stopGame();
+
+        changeGameState(GameState.MENU);
+
+    }
+
+    @Override
     public Player getCurrentPlayer() {
         return mainPlayer;
     }

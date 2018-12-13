@@ -51,10 +51,10 @@ public class ControllableCharacter extends Group {
             double speed = TOP_SPEED / FRAMES_TO_FULL_SPEED;
             switch(event.getCode()) {
                 case W:
-                    ySpeed += speed;
+                    ySpeed -= speed;
                     break;
                 case S:
-                    ySpeed -= speed;
+                    ySpeed += speed;
                     break;
                 case A:
                     xSpeed -= speed;
@@ -79,10 +79,10 @@ public class ControllableCharacter extends Group {
             double speed = TOP_SPEED / FRAMES_TO_FULL_SPEED;
             switch(event.getCode()) {
                 case W:
-                    ySpeed += -speed;
+                    ySpeed -= -speed;
                     break;
                 case S:
-                    ySpeed -= -speed;
+                    ySpeed += -speed;
                     break;
                 case A:
                     xSpeed -= -speed;
@@ -105,6 +105,24 @@ public class ControllableCharacter extends Group {
 
         if (isInvulnerable()) {
             invulnerabilityFrames--;
+        }
+
+        keepSpriteInBounds();
+
+    }
+
+    private void keepSpriteInBounds() {
+
+        if (sprite.getX() < 0) {
+            sprite.setX(0);
+        } else if (sprite.getX() > context.getWidth()) {
+            sprite.setX(context.getWidth());
+        }
+
+        if (sprite.getY() < 0) {
+            sprite.setY(0);
+        } else if (sprite.getY() > context.getHeight()) {
+            sprite.setY(context.getHeight());
         }
 
     }

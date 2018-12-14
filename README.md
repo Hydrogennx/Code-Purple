@@ -1,4 +1,4 @@
-# FirstJump
+# I don't have a name yet
 A two-player strategic bullet hell game for the BPA competition.
 
 ## TODO (Action Phase / General):

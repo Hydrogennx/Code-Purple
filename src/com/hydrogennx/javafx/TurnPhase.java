@@ -73,6 +73,49 @@ public class TurnPhase extends WindowController implements Initializable {
 
     }
 
+    @FXML
+    public void boringAttack() {
+
+        List<AttackSequence> attacks = new ArrayList<>();
+        attacks.add(new AttackSequence() {
+
+            double lastAttackTime;
+            int numAttacks;
+
+            @Override
+            public void startAttack(GameActionPane context, double time) {
+
+                super.startAttack(context, time);
+
+                this.lastAttackTime = attackStartTime;
+
+            }
+
+            @Override
+            public boolean attackStep(double time) {
+
+                if (time - lastAttackTime > 0.1 && numAttacks < 80) {
+
+                    //TestBullet testBullet = new TestBullet(context, this);
+
+                    //context.spawnBullet(testBullet);
+
+                    lastAttackTime = time;
+
+                    numAttacks++;
+
+                }
+
+                return true;
+
+            }
+
+        });
+
+        gameInstance.queueAttack(attacks);
+
+    }
+
     /**
      * Updates the state of things in the TurnPhase.
      * As TurnPhase does not include any live action, this does not have to be called 60 times a second,

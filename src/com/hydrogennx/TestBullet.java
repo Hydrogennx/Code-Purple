@@ -11,7 +11,7 @@ import java.util.Random;
  */
 public class TestBullet extends Bullet {
 
-    double velocity = 0;
+    double velocity = -5;
 
     public TestBullet(GameActionPane context, AttackSequence source) {
 
@@ -30,7 +30,7 @@ public class TestBullet extends Bullet {
     @Override
     public void update(double time) {
 
-        velocity += 0.1;
+        velocity += 0.5;
         velocity /= 1.05;
 
         sprite.setY(sprite.getY() + velocity);

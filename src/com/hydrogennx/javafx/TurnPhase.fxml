@@ -21,6 +21,7 @@
       <Pane layoutX="12.0" layoutY="51.0" prefHeight="200.0" prefWidth="200.0">
          <children>
           <Button layoutX="14.0" layoutY="40.0" mnemonicParsing="false" onAction="#funAttack" text="Fun Attack (Ignores Purple)" />
+            <Button layoutX="14.0" layoutY="68.0" mnemonicParsing="false" onAction="#boringAttack" text="Boring Attack (Ignores Purple)" />
           <Label layoutX="14.0" layoutY="14.0" text="You only have one attack:" />
          </children>
       </Pane>
@@ -150,6 +151,5 @@
             </ImageView>
          </children>
       </Pane>
-      <Text layoutX="400.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This isn't anything close to live btw" AnchorPane.rightAnchor="15.52734375" />
   </children>
 </AnchorPane>

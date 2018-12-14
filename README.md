@@ -2,10 +2,8 @@
 A two-player strategic bullet hell game for the BPA competition.
 
 ## TODO (Action Phase / General):
- * Allow the character to move
- * Detect if the character collides with bullets
- * Register damage based on these collisions rather than decreasing over time
- * Go to the EndPhase when the player is eliminated
+ * Fix character movement to be consistent
+ * Change the hitbox for the player to be a diamond, and closer more accurate for the bullets
  * Implement multiple attacks via button
  * Create graphics for attacks and their bullets
  * Turn the buttons into ImageButtons

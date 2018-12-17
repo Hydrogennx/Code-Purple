@@ -1,9 +1,6 @@
 package com.hydrogennx.javafx;
 
-import com.hydrogennx.AttackSequence;
-import com.hydrogennx.GameActionPane;
-import com.hydrogennx.GameInstance;
-import com.hydrogennx.TestBullet;
+import com.hydrogennx.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ProgressBar;
@@ -53,7 +50,7 @@ public class TurnPhase extends WindowController implements Initializable {
 
                 if (time - lastAttackTime > 0.1 && numAttacks < 80) {
 
-                    TestBullet testBullet = new TestBullet(context, this);
+                    DiamondBullet testBullet = new DiamondBullet(context, this);
 
                     context.spawnBullet(testBullet);
 
@@ -96,9 +93,9 @@ public class TurnPhase extends WindowController implements Initializable {
 
                 if (time - lastAttackTime > 0.1 && numAttacks < 80) {
 
-                    //TestBullet testBullet = new TestBullet(context, this);
+                    SpearBullet testBullet = new SpearBullet(context, this);
 
-                    //context.spawnBullet(testBullet);
+                    context.spawnBullet(testBullet);
 
                     lastAttackTime = time;
 

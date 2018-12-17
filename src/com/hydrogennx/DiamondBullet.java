@@ -9,13 +9,13 @@ import java.util.Random;
  * A bullet created by the MainMenu AttackSequence.
  * It moves in a random direction at a slow speed.
  */
-public class TestBullet extends Bullet {
+public class DiamondBullet extends SpriteBullet {
 
-    double velocity = -5;
-
-    public TestBullet(GameActionPane context, AttackSequence source) {
+    public DiamondBullet(GameActionPane context, AttackSequence source) {
 
         super(context, source, 0.2);
+
+        yVelocity = -5;
 
         //TODO create a dictionary for image ids rather than hard-coding them.
         sprite.setImage(new Image("file:res/falling-bullet.png"));
@@ -30,29 +30,16 @@ public class TestBullet extends Bullet {
     @Override
     public void update(double time) {
 
-        velocity += 0.5;
-        velocity /= 1.05;
+        super.update(time);
 
-        sprite.setY(sprite.getY() + velocity);
+        yVelocity += 0.5;
+        yVelocity /= 1.05;
 
         if (sprite.getY() > context.getHeight()) {
 
             context.destroyBullet(this);
 
         }
-
-        if (collidingWithPlayer()) {
-
-            context.destroyBullet(this);
-            context.getCharacter().registerHit(damage);
-
-        }
-
-    }
-
-    private boolean collidingWithPlayer() {
-
-        return getBoundsInParent().intersects(context.getCharacter().getBoundsInParent());
 
     }
 }

@@ -9,7 +9,8 @@ import java.util.List;
  */
 public abstract class AttackSequence {
 
-    public static final double ATTACK_LENGTH = 10.0; //all attacks default to 10 seconds
+    //public static final double ATTACK_LENGTH = 10.0; //all attacks default to 10 seconds
+    public static final double ATTACK_LENGTH = 99.0; //delete before release
 
     protected boolean timed = true; //Timed attacks end after a certain amount of time has passed.
     protected boolean attackOngoing = true;

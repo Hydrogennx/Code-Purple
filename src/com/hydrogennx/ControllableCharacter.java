@@ -16,10 +16,14 @@ public class ControllableCharacter extends Group {
 
     public static final double FRAMES_TO_FULL_SPEED = 4;
     public static final double TOP_SPEED = 16;
-
+    public static boolean W;
+    public static boolean A;
+    public static boolean S;
+    public static boolean D;
+    public static boolean enter = false;
     public double xSpeed = 0;
     public double ySpeed = 0;
-
+    public double speed = TOP_SPEED / FRAMES_TO_FULL_SPEED;
     public double invulnerabilityFrames = 0;
 
     Player controllingPlayer;
@@ -46,53 +50,44 @@ public class ControllableCharacter extends Group {
 
         setOnKeyPressed(event -> {
 
-            System.out.println("Key pressed!");
-
-            double speed = TOP_SPEED / FRAMES_TO_FULL_SPEED;
             switch(event.getCode()) {
                 case W:
-                    ySpeed -= speed;
+                    W = true;
                     break;
                 case S:
-                    ySpeed += speed;
+                    S = true;
                     break;
                 case A:
-                    xSpeed -= speed;
+                    A = true;
                     break;
                 case D:
-                    xSpeed += speed;
-                    break;
-                case ENTER:
-                    System.out.println("Ow.");
-                    controllingPlayer.registerDamage(0.1);
-                    break;
-            }
-            
-
-
-        });
-
-        setOnKeyReleased(event -> {
-
-            System.out.println("Key released!");
-
-            double speed = TOP_SPEED / FRAMES_TO_FULL_SPEED;
-            switch(event.getCode()) {
-                case W:
-                    ySpeed -= -speed;
-                    break;
-                case S:
-                    ySpeed += -speed;
-                    break;
-                case A:
-                    xSpeed -= -speed;
-                    break;
-                case D:
-                    xSpeed += -speed;
+                    D = true;
                     break;
             }
 
         });
+
+//        setOnKeyReleased(event -> {
+//
+//            System.out.println("Key released!");
+//
+//            double speed = TOP_SPEED / FRAMES_TO_FULL_SPEED;
+//            switch(event.getCode()) {
+//                case W:
+//                    ySpeed -= -speed;
+//                    break;
+//                case S:
+//                    ySpeed += -speed;
+//                    break;
+//                case A:
+//                    xSpeed -= -speed;
+//                    break;
+//                case D:
+//                    xSpeed += -speed;
+//                    break;
+//            }
+//
+//        });
 
         requestFocus();
 
@@ -100,6 +95,30 @@ public class ControllableCharacter extends Group {
 
     public void update(double time) {
 
+        if (W == true) {
+            ySpeed -= speed;
+            System.out.println("Key pressed");
+        } else if (!W == true) {
+            ySpeed = 0;
+        }
+        if (S == true) {
+            ySpeed += speed;
+            System.out.println("Key pressed");
+        } else if (!S == true) {
+            ySpeed = 0;
+        }
+        if (D == true) {
+            xSpeed -= speed;
+            System.out.println("Key pressed");
+        } else if (!D == true) {
+            ySpeed = 0;
+        }
+        if (A == true) {
+            xSpeed += speed;
+            System.out.println("Key pressed");
+        } else if (!A == true) {
+            ySpeed = 0;
+        }
         setLayoutX(getLayoutX() + xSpeed);
         setLayoutY(getLayoutY() + ySpeed);
 

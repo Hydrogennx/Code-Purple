@@ -20,7 +20,6 @@ public class ControllableCharacter extends Group {
     public static boolean A;
     public static boolean S;
     public static boolean D;
-    public static boolean enter = false;
     public double xSpeed = 0;
     public double ySpeed = 0;
     public double speed = TOP_SPEED / FRAMES_TO_FULL_SPEED;
@@ -46,81 +45,98 @@ public class ControllableCharacter extends Group {
      */
     public void setDefaultMovement() {
 
-        System.out.println("Default movement set!");
-
         setOnKeyPressed(event -> {
 
             switch(event.getCode()) {
                 case W:
                     W = true;
+                    System.out.println("Pressed W");
+                    moveeeeee();
                     break;
                 case S:
                     S = true;
+                    System.out.println("Pressed S");
+                    moveeeeee();
                     break;
                 case A:
                     A = true;
+                    System.out.println("Pressed A");
+                    moveeeeee();
                     break;
                 case D:
                     D = true;
+                    System.out.println("Pressed D");
+                    moveeeeee();
                     break;
             }
 
         });
 
-//        setOnKeyReleased(event -> {
-//
-//            System.out.println("Key released!");
-//
-//            double speed = TOP_SPEED / FRAMES_TO_FULL_SPEED;
-//            switch(event.getCode()) {
-//                case W:
-//                    ySpeed -= -speed;
-//                    break;
-//                case S:
-//                    ySpeed += -speed;
-//                    break;
-//                case A:
-//                    xSpeed -= -speed;
-//                    break;
-//                case D:
-//                    xSpeed += -speed;
-//                    break;
-//            }
-//
-//        });
+        setOnKeyReleased(event -> {
+
+            switch(event.getCode()) {
+                case W:
+                    W = false;
+                    System.out.println("Released W");
+                    moveeeeee();
+                    break;
+                case S:
+                    S = false;
+                    System.out.println("Released S");
+                    moveeeeee();
+                    break;
+                case A:
+                    A = false;
+                    System.out.println("Released A");
+                    moveeeeee();
+                    break;
+                case D:
+                    D = false;
+                    System.out.println("Released D");
+                    moveeeeee();
+                    break;
+            }
+
+        });
 
         requestFocus();
 
     }
 
-    public void update(double time) {
-
+    public void moveeeeee() {
         if (W == true) {
             ySpeed -= speed;
-            System.out.println("Key pressed");
-        } else if (!W == true) {
+            System.out.println("Speed" + " " + speed + " " + ySpeed);
+        } else {
             ySpeed = 0;
         }
         if (S == true) {
             ySpeed += speed;
-            System.out.println("Key pressed");
-        } else if (!S == true) {
+            System.out.println("Speed" + " " + speed + " " + ySpeed);
+        } else {
             ySpeed = 0;
         }
         if (D == true) {
-            xSpeed -= speed;
-            System.out.println("Key pressed");
-        } else if (!D == true) {
-            ySpeed = 0;
+            xSpeed += speed;
+            System.out.println("Speed" + " " + speed + " " + xSpeed);
+        } else {
+            xSpeed = 0;
         }
         if (A == true) {
-            xSpeed += speed;
-            System.out.println("Key pressed");
-        } else if (!A == true) {
-            ySpeed = 0;
+            xSpeed -= speed;
+            System.out.println("Speed" + " " + speed + " " + xSpeed);
+        } else {
+            xSpeed = 0;
         }
+
+    }
+
+    public void update(double time) {
+
         setLayoutX(getLayoutX() + xSpeed);
+        System.out.println("Update X: " + xSpeed);
         setLayoutY(getLayoutY() + ySpeed);
+        System.out.println("Update Y:" + ySpeed);
 
         if (isInvulnerable()) {
             invulnerabilityFrames--;

@@ -47,96 +47,73 @@ public class ControllableCharacter extends Group {
 
         setOnKeyPressed(event -> {
 
-            switch(event.getCode()) {
+            switch (event.getCode()) {
                 case W:
                     W = true;
-                    System.out.println("Pressed W");
-                    moveeeeee();
+                    move();
                     break;
                 case S:
                     S = true;
-                    System.out.println("Pressed S");
-                    moveeeeee();
+                    move();
                     break;
                 case A:
                     A = true;
-                    System.out.println("Pressed A");
-                    moveeeeee();
+                    move();
                     break;
                 case D:
                     D = true;
-                    System.out.println("Pressed D");
-                    moveeeeee();
+                    move();
                     break;
             }
 
-        });
+        }); //This switch statement detects when the player pushes one of the control buttons and calls the move method to
+            //perform movements
 
         setOnKeyReleased(event -> {
 
-            switch(event.getCode()) {
+            switch (event.getCode()) {
                 case W:
                     W = false;
-                    System.out.println("Released W");
-                    moveeeeee();
+                    ySpeed = 0;
                     break;
                 case S:
                     S = false;
-                    System.out.println("Released S");
-                    moveeeeee();
+                    ySpeed = 0;
                     break;
                 case A:
                     A = false;
-                    System.out.println("Released A");
-                    moveeeeee();
+                    xSpeed = 0;
                     break;
                 case D:
                     D = false;
-                    System.out.println("Released D");
-                    moveeeeee();
+                    xSpeed = 0;
                     break;
             }
-
-        });
+        }); //This switch statement detects when the player lets go of a button and stops the character from moving it
 
         requestFocus();
 
     }
 
-    public void moveeeeee() {
+    public void move() { //This method adjusts the speed and direction the character is moving in according to the player input
         if (W == true) {
-            ySpeed -= speed;
-            System.out.println("Speed" + " " + speed + " " + ySpeed);
-        } else {
-            ySpeed = 0;
+            ySpeed = -speed;
         }
         if (S == true) {
-            ySpeed += speed;
-            System.out.println("Speed" + " " + speed + " " + ySpeed);
-        } else {
-            ySpeed = 0;
+            ySpeed = speed;
         }
         if (D == true) {
-            xSpeed += speed;
-            System.out.println("Speed" + " " + speed + " " + xSpeed);
-        } else {
-            xSpeed = 0;
+            xSpeed = speed;
         }
         if (A == true) {
-            xSpeed -= speed;
-            System.out.println("Speed" + " " + speed + " " + xSpeed);
-        } else {
-            xSpeed = 0;
+            xSpeed = -speed;
         }
-
     }
 
     public void update(double time) {
 
         setLayoutX(getLayoutX() + xSpeed);
-        System.out.println("Update X: " + xSpeed);
         setLayoutY(getLayoutY() + ySpeed);
-        System.out.println("Update Y:" + ySpeed);
 
         if (isInvulnerable()) {
             invulnerabilityFrames--;

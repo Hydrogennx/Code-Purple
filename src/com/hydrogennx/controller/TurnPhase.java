@@ -7,7 +7,7 @@ import com.hydrogennx.core.javafx.WindowController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ProgressBar;
-
+import javafx.scene.control.ProgressIndicator;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -20,6 +20,7 @@ public class TurnPhase extends WindowController implements Initializable {
 
     @FXML
     private ProgressBar mainHealthBar;
+    private ProgressIndicator waitingCircle = new ProgressIndicator();
 
     public TurnPhase() throws IOException {
 
@@ -124,6 +125,7 @@ public class TurnPhase extends WindowController implements Initializable {
     public void updateState() {
 
         mainHealthBar.setProgress(gameInstance.getCurrentPlayer().getHealth());
+
 
     }
 

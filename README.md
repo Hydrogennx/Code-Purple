@@ -17,3 +17,11 @@ A two-player strategic bullet hell game for the BPA competition.
  * Add passive effects
  * Add multi-attacks
  * Allow players at some point to build decks
+ 
+## TODO (Other): 
+ * Comment code
+ * Add multiplayer networking
+ * Add publisher credit then development credit
+ * Add settings
+
+

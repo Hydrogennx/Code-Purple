@@ -17,11 +17,25 @@ A two-player strategic bullet hell game for the BPA competition.
  * Add passive effects
  * Add multi-attacks
  * Allow players at some point to build decks
+
+## TODO (Errors and Debugging):
+ * Any kind of error handling whatsoever
+ * Handle exceptions as they come up
+ * Alert the user when something goes wrong
+ * Log all relevant events to a debug file
+ * Log all relevant errors to a debug file
+ * Generate crash reports via text file
+ * Optionally email these crash reports for some reason
+ 
+## TODO (Silverware Polishing):
+ * Clean up and redesign user interface
+ * Add sound effects and music
+ * More depth of content
  
 ## TODO (Other): 
- * Comment code
- * Add multiplayer networking
+ * Add documentation
+ * Data flow diagrams for some reason
  * Add publisher credit then development credit
+ * Using flatfiles for game content for some reason
  * Add settings
-
-
+ * Flatfile to keep game settings persistent

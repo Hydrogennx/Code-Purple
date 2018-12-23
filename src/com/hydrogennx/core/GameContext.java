@@ -1,4 +1,4 @@
-package com.hydrogennx;
+package com.hydrogennx.core;
 
 /**
  * Defines the context under which the game is played.

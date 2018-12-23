@@ -1,11 +1,9 @@
-package com.hydrogennx;
+package com.hydrogennx.core.bullet;
 
-import com.hydrogennx.javafx.ActionPhase;
+import com.hydrogennx.core.AttackSequence;
+import com.hydrogennx.core.GameActionPane;
 import javafx.scene.Group;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-import java.util.Random;
 
 /**
  * Any bullet that appears on the screen during the ActionPhase.

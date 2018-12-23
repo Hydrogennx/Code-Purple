@@ -1,4 +1,7 @@
-package com.hydrogennx;
+package com.hydrogennx.core.bullet;
+
+import com.hydrogennx.core.AttackSequence;
+import com.hydrogennx.core.GameActionPane;
 
 public abstract class SpriteBullet extends Bullet {
 

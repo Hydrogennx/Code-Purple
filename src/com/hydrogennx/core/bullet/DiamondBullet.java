@@ -1,7 +1,8 @@
-package com.hydrogennx;
+package com.hydrogennx.core.bullet;
 
+import com.hydrogennx.core.AttackSequence;
+import com.hydrogennx.core.GameActionPane;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 import java.util.Random;
 
@@ -18,7 +19,7 @@ public class DiamondBullet extends SpriteBullet {
         yVelocity = -5;
 
         //TODO create a dictionary for image ids rather than hard-coding them.
-        sprite.setImage(new Image("file:res/falling-bullet.png"));
+        sprite.setImage(new Image("/com/hydrogennx/core/resource/falling-bullet.png"));
 
         Random random = new Random();
 

@@ -1,10 +1,9 @@
-package com.hydrogennx;
+package com.hydrogennx.core;
 
-import com.hydrogennx.javafx.*;
+import com.hydrogennx.core.javafx.*;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**

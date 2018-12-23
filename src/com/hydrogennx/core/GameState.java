@@ -1,4 +1,4 @@
-package com.hydrogennx;
+package com.hydrogennx.core;
 
 /**
  * Indicates what the player is looking at.
@@ -15,5 +15,5 @@ public enum GameState {
     ACTION,
 
     //Game is over, you are looking at stats and chatting with the other player
-    GAME_OVER;
+    GAME_OVER
 }

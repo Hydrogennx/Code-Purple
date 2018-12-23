@@ -1,7 +1,7 @@
-package com.hydrogennx;
+package com.hydrogennx.core;
 
-import com.hydrogennx.javafx.ActionPhase;
-import com.hydrogennx.javafx.ScreenFramework;
+import com.hydrogennx.controller.ActionPhase;
+import com.hydrogennx.core.javafx.ScreenFramework;
 
 import java.util.ArrayList;
 import java.util.List;

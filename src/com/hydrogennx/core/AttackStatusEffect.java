@@ -1,4 +1,4 @@
-package com.hydrogennx;
+package com.hydrogennx.core;
 
 /**
  * An attack status effect.

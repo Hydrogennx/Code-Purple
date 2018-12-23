@@ -1,5 +1,6 @@
-package com.hydrogennx;
+package com.hydrogennx.core;
 
+import com.hydrogennx.core.bullet.Bullet;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 

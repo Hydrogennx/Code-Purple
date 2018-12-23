@@ -1,4 +1,4 @@
-package com.hydrogennx;
+package com.hydrogennx.core;
 
 import java.util.ArrayList;
 import java.util.List;

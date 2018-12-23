@@ -1,4 +1,4 @@
-package com.hydrogennx.javafx;
+package com.hydrogennx.core.javafx;
 
 import javafx.scene.Node;
 

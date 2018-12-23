@@ -1,5 +1,7 @@
-package com.hydrogennx;
+package com.hydrogennx.core.bullet;
 
+import com.hydrogennx.core.AttackSequence;
+import com.hydrogennx.core.GameActionPane;
 import javafx.scene.image.Image;
 
 import java.util.Random;
@@ -14,7 +16,7 @@ public class SpearBullet extends SpriteBullet {
         super(context, source, 0.05);
 
         //TODO create a dictionary for image ids rather than hard-coding them.
-        sprite.setImage(new Image("file:res/tracer-bullet.png"));
+        sprite.setImage(new Image("/com/hydrogennx/core/resource/tracer-bullet.png"));
 
         Random random = new Random();
 

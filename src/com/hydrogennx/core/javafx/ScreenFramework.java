@@ -1,6 +1,10 @@
-package com.hydrogennx.javafx;
+package com.hydrogennx.core.javafx;
 
-import com.hydrogennx.GameManager;
+import com.hydrogennx.core.GameManager;
+import com.hydrogennx.controller.ActionPhase;
+import com.hydrogennx.controller.GameOver;
+import com.hydrogennx.controller.MainMenu;
+import com.hydrogennx.controller.TurnPhase;
 
 /**
  * A static helper class. Loads an instance of every screen,

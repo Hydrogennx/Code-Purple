@@ -1,9 +1,9 @@
-package com.hydrogennx.javafx;
+package com.hydrogennx.controller;
 
-import com.hydrogennx.GameManager;
+import com.hydrogennx.core.GameManager;
+import com.hydrogennx.core.javafx.WindowController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 
 import java.io.IOException;
 import java.net.URL;

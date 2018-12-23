@@ -1,4 +1,4 @@
-package com.hydrogennx.javafx;
+package com.hydrogennx.core.javafx;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -22,7 +22,7 @@ public class WindowControllerManager extends StackPane {
 
     public void loadScreen(String id, String resourceId) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(resourceId));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hydrogennx/fxml/" + resourceId));
 
             Parent mainWindow = loader.load();
             WindowController windowController = loader.getController();

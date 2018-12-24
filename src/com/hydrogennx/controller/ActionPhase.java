@@ -4,7 +4,6 @@ import com.hydrogennx.core.AttackSequence;
 import com.hydrogennx.core.ControllableCharacter;
 import com.hydrogennx.core.GameActionPane;
 import com.hydrogennx.core.GameInstance;
-import com.hydrogennx.core.javafx.WindowController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ProgressBar;

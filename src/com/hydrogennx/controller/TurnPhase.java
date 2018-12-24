@@ -3,7 +3,6 @@ package com.hydrogennx.controller;
 import com.hydrogennx.core.*;
 import com.hydrogennx.core.bullet.DiamondBullet;
 import com.hydrogennx.core.bullet.SpearBullet;
-import com.hydrogennx.core.javafx.WindowController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ProgressBar;

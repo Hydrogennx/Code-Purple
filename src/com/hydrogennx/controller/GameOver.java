@@ -1,7 +1,6 @@
 package com.hydrogennx.controller;
 
 import com.hydrogennx.core.GameInstance;
-import com.hydrogennx.core.javafx.WindowController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;

@@ -1,7 +1,6 @@
 package com.hydrogennx.controller;
 
 import com.hydrogennx.core.GameManager;
-import com.hydrogennx.core.javafx.WindowController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 

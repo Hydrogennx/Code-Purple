@@ -35,6 +35,9 @@ public abstract class GameInstance {
             case GAME_OVER:
                 gameManager.screenFramework.wcm.setScreen(ScreenFramework.GAME_OVER_ID);
                 break;
+//            case TUTORIAL:
+//                gameManager.screenFramework.wcm.setScreen(ScreenFramework.TUTORIAL_PHASE_ID);
+//                break;
             default:
                 return; //should not happen
         }

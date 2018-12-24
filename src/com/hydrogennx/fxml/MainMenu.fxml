@@ -9,7 +9,7 @@
     <Label fx:id="titleLabel" layoutX="259.0" layoutY="117.0" text="Code Purple" />
     <Button fx:id="playButton" layoutX="214.0" layoutY="138.0" mnemonicParsing="false" onAction="#playButtonPressed" text="Ok great lemme play it" />
     <Button fx:id="exitButton" layoutX="229.0" layoutY="259.0" mnemonicParsing="false" onAction="#exitButtonPressed" text="Ew I'm leaving bye" />
-      <Button fx:id="tutorialButton" contentDisplay="CENTER" layoutX="265.0" layoutY="177.0" mnemonicParsing="false" onAction="#tutorialButtonPressed" text="Tutorial" />
+      <Button fx:id="tutorialButton" contentDisplay="CENTER" layoutX="265.0" layoutY="177.0" mnemonicParsing="false" text="Tutorial" />
       <Button fx:id="optionButton" layoutX="264.0" layoutY="218.0" mnemonicParsing="false" text="Options" />
   </children>
 </AnchorPane>

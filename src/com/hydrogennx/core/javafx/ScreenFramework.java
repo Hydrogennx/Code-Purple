@@ -51,6 +51,7 @@ public class ScreenFramework {
         ActionPhase actionPhase = (ActionPhase) wcm.getController(ACTION_PHASE_ID);
         GameOver gameOver = (GameOver) wcm.getController(GAME_OVER_ID);
 
+
         turnPhase.setGameInstance(gameManager.getGameInstance());
         actionPhase.setGameInstance(gameManager.getGameInstance());
         gameOver.setGameInstance(gameManager.getGameInstance());

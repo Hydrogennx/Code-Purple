@@ -43,12 +43,6 @@ public class MainMenu extends WindowController implements Initializable {
         //Opens the playing menu
     }
 
-    @FXML
-    public void tutorialButtonPressed() {
-        gameManager.startTutorial();
-        //Opens tutorial
-    }
-
     public void setGameManager(GameManager gameManager) {
         if (this.gameManager == null) {
             this.gameManager = gameManager;

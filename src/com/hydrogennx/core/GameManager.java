@@ -80,15 +80,15 @@ public class GameManager extends Application {
 
     }
 
-    public void startTutorial() {
-        gameContext = GameContext.TUTORIAL;
-        gameInstance = new LocalTutorialInstance(this);
-
-        screenFramework.loadGameScreens();
-
-        updateScreen();
-
-    }
+//    public void startTutorial() {
+//        gameContext = GameContext.TUTORIAL;
+//        gameInstance = new LocalTutorialInstance(this);
+//
+//        screenFramework.loadGameScreens();
+//
+//        updateScreen();
+//
+//    }
 
     protected void startLoop() {
 

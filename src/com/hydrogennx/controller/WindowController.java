@@ -1,5 +1,6 @@
-package com.hydrogennx.core.javafx;
+package com.hydrogennx.controller;
 
+import com.hydrogennx.core.javafx.WindowControllerManager;
 import javafx.scene.Node;
 
 /**

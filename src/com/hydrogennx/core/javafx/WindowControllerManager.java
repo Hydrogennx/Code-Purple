@@ -1,5 +1,6 @@
 package com.hydrogennx.core.javafx;
 
+import com.hydrogennx.controller.WindowController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;

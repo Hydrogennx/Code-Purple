@@ -1,6 +1,6 @@
-package com.hydrogennx.core.bullet;
+package com.hydrogennx.core.attack.bullet;
 
-import com.hydrogennx.core.AttackSequence;
+import com.hydrogennx.core.attack.AttackSequence;
 import com.hydrogennx.core.GameActionPane;
 import javafx.scene.image.Image;
 

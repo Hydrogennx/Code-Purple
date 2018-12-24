@@ -1,6 +1,6 @@
 package com.hydrogennx.controller;
 
-import com.hydrogennx.core.AttackSequence;
+import com.hydrogennx.core.attack.AttackSequence;
 import com.hydrogennx.core.ControllableCharacter;
 import com.hydrogennx.core.GameActionPane;
 import com.hydrogennx.core.GameInstance;

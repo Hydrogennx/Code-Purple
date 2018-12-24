@@ -1,8 +1,11 @@
 package com.hydrogennx.controller;
 
 import com.hydrogennx.core.*;
-import com.hydrogennx.core.bullet.DiamondBullet;
-import com.hydrogennx.core.bullet.SpearBullet;
+import com.hydrogennx.core.attack.AttackSequence;
+import com.hydrogennx.core.attack.AxisAttack;
+import com.hydrogennx.core.attack.RainAttack;
+import com.hydrogennx.core.attack.bullet.DiamondBullet;
+import com.hydrogennx.core.attack.bullet.SpearBullet;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ProgressBar;
@@ -34,40 +37,7 @@ public class TurnPhase extends WindowController implements Initializable {
     public void funAttack() {
 
         List<AttackSequence> attacks = new ArrayList<>();
-        attacks.add(new AttackSequence() {
-
-            double lastAttackTime;
-            int numAttacks;
-
-            @Override
-            public void startAttack(GameActionPane context, double time) {
-
-                super.startAttack(context, time);
-
-                this.lastAttackTime = attackStartTime;
-
-            }
-
-            @Override
-            public boolean attackStep(double time) {
-
-                if (time - lastAttackTime > 0.1 && numAttacks < 80) {
-
-                    DiamondBullet testBullet = new DiamondBullet(context, this);
-
-                    context.spawnBullet(testBullet);
-
-                    lastAttackTime = time;
-
-                    numAttacks++;
-
-                }
-
-                return true;
-
-            }
-
-        });
+        attacks.add(new RainAttack());
 
         gameInstance.queueAttack(attacks);
 
@@ -77,40 +47,18 @@ public class TurnPhase extends WindowController implements Initializable {
     public void boringAttack() {
 
         List<AttackSequence> attacks = new ArrayList<>();
-        attacks.add(new AttackSequence() {
+        attacks.add(new AxisAttack());
 
-            double lastAttackTime;
-            int numAttacks;
+        gameInstance.queueAttack(attacks);
 
-            @Override
-            public void startAttack(GameActionPane context, double time) {
+    }
 
-                super.startAttack(context, time);
+    @FXML
+    public void allAtOnce() {
 
-                this.lastAttackTime = attackStartTime;
-
-            }
-
-            @Override
-            public boolean attackStep(double time) {
-
-                if (time - lastAttackTime > 0.1 && numAttacks < 80) {
-
-                    SpearBullet testBullet = new SpearBullet(context, this);
-
-                    context.spawnBullet(testBullet);
-
-                    lastAttackTime = time;
-
-                    numAttacks++;
-
-                }
-
-                return true;
-
-            }
-
-        });
+        List<AttackSequence> attacks = new ArrayList<>();
+        attacks.add(new AxisAttack());
+        attacks.add(new RainAttack());
 
         gameInstance.queueAttack(attacks);
 

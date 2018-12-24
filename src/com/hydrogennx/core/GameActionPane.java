@@ -1,6 +1,6 @@
 package com.hydrogennx.core;
 
-import com.hydrogennx.core.bullet.Bullet;
+import com.hydrogennx.core.attack.bullet.Bullet;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 

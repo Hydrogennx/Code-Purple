@@ -2,6 +2,7 @@ package com.hydrogennx.core;
 
 import com.hydrogennx.controller.ActionPhase;
 import com.hydrogennx.controller.TurnPhase;
+import com.hydrogennx.core.attack.AttackSequence;
 import com.hydrogennx.core.javafx.ScreenFramework;
 import javafx.scene.paint.Color;
 

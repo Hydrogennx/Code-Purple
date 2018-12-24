@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class SpearBullet extends SpriteBullet {
 
-    final double VELOCITY = 1;
+    final double VELOCITY = 2;
     double direction; //0 to 2 pi
 
     public SpearBullet(GameActionPane context, AttackSequence source) {
@@ -24,8 +24,11 @@ public class SpearBullet extends SpriteBullet {
         attackAngle /= 10000;
         attackAngle *= Math.PI * 2;
 
-        double startingX = Math.cos(attackAngle) * 100;
-        double startingY = Math.sin(attackAngle) * 100;
+        //double startingX = Math.cos(attackAngle) * 100 + context.getWidth()/2;
+        //double startingY = Math.sin(attackAngle) * 100 + context.getHeight()/2;
+
+        double startingX = context.getWidth()/2;
+        double startingY = context.getHeight()/2;
 
         sprite.setX(startingX);
         sprite.setY(startingY);

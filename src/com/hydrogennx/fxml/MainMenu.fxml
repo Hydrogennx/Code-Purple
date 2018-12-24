@@ -4,10 +4,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.hydrogennx.controller.MainMenu">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hydrogennx.controller.MainMenu">
   <children>
-    <Label fx:id="titleLabel" layoutX="259.0" layoutY="144.0" text="Code Purple" />
-    <Button fx:id="playButton" layoutX="214.0" layoutY="185.0" mnemonicParsing="false" onAction="#playButtonPressed" text="Ok great lemme play it" />
-    <Button fx:id="exitButton" layoutX="229.0" layoutY="227.0" mnemonicParsing="false" onAction="#exitButtonPressed" text="Ew I'm leaving bye" />
+    <Label fx:id="titleLabel" layoutX="259.0" layoutY="117.0" text="Code Purple" />
+    <Button fx:id="playButton" layoutX="214.0" layoutY="138.0" mnemonicParsing="false" onAction="#playButtonPressed" text="Ok great lemme play it" />
+    <Button fx:id="exitButton" layoutX="229.0" layoutY="259.0" mnemonicParsing="false" onAction="#exitButtonPressed" text="Ew I'm leaving bye" />
+      <Button fx:id="tutorialButton" contentDisplay="CENTER" layoutX="265.0" layoutY="177.0" mnemonicParsing="false" onAction="#tutorialButtonPressed" text="Tutorial" />
+      <Button fx:id="optionButton" layoutX="264.0" layoutY="218.0" mnemonicParsing="false" text="Options" />
   </children>
 </AnchorPane>

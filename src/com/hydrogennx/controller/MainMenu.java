@@ -34,14 +34,20 @@ public class MainMenu extends WindowController implements Initializable {
 
     @FXML
     public void exitButtonPressed() {
-        //TODO actually exit the app
         gameManager.exit();
+        //Exits the app
     }
 
     @FXML
     public void playButtonPressed() {
-        //TODO actually play the game
         gameManager.startLocalPractice();
+        //Opens the playing menu
+    }
+
+    @FXML
+    public void tutorialButtonPressed() {
+        gameManager.startTutorial();
+        //Opens tutorial
     }
 
     public void setGameManager(GameManager gameManager) {

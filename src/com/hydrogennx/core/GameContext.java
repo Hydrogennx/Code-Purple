@@ -13,6 +13,9 @@ public enum GameContext {
     //The game is a local practice session, and attacks are immediately executed against the defender.
     LOCAL_PRACTICE,
 
+    //The game is in a tutorial session.
+    TUTORIAL,
+
     //The game is hosted on this computer and must receive network requests and handle gameplay.
     HOST,
 

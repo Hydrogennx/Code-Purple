@@ -8,6 +8,9 @@ public enum GameState {
     //Indicates that the player is in the main menu.
     MENU,
 
+    //Indicates that the player is in the tutorial
+    TUTORIAL,
+
     //Indicates that the player is deciding what move to make.
     TURN,
 

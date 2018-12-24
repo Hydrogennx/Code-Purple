@@ -4,12 +4,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hydrogennx.controller.MainMenu">
+<AnchorPane prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hydrogennx.controller.MainMenu">
   <children>
-    <Label fx:id="titleLabel" layoutX="259.0" layoutY="117.0" text="Code Purple" />
-    <Button fx:id="playButton" layoutX="214.0" layoutY="138.0" mnemonicParsing="false" onAction="#playButtonPressed" text="Ok great lemme play it" />
-    <Button fx:id="exitButton" layoutX="229.0" layoutY="259.0" mnemonicParsing="false" onAction="#exitButtonPressed" text="Ew I'm leaving bye" />
-      <Button fx:id="tutorialButton" contentDisplay="CENTER" layoutX="265.0" layoutY="177.0" mnemonicParsing="false" text="Tutorial" />
-      <Button fx:id="optionButton" layoutX="264.0" layoutY="218.0" mnemonicParsing="false" text="Options" />
+    <Label fx:id="titleLabel" alignment="CENTER" layoutX="331.0" layoutY="117.0" text="Code Purple" AnchorPane.topAnchor="117.0" />
+    <Button fx:id="playButton" alignment="CENTER" layoutX="289.0" layoutY="146.0" mnemonicParsing="false" onAction="#playButtonPressed" text="Ok great lemme play it" AnchorPane.leftAnchor="303.0" AnchorPane.rightAnchor="303.0" AnchorPane.topAnchor="146.0" />
+    <Button fx:id="exitButton" alignment="CENTER" layoutX="304.0" layoutY="268.0" mnemonicParsing="false" onAction="#exitButtonPressed" text="Ew I'm leaving bye" AnchorPane.leftAnchor="303.0" AnchorPane.rightAnchor="303.0" AnchorPane.topAnchor="268.0" />
+      <Button fx:id="tutorialButton" alignment="CENTER" contentDisplay="CENTER" layoutX="337.0" layoutY="187.0" mnemonicParsing="false" onAction="#tutorialButtonPressed" text="Tutorial" AnchorPane.leftAnchor="303.0" AnchorPane.rightAnchor="303.0" AnchorPane.topAnchor="187.0" />
+      <Button fx:id="optionButton" alignment="CENTER" layoutX="339.0" layoutY="228.0" mnemonicParsing="false" text="Options" AnchorPane.leftAnchor="303.0" AnchorPane.rightAnchor="303.0" AnchorPane.topAnchor="228.0" />
   </children>
 </AnchorPane>

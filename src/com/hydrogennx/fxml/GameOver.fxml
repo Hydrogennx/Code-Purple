@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hydrogennx.controller.GameOver">
+<AnchorPane prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hydrogennx.controller.GameOver">
    <children>
       <Text layoutX="218.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Over!! You win AND lose" />
       <Button fx:id="mainMenuButton" layoutX="252.0" layoutY="141.0" mnemonicParsing="false" onAction="#mainMenuButtonPressed" text="Main menu plz" />

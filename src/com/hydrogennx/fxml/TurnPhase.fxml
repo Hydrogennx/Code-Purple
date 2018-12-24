@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hydrogennx.controller.TurnPhase">
+<AnchorPane prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hydrogennx.controller.TurnPhase">
   <children>
       <ProgressBar fx:id="mainHealthBar" layoutX="42.0" layoutY="13.0" prefWidth="200.0" progress="1.0" AnchorPane.leftAnchor="48.0" />
       <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0">

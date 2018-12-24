@@ -59,7 +59,7 @@ public class GameManager extends Application {
 
     protected void updateGameWindow() {
 
-        primaryScene = new Scene(screenFramework.wcm);
+        primaryScene = new Scene(screenFramework.wcm, 750, 500);
 
         primaryStage.setTitle("First Jump JavaFX MainMenu");
         primaryStage.setScene(primaryScene);
@@ -80,15 +80,15 @@ public class GameManager extends Application {
 
     }
 
-//    public void startTutorial() {
-//        gameContext = GameContext.TUTORIAL;
-//        gameInstance = new LocalTutorialInstance(this);
-//
-//        screenFramework.loadGameScreens();
-//
-//        updateScreen();
-//
-//    }
+    public void startTutorial() {
+        gameContext = GameContext.LOCAL_PRACTICE;
+        gameInstance = new LocalTutorialInstance(this);
+
+        screenFramework.loadGameScreens();
+
+        updateScreen();
+
+    }
 
     protected void startLoop() {
 

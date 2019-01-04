@@ -1,27 +1,45 @@
 package com.hydrogennx.core.attack.bullet;
 
+import com.hydrogennx.core.Location;
+import com.hydrogennx.core.Velocity;
 import com.hydrogennx.core.attack.AttackSequence;
 import com.hydrogennx.core.GameActionPane;
 
 public abstract class SpriteBullet extends Bullet {
 
-    double xVelocity;
-    double yVelocity;
+    Velocity velocity;
 
-    public SpriteBullet(GameActionPane context, AttackSequence source, double damage) {
-        super(context, source, damage);
+    public SpriteBullet(GameActionPane context, AttackSequence source, Location location, Velocity velocity, double damage) {
+        super(context, source, location, damage);
+
+        this.velocity = velocity;
+
     }
 
     @Override
     public void update(double time) {
 
-        sprite.setY(sprite.getY() + yVelocity);
-        sprite.setX(sprite.getX() + xVelocity);
+        location.addVelocity(velocity.getX(), velocity.getY());
+
+        sprite.setY(location.getActualY());
+        sprite.setX(location.getActualX());
 
         if (collidingWithPlayer()) {
 
             context.destroyBullet(this);
             context.getCharacter().registerHit(damage);
+
+        }
+
+        if (location.getActualX() > context.getWidth() || location.getActualX() < 0) {
+
+            context.destroyBullet(this);
+
+        }
+
+        if (location.getActualY() > context.getHeight() || location.getActualY() < 0) {
+
+            context.destroyBullet(this);
 
         }
 

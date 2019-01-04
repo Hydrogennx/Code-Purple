@@ -1,12 +1,30 @@
 package com.hydrogennx.core.attack;
 
+import com.hydrogennx.core.Direction;
 import com.hydrogennx.core.GameActionPane;
+import com.hydrogennx.core.Location;
+import com.hydrogennx.core.Velocity;
 import com.hydrogennx.core.attack.bullet.DiamondBullet;
+
+import java.util.Random;
 
 public class RainAttack extends AttackSequence {
 
+    public static final double RAIN_SPEED = 5; //5 pixels per frame
+
     double lastAttackTime;
     int numAttacks;
+
+    Direction direction;
+
+    /**
+     * Create a new storm attack, in which bullets fall from one side of the screen to the other.
+     */
+    public RainAttack(Direction direction) {
+
+        this.direction = direction;
+
+    }
 
     @Override
     public void startAttack(GameActionPane context, double time) {
@@ -22,7 +40,41 @@ public class RainAttack extends AttackSequence {
 
         if (time - lastAttackTime > 0.1 && numAttacks < 80) {
 
-            DiamondBullet testBullet = new DiamondBullet(context, this);
+            Random random = new Random();
+
+            Location location = null;
+            Velocity velocity;
+
+            double x = context.getWidth();
+            double y = context.getHeight();
+
+            if (direction == Direction.DOWN) {
+                x *= random.nextDouble();
+
+                location = new Location(x, y);
+
+            } else if (direction == Direction.UP) {
+                x *= random.nextDouble();
+                y = 0;
+
+                location = new Location(x, y);
+
+            } else if (direction == Direction.LEFT) {
+                x = 0;
+                y *= random.nextDouble();
+
+                location = new Location(x, y);
+
+            } else if (direction == Direction.RIGHT) {
+                y *= random.nextDouble();
+
+                location = new Location(x, y);
+
+            }
+
+            velocity = new Velocity(direction.getOpposite(), RAIN_SPEED);
+
+            DiamondBullet testBullet = new DiamondBullet(context, this, location, velocity);
 
             context.spawnBullet(testBullet);
 

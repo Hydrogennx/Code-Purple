@@ -37,7 +37,7 @@ public class TurnPhase extends WindowController implements Initializable {
     public void funAttack() {
 
         List<AttackSequence> attacks = new ArrayList<>();
-        attacks.add(new RainAttack());
+        attacks.add(new RainAttack(Direction.DOWN));
 
         gameInstance.queueAttack(attacks);
 
@@ -58,7 +58,8 @@ public class TurnPhase extends WindowController implements Initializable {
 
         List<AttackSequence> attacks = new ArrayList<>();
         attacks.add(new AxisAttack());
-        attacks.add(new RainAttack());
+        attacks.add(new RainAttack(Direction.LEFT));
+        attacks.add(new RainAttack(Direction.RIGHT));
 
         gameInstance.queueAttack(attacks);
 

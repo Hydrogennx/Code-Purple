@@ -1,5 +1,6 @@
 package com.hydrogennx.core.attack.bullet;
 
+import com.hydrogennx.core.Location;
 import com.hydrogennx.core.attack.AttackSequence;
 import com.hydrogennx.core.GameActionPane;
 import javafx.scene.Group;
@@ -16,12 +17,16 @@ public abstract class Bullet extends Group {
     GameActionPane context;
     AttackSequence source;
 
+    Location location;
+
     ImageView sprite = new ImageView();
 
-    public Bullet(GameActionPane context, AttackSequence source, double damage) {
+    public Bullet(GameActionPane context, AttackSequence source, Location location, double damage) {
 
         this.context = context;
         this.source = source;
+
+        this.location = location;
 
         this.damage = damage;
 

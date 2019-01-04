@@ -3,6 +3,7 @@ package com.hydrogennx.core;
 /**
  * A custom location class designed to remove ambiguity when defining where bullets and the player should be.
  * (0,0) is defined as the center of the playable area, with an increase of 1 indicating a single pixel.
+ * Locations are mutable, so be careful to clone before copying locations!
  */
 public class Location {
 
@@ -28,6 +29,11 @@ public class Location {
 
     }
 
+    /**
+     * Create a new location, defaulting to the upper-left corner.
+     */
+    public Location() {}
+
     public double getActualX() {
         return x;
     }
@@ -44,10 +50,10 @@ public class Location {
         this.y = actualY;
     }
 
-    public void addVelocity(double xVelocity, double yVelocity) {
+    public void addVelocity(Velocity velocity) {
 
-        x += xVelocity;
-        y += yVelocity;
+        x += velocity.getX();
+        y += velocity.getY();
 
     }
 

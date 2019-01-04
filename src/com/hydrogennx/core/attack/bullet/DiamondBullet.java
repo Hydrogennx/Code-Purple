@@ -9,8 +9,8 @@ import javafx.scene.image.Image;
 import java.util.Random;
 
 /**
- * A bullet created by the MainMenu AttackSequence.
- * It moves in a random direction at a slow speed.
+ * A bullet that accelerates forwards uniformly.
+ * Damage is always 20%.
  */
 public class DiamondBullet extends SpriteBullet {
 

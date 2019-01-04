@@ -12,6 +12,10 @@ public class Velocity {
      */
     public Velocity(double degree, double speed) {
 
+        while (degree > 180) {
+            degree -= 360;
+        }
+
         xDirection = Math.cos( Math.toRadians(degree) ) * speed;
         yDirection = Math.sin( Math.toRadians(degree) ) * speed;
 

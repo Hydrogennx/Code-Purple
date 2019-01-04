@@ -14,12 +14,15 @@ public abstract class SpriteBullet extends Bullet {
 
         this.velocity = velocity;
 
+        sprite.setY(location.getActualY());
+        sprite.setX(location.getActualX());
+
     }
 
     @Override
     public void update(double time) {
 
-        location.addVelocity(velocity.getX(), velocity.getY());
+        location.addVelocity(velocity);
 
         sprite.setY(location.getActualY());
         sprite.setX(location.getActualX());

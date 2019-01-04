@@ -4,8 +4,6 @@ import com.hydrogennx.core.*;
 import com.hydrogennx.core.attack.AttackSequence;
 import com.hydrogennx.core.attack.AxisAttack;
 import com.hydrogennx.core.attack.RainAttack;
-import com.hydrogennx.core.attack.bullet.DiamondBullet;
-import com.hydrogennx.core.attack.bullet.SpearBullet;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ProgressBar;

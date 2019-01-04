@@ -11,16 +11,18 @@ import javafx.scene.image.ImageView;
  */
 public class ControllableCharacter extends Group {
 
-    public static final double FRAMES_TO_FULL_SPEED = 4;
-    public static final double TOP_SPEED = 16;
-    public static boolean W;
-    public static boolean A;
-    public static boolean S;
-    public static boolean D;
-    public double xSpeed = 0;
-    public double ySpeed = 0;
-    public double speed = TOP_SPEED / FRAMES_TO_FULL_SPEED;
-    public double invulnerabilityFrames = 0;
+    final static double FRAMES_TO_FULL_SPEED = 4;
+    final static double TOP_SPEED = 16;
+    final static double SPEED = TOP_SPEED / FRAMES_TO_FULL_SPEED;
+
+    boolean W;
+    boolean A;
+    boolean S;
+    boolean D;
+    Location location;
+    Velocity velocity = new Velocity(0,0);
+
+    double invulnerabilityFrames = 0;
 
     Player controllingPlayer;
     GameActionPane context;
@@ -47,21 +49,18 @@ public class ControllableCharacter extends Group {
             switch (event.getCode()) {
                 case W:
                     W = true;
-                    move();
                     break;
                 case S:
                     S = true;
-                    move();
                     break;
                 case A:
                     A = true;
-                    move();
                     break;
                 case D:
                     D = true;
-                    move();
                     break;
             }
+            move();
 
         }); //This switch statement detects when the player pushes one of the control buttons and calls the move method to
             //perform movements
@@ -71,21 +70,19 @@ public class ControllableCharacter extends Group {
             switch (event.getCode()) {
                 case W:
                     W = false;
-                    ySpeed = 0;
                     break;
                 case S:
                     S = false;
-                    ySpeed = 0;
                     break;
                 case A:
                     A = false;
-                    xSpeed = 0;
                     break;
                 case D:
                     D = false;
-                    xSpeed = 0;
                     break;
             }
+            move();
+
         }); //This switch statement detects when the player lets go of a button and stops the character from moving it
 
         requestFocus();
@@ -93,24 +90,28 @@ public class ControllableCharacter extends Group {
     }
 
     public void move() { //This method adjusts the speed and direction the character is moving in according to the player input
-        if (W == true) {
-            ySpeed = -speed;
+        if (W) {
+            velocity.setY(-SPEED);
+        } else if (S) {
+            velocity.setY(SPEED);
+        } else {
+            velocity.setY(0);
         }
-        if (S == true) {
-            ySpeed = speed;
-        }
-        if (D == true) {
-            xSpeed = speed;
-        }
-        if (A == true) {
-            xSpeed = -speed;
+        if (D) {
+            velocity.setX(SPEED);
+        } else if (A) {
+            velocity.setX(-SPEED);
+        } else {
+            velocity.setX(0);
         }
     }
 
     public void update(double time) {
 
-        setLayoutX(getLayoutX() + xSpeed);
-        setLayoutY(getLayoutY() + ySpeed);
+        location.addVelocity(velocity);
+
+        setLayoutX(location.getActualX());
+        setLayoutY(location.getActualY());
 
         if (isInvulnerable()) {
             invulnerabilityFrames--;
@@ -122,16 +123,16 @@ public class ControllableCharacter extends Group {
 
     private void keepSpriteInBounds() {
 
-        if (getLayoutX() < 0) {
-            setLayoutX(0);
-        } else if (getLayoutX() > context.getWidth()) {
-            setLayoutX(context.getWidth());
+        if (location.getActualX() < 0) {
+            location.setActualX(0);
+        } else if (location.getActualX() > context.getWidth()) {
+            location.setActualX(context.getWidth());
         }
 
-        if (getLayoutY() < 0) {
-            setLayoutY(0);
-        } else if (getLayoutY() > context.getHeight()) {
-            setLayoutY(context.getHeight());
+        if (location.getActualY() < 0) {
+            location.setActualY(0);
+        } else if (location.getActualY() > context.getHeight()) {
+            location.setActualY(context.getHeight());
         }
 
     }
@@ -139,6 +140,11 @@ public class ControllableCharacter extends Group {
     public void setContext(GameActionPane context) {
 
         this.context = context;
+
+        location = new Location();
+
+        location.setActualX(context.getWidth() / 2);
+        location.setActualY(context.getHeight() / 2);
 
     }
 
@@ -153,7 +159,10 @@ public class ControllableCharacter extends Group {
      */
     public void reset() {
 
-        //nothing needs to be done, you can't even move the character lol
+        W = false;
+        A = false;
+        S = false;
+        D = false;
 
     }
 
@@ -184,4 +193,9 @@ public class ControllableCharacter extends Group {
         return getPlayer().getHealth() <= 0;
 
     }
+
+    public Location getLocation() {
+        return location;
+    }
+
 }

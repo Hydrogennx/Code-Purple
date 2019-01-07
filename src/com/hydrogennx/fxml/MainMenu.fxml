@@ -7,8 +7,8 @@
 <AnchorPane prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hydrogennx.controller.MainMenu">
   <children>
     <Label fx:id="titleLabel" alignment="CENTER" layoutX="331.0" layoutY="117.0" text="Code Purple" AnchorPane.topAnchor="117.0" />
-    <Button fx:id="playButton" alignment="CENTER" layoutX="289.0" layoutY="146.0" mnemonicParsing="false" onAction="#playButtonPressed" text="Ok great lemme play it" AnchorPane.leftAnchor="303.0" AnchorPane.rightAnchor="303.0" AnchorPane.topAnchor="146.0" />
-    <Button fx:id="exitButton" alignment="CENTER" layoutX="304.0" layoutY="268.0" mnemonicParsing="false" onAction="#exitButtonPressed" text="Ew I'm leaving bye" AnchorPane.leftAnchor="303.0" AnchorPane.rightAnchor="303.0" AnchorPane.topAnchor="268.0" />
+    <Button fx:id="playButton" alignment="CENTER" layoutX="289.0" layoutY="146.0" mnemonicParsing="false" onAction="#playButtonPressed" text="Play" AnchorPane.leftAnchor="303.0" AnchorPane.rightAnchor="303.0" AnchorPane.topAnchor="146.0" />
+    <Button fx:id="exitButton" alignment="CENTER" layoutX="304.0" layoutY="268.0" mnemonicParsing="false" onAction="#exitButtonPressed" text="Quit" AnchorPane.leftAnchor="303.0" AnchorPane.rightAnchor="303.0" AnchorPane.topAnchor="268.0" />
       <Button fx:id="tutorialButton" alignment="CENTER" contentDisplay="CENTER" layoutX="337.0" layoutY="187.0" mnemonicParsing="false" onAction="#tutorialButtonPressed" text="Tutorial" AnchorPane.leftAnchor="303.0" AnchorPane.rightAnchor="303.0" AnchorPane.topAnchor="187.0" />
       <Button fx:id="optionButton" alignment="CENTER" layoutX="339.0" layoutY="228.0" mnemonicParsing="false" text="Options" AnchorPane.leftAnchor="303.0" AnchorPane.rightAnchor="303.0" AnchorPane.topAnchor="228.0" />
   </children>

@@ -1,6 +1,7 @@
 package com.hydrogennx.controller;
 
-import com.hydrogennx.core.*;
+import com.hydrogennx.core.Direction;
+import com.hydrogennx.core.GameInstance;
 import com.hydrogennx.core.attack.AttackSequence;
 import com.hydrogennx.core.attack.AxisAttack;
 import com.hydrogennx.core.attack.RainAttack;
@@ -8,13 +9,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class TurnPhase extends WindowController implements Initializable {
+public class PracticeTurnPhase extends WindowController implements Initializable {
 
     private GameInstance gameInstance;
 
@@ -22,7 +24,7 @@ public class TurnPhase extends WindowController implements Initializable {
     private ProgressBar mainHealthBar;
     private ProgressIndicator waitingCircle = new ProgressIndicator();
 
-    public TurnPhase() throws IOException {
+    public PracticeTurnPhase() throws IOException {
 
     }
 

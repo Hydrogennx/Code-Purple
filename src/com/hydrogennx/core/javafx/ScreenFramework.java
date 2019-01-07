@@ -1,10 +1,7 @@
 package com.hydrogennx.core.javafx;
 
+import com.hydrogennx.controller.*;
 import com.hydrogennx.core.GameManager;
-import com.hydrogennx.controller.ActionPhase;
-import com.hydrogennx.controller.GameOver;
-import com.hydrogennx.controller.MainMenu;
-import com.hydrogennx.controller.TurnPhase;
 
 /**
  * A static helper class. Loads an instance of every screen,
@@ -21,10 +18,12 @@ public class ScreenFramework {
     public final static String ACTION_PHASE_ID = "ACTION_PHASE";
     public final static String MAIN_MENU_ID = "MAIN_MENU";
     public final static String GAME_OVER_ID = "GAME_OVER";
+    public final static String PRACTICE_TURN_PHASE_ID = "PRACTICE_TURN_PHASE";
     public final static String TURN_PHASE_FILE = "TurnPhase.fxml";
     public final static String ACTION_PHASE_FILE = "ActionPhase.fxml";
     public final static String MAIN_MENU_FILE = "MainMenu.fxml";
     public final static String GAME_OVER_FILE = "GameOver.fxml";
+    public final static String PRACTICE_TURN_FILE = "PracticeTurnPhase.fxml";
 
     public void setGameManager(GameManager gameManager) {
         if (this.gameManager == null) {
@@ -46,15 +45,18 @@ public class ScreenFramework {
         wcm.loadScreen(TURN_PHASE_ID, TURN_PHASE_FILE);
         wcm.loadScreen(ACTION_PHASE_ID, ACTION_PHASE_FILE);
         wcm.loadScreen(GAME_OVER_ID, GAME_OVER_FILE);
+        wcm.loadScreen(PRACTICE_TURN_PHASE_ID, PRACTICE_TURN_FILE);
 
         TurnPhase turnPhase = (TurnPhase) wcm.getController(TURN_PHASE_ID);
         ActionPhase actionPhase = (ActionPhase) wcm.getController(ACTION_PHASE_ID);
         GameOver gameOver = (GameOver) wcm.getController(GAME_OVER_ID);
+        PracticeTurnPhase practiceTurnPhase = (PracticeTurnPhase) wcm.getController(PRACTICE_TURN_PHASE_ID);
 
 
         turnPhase.setGameInstance(gameManager.getGameInstance());
         actionPhase.setGameInstance(gameManager.getGameInstance());
         gameOver.setGameInstance(gameManager.getGameInstance());
+        practiceTurnPhase.setGameInstance(gameManager.getGameInstance());
 
     }
 }

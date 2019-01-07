@@ -1,6 +1,7 @@
 package com.hydrogennx.core;
 
 import com.hydrogennx.controller.ActionPhase;
+import com.hydrogennx.controller.PracticeTurnPhase;
 import com.hydrogennx.controller.TurnPhase;
 import com.hydrogennx.core.attack.AttackSequence;
 import com.hydrogennx.core.javafx.ScreenFramework;
@@ -45,7 +46,7 @@ public class LocalTutorialInstance extends GameInstance {
     public void endAttack() {
         changeGameState(GameState.TURN);
 
-        TurnPhase turnPhase = (TurnPhase) gameManager.screenFramework.wcm.getController(ScreenFramework.TURN_PHASE_ID);
+        PracticeTurnPhase turnPhase = (PracticeTurnPhase) gameManager.screenFramework.wcm.getController(ScreenFramework.PRACTICE_TURN_PHASE_ID);
         turnPhase.updateState();
 
     }

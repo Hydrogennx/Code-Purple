@@ -4,12 +4,13 @@ import com.hydrogennx.core.GameActionPane;
 import com.hydrogennx.core.Location;
 import com.hydrogennx.core.Velocity;
 import com.hydrogennx.core.attack.bullet.DiamondBullet;
+import com.hydrogennx.core.attack.bullet.HealthPack;
 
 import java.util.Random;
 
-public class AxisAttack extends AttackSequence {
+public class HealDefense extends AttackSequence {
 
-    static final double INITIAL_DISTANCE = 200;
+    static final double INITIAL_DISTANCE = 300;
 
     double lastAttackTime;
     int numAttacks;
@@ -26,7 +27,7 @@ public class AxisAttack extends AttackSequence {
     @Override
     public boolean attackStep(double time) {
 
-        if (time - lastAttackTime > 0.3 && numAttacks < 80) {
+        if (time - lastAttackTime > 1.2 && numAttacks < 4) {
 
             Location playerLocation = context.getCharacter().getLocation();
 
@@ -35,11 +36,11 @@ public class AxisAttack extends AttackSequence {
             Location location = new Location(
                     playerLocation.getActualX() + Math.cos( Math.toRadians(direction) ) * INITIAL_DISTANCE,
                     playerLocation.getActualY() + Math.sin( Math.toRadians(direction) ) * INITIAL_DISTANCE);
-            Velocity velocity = new Velocity(direction + 180, 0.001);
+            Velocity velocity = new Velocity(direction, 2.0);
 
-            DiamondBullet testBullet = new DiamondBullet(context, this, location, velocity);
+            HealthPack bullet = new HealthPack(context, this, location, velocity);
 
-            context.spawnBullet(testBullet);
+            context.spawnBullet(bullet);
 
             lastAttackTime = time;
 

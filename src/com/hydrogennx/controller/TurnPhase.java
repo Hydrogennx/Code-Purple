@@ -3,6 +3,7 @@ package com.hydrogennx.controller;
 import com.hydrogennx.core.*;
 import com.hydrogennx.core.attack.AttackSequence;
 import com.hydrogennx.core.attack.AxisAttack;
+import com.hydrogennx.core.attack.HealDefense;
 import com.hydrogennx.core.attack.RainAttack;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -46,6 +47,18 @@ public class TurnPhase extends WindowController implements Initializable {
 
         List<AttackSequence> attacks = new ArrayList<>();
         attacks.add(new AxisAttack());
+
+        gameInstance.queueAttack(attacks);
+
+    }
+
+    @FXML
+    public void mixedAttack() {
+
+        List<AttackSequence> attacks = new ArrayList<>();
+        attacks.add(new HealDefense());
+        attacks.add(new RainAttack(Direction.UP));
+        attacks.add(new RainAttack(Direction.DOWN));
 
         gameInstance.queueAttack(attacks);
 

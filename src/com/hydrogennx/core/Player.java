@@ -66,5 +66,9 @@ public class Player {
 
         this.health -= damage;
 
+        if (this.health > 1) {
+            this.health = 1;
+        }
+
     }
 }

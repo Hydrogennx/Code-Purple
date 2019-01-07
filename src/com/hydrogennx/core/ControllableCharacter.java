@@ -14,6 +14,7 @@ public class ControllableCharacter extends Group {
     final static double FRAMES_TO_FULL_SPEED = 4;
     final static double TOP_SPEED = 16;
     final static double SPEED = TOP_SPEED / FRAMES_TO_FULL_SPEED;
+    final static double INVULNERABILITY_FRAMES = 20;
 
     boolean W;
     boolean A;
@@ -113,7 +114,10 @@ public class ControllableCharacter extends Group {
         setLayoutX(location.getActualX());
         setLayoutY(location.getActualY());
 
+        sprite.setOpacity(1 - (invulnerabilityFrames / INVULNERABILITY_FRAMES));
+
         if (isInvulnerable()) {
+
             invulnerabilityFrames--;
         }
 
@@ -180,11 +184,13 @@ public class ControllableCharacter extends Group {
 
     public void registerHit(double damage) {
 
-        if (isInvulnerable()) return;
+        if (damage > 0 && isInvulnerable()) return;
 
         getPlayer().registerDamage(damage);
 
-        invulnerabilityFrames = 60;
+        if (damage > 0) { //deals damage as opposed to healing
+            invulnerabilityFrames = INVULNERABILITY_FRAMES;
+        }
 
     }
 

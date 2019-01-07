@@ -9,17 +9,17 @@ import javafx.scene.image.Image;
 import java.util.Random;
 
 /**
- * A bullet that accelerates forwards uniformly.
- * Damage is always 20%.
+ * A healing projectile that slows down from where it spawns.
+ * Damage is always -25%.
  */
-public class DiamondBullet extends SpriteBullet {
+public class HealthPack extends SpriteBullet {
 
-    public DiamondBullet(GameActionPane context, AttackSequence source, Location location, Velocity velocity) {
+    public HealthPack(GameActionPane context, AttackSequence source, Location location, Velocity velocity) {
 
-        super(context, source, location, velocity, 0.2);
+        super(context, source, location, velocity, -0.25);
 
         //TODO create a dictionary for image ids rather than hard-coding them.
-        sprite.setImage(new Image("/com/hydrogennx/core/resource/tracer-bullet.png"));
+        sprite.setImage(new Image("/com/hydrogennx/core/resource/purple-ready.png"));
 
         sprite.setRotate(Math.toDegrees(velocity.getDirection()));
 
@@ -30,7 +30,7 @@ public class DiamondBullet extends SpriteBullet {
 
         super.update(time);
 
-        velocity.setSpeed((velocity.getSpeed() + 0.2) / 1.05);
+        velocity.setSpeed((velocity.getSpeed()) / 1.05);
 
     }
 }

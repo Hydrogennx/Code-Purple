@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class RainAttack extends AttackSequence {
 
-    public static final double RAIN_SPEED = 5; //5 pixels per frame
+    public static final double RAIN_SPEED = 2; //5 pixels per frame
 
     double lastAttackTime;
     int numAttacks;
@@ -19,6 +19,7 @@ public class RainAttack extends AttackSequence {
 
     /**
      * Create a new storm attack, in which bullets fall from one side of the screen to the other.
+     * @param direction The direction the bullets are going to fall.
      */
     public RainAttack(Direction direction) {
 
@@ -38,7 +39,7 @@ public class RainAttack extends AttackSequence {
     @Override
     public boolean attackStep(double time) {
 
-        if (time - lastAttackTime > 0.1 && numAttacks < 80) {
+        if (time - lastAttackTime > 0.15 && numAttacks < 80) {
 
             Random random = new Random();
 
@@ -60,19 +61,19 @@ public class RainAttack extends AttackSequence {
                 location = new Location(x, y);
 
             } else if (direction == Direction.LEFT) {
-                x = 0;
                 y *= random.nextDouble();
 
                 location = new Location(x, y);
 
             } else if (direction == Direction.RIGHT) {
+                x = 0;
                 y *= random.nextDouble();
 
                 location = new Location(x, y);
 
             }
 
-            velocity = new Velocity(direction.getOpposite(), RAIN_SPEED);
+            velocity = new Velocity(direction, RAIN_SPEED);
 
             DiamondBullet testBullet = new DiamondBullet(context, this, location, velocity);
 

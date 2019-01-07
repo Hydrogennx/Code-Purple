@@ -34,6 +34,7 @@ public abstract class SpriteBullet extends Bullet {
 
         }
 
+
         if (location.getActualX() > context.getWidth() || location.getActualX() < 0) {
 
             context.destroyBullet(this);
@@ -45,6 +46,7 @@ public abstract class SpriteBullet extends Bullet {
             context.destroyBullet(this);
 
         }
+
 
     }
 

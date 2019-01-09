@@ -189,6 +189,8 @@ public class ControllableCharacter extends Group {
         getPlayer().registerDamage(damage);
 
         if (damage > 0) { //deals damage as opposed to healing
+            context.setShake(damage);
+
             invulnerabilityFrames = INVULNERABILITY_FRAMES;
         }
 

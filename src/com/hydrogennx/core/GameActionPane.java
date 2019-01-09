@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * A pane that can only hold bullets and the main character.
@@ -16,6 +17,10 @@ public class GameActionPane extends Pane {
     List<Bullet> bulletsToRemove = new ArrayList<>();
 
     ControllableCharacter controllableCharacter;
+
+    Random random = new Random();
+
+    int shake;
 
     public void spawnBullet(Bullet bullet) {
 
@@ -40,9 +45,28 @@ public class GameActionPane extends Pane {
                 bullet.update(time);
             }
 
+            if (shake > 0) {
+                int xChange = random.nextInt(shake);
+                int yChange = random.nextInt(shake);
+                shake--;
+
+                System.out.println(xChange);
+                System.out.println(yChange);
+
+                setLayoutX(xChange);
+                setLayoutY(yChange);
+
+            }
+
         }
 
         removeDeletedBullets();
+
+    }
+
+    public void setShake(double shake) {
+
+        this.shake = (int) (50 * shake); //TODO change this equation so that shaking is more consistent, ie small shakes are felt and large ones don't kill your computer
 
     }
 

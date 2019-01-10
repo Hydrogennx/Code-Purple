@@ -111,7 +111,6 @@ public class GameActionPane extends Pane {
     public void setCharacter(ControllableCharacter controllableCharacter) {
 
         this.controllableCharacter = controllableCharacter;
-
         controllableCharacter.setContext(this);
 
     }

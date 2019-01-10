@@ -109,6 +109,8 @@ public class ControllableCharacter extends Group {
 
     public void update(double time) {
 
+        System.out.println(location.getActualX() + " :: " + location.getActualY());
+
         location.addVelocity(velocity);
 
         setLayoutX(location.getActualX());
@@ -150,6 +152,8 @@ public class ControllableCharacter extends Group {
         location.setActualX(context.getWidth() / 2);
         location.setActualY(context.getHeight() / 2);
 
+        System.out.println(location.getActualX() + " :--: " + location.getActualY());
+
     }
 
     public void setControllingPlayer(Player controllingPlayer) {
@@ -167,6 +171,11 @@ public class ControllableCharacter extends Group {
         A = false;
         S = false;
         D = false;
+
+        move();
+
+        location.setActualX(context.getWidth() / 2);
+        location.setActualY(context.getHeight() / 2);
 
     }
 

@@ -20,7 +20,9 @@ public class GameActionPane extends Pane {
 
     Random random = new Random();
 
-    int shake;
+    final double SHAKE_TOTAL_TIME = 120;
+    double shakeIntensity; // intensity of the shake
+    double shakeTime; //what amount of time until the shake is over
 
     public void spawnBullet(Bullet bullet) {
 
@@ -45,16 +47,18 @@ public class GameActionPane extends Pane {
                 bullet.update(time);
             }
 
-            if (shake > 0) {
-                int xChange = random.nextInt(shake);
-                int yChange = random.nextInt(shake);
-                shake--;
+            if (shakeTime > 0) {
+                double xChange = random.nextDouble() * shakeIntensity * shakeTime / SHAKE_TOTAL_TIME;
+                double yChange = random.nextDouble() * shakeIntensity * shakeTime / SHAKE_TOTAL_TIME;
+                shakeTime--;
+                //shakeIntensity;
 
                 System.out.println(xChange);
                 System.out.println(yChange);
+                System.out.println(shakeTime);
 
-                setLayoutX(xChange);
-                setLayoutY(yChange);
+                setTranslateX(xChange);
+                setTranslateY(yChange);
 
             }
 
@@ -64,9 +68,13 @@ public class GameActionPane extends Pane {
 
     }
 
-    public void setShake(double shake) {
+    public void setShake(double damage) {
 
-        this.shake = (int) (50 * shake); //TODO change this equation so that shaking is more consistent, ie small shakes are felt and large ones don't kill your computer
+        shakeIntensity = 2 + 14 * damage; //TODO change this equation so that shaking is more consistent, ie small shakes are felt and large ones don't kill your computer
+        shakeTime = SHAKE_TOTAL_TIME;
+
+        //1% damage: 2 shake for 1 second
+        //100% damage: 14 shake for 1 second
 
     }
 

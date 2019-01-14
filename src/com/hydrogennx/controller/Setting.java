@@ -31,4 +31,5 @@ public class Setting extends WindowController implements Initializable {
         gameManager.screenFramework.wcm.setScreen(ScreenFramework.MAIN_MENU_ID);
 
     }
+    
 }

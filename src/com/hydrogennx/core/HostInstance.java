@@ -6,6 +6,7 @@ import com.hydrogennx.core.attack.AttackSequence;
 import com.hydrogennx.core.javafx.ScreenFramework;
 import javafx.scene.paint.Color;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,11 +34,24 @@ public class HostInstance extends GameInstance {
     }
 
     @Override
-    public void queueAttack(List<AttackSequence> attackSequences) {
+    public void queueAttack(List<AttackSequence> attackSequences, Player player) {
+
+        //queue attack, and if all players have a queued attack...
+
         changeGameState(GameState.ACTION);
 
         ActionPhase actionPhase = (ActionPhase) gameManager.screenFramework.wcm.getController(ScreenFramework.ACTION_PHASE_ID);
         actionPhase.addAttackSequences(attackSequences);
+
+    }
+
+    @Override
+    public void recallAttack(List<AttackSequence> attackSequences, Player attacker) {
+
+    }
+
+    @Override
+    public void updatePlayerState(Player player) {
 
     }
 
@@ -70,6 +84,16 @@ public class HostInstance extends GameInstance {
     @Override
     public Player getCurrentPlayer() {
         return mainPlayer;
+    }
+
+    @Override
+    public void networkLog(String s) {
+
+    }
+
+    @Override
+    public void addPlayer(Player player) {
+
     }
 
 

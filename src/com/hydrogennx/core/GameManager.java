@@ -15,7 +15,7 @@ public class GameManager extends Application {
 
     GameContext gameContext;
 
-    ScreenFramework screenFramework = new ScreenFramework();
+    public ScreenFramework screenFramework = new ScreenFramework();
     GameInstance gameInstance;
 
     Stage primaryStage;

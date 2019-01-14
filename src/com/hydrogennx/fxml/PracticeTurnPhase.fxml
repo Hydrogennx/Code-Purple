@@ -155,5 +155,6 @@
             <Image url="@../core/resource/heart.png" />
          </image>
       </ImageView>
+      <Text layoutX="339.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Health Bars" />
   </children>
 </AnchorPane>

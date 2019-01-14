@@ -48,6 +48,10 @@ public class MainMenu extends WindowController implements Initializable {
         //Opens the tutorial
     }
 
+    public void optionButtonPressed() {
+        gameManager.startOption();
+    }
+
     public void setGameManager(GameManager gameManager) {
         if (this.gameManager == null) {
             this.gameManager = gameManager;

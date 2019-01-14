@@ -36,12 +36,18 @@ public class ScreenFramework {
     public void loadMenus() {
 
         wcm.loadScreen(MAIN_MENU_ID, MAIN_MENU_FILE);
-        wcm.loadScreen(SETTING_ID, SETTING_FILE);
+
 
         MainMenu mainMenu = (MainMenu) wcm.getController(MAIN_MENU_ID);
         mainMenu.setGameManager(gameManager);
-        Setting setting = (Setting) wcm.getController(SETTING_ID);
 
+
+    }
+
+    public void loadOptions() {
+        wcm.loadScreen(SETTING_ID, SETTING_FILE);
+        Setting setting = (Setting) wcm.getController(SETTING_ID);
+        setting.setGameManager(gameManager);
     }
 
     public void loadGameScreens() {

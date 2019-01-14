@@ -32,4 +32,10 @@ public class Setting extends WindowController implements Initializable {
 
     }
 
+    public void setGameManager(GameManager gameManager) {
+        if (this.gameManager == null) {
+            this.gameManager = gameManager;
+        }
+    }
+
 }

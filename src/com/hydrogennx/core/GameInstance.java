@@ -16,6 +16,8 @@ public abstract class GameInstance {
     GameManager gameManager;
     GameState gameState;
 
+    int turn;
+
     /**
      * List of all players, in no particular order.
      */

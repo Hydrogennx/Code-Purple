@@ -34,6 +34,7 @@ public class ControllableCharacter extends Group {
 
         Image imageToUse = new Image("/com/hydrogennx/core/resource/coward.png");
         sprite = new ImageView(imageToUse);
+        sprite.setRotate(-45);
 
         getChildren().add(sprite);
 

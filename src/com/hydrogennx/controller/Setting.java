@@ -5,9 +5,8 @@ import com.hydrogennx.core.javafx.ScreenFramework;
 import com.hydrogennx.core.javafx.WindowControllerManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -23,7 +22,9 @@ public class Setting extends WindowController implements Initializable {
     private GameManager gameManager = null;
     public WindowControllerManager wcm = new WindowControllerManager();
     public String nickName = " ";
-    @FXML TextField nameTextField;
+
+    @FXML
+    TextField nameTextField;
 
     public void initialize(URL location, ResourceBundle resources) {
 

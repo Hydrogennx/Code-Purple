@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 public class GameManager extends Application {
 
     GameContext gameContext;
+    Menu menu;
 
     public ScreenFramework screenFramework = new ScreenFramework();
     GameInstance gameInstance;
@@ -37,7 +38,7 @@ public class GameManager extends Application {
     public GameManager() {
 
         gameContext = GameContext.INACTIVE;
-
+        menu = menu.INACTIVE;
         screenFramework.setGameManager(this);
         screenFramework.loadMenus();
 
@@ -51,6 +52,13 @@ public class GameManager extends Application {
         switch (gameContext) {
             case INACTIVE:
                 screenFramework.wcm.setScreen("MAIN_MENU");
+                break;
+            default:
+                gameInstance.updateScreen();
+        }
+        switch (menu) {
+            case INACTIVE:
+                screenFramework.wcm.setScreen("SETTING");
                 break;
             default:
                 gameInstance.updateScreen();

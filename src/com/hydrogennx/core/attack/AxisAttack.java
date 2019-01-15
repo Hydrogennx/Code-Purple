@@ -14,6 +14,10 @@ public class AxisAttack extends AttackSequence {
     double lastAttackTime;
     int numAttacks;
 
+    public AxisAttack() {
+        super(2);
+    }
+
     @Override
     public void startAttack(GameActionPane context, double time) {
 

@@ -8,6 +8,7 @@ A two-player strategic bullet hell game for the BPA competition.
  * Create graphics for attacks and their bullets
  * Turn the buttons into ImageButtons
  * Begin HotseatInstance and/or HostInstance / ClientInstance
+ * Create graphics for attacks and their bullets
 
 ## TODO (Turn Phase):
  * Run strategic half of the game by everyone

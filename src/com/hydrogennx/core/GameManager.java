@@ -65,7 +65,6 @@ public class GameManager extends Application {
         primaryStage.setScene(primaryScene);
         primaryStage.show();
 
-
         updateScreen();
 
     }
@@ -73,6 +72,17 @@ public class GameManager extends Application {
     public void startLocalPractice() {
         gameContext = GameContext.LOCAL_PRACTICE;
         gameInstance = new LocalPracticeInstance(this);
+
+        screenFramework.loadGameScreens();
+
+        updateScreen();
+
+    }
+
+    public void startHost() {
+
+        gameContext = GameContext.HOST;
+        gameInstance = new HostInstance(this);
 
         screenFramework.loadGameScreens();
 

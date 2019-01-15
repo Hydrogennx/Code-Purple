@@ -100,6 +100,11 @@ public class GameManager extends Application {
 
     }
 
+    public void startOption() {
+        screenFramework.loadOptions();
+        updateScreen();
+    }
+
     protected void startLoop() {
 
         final long startNanoTime = System.nanoTime();

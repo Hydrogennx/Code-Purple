@@ -16,6 +16,7 @@ public class Player {
     String name;
 
     double health; //percentage, 0 to 1
+    int mana; //exact value
     List<AttackStatusEffect> statusEffects = new ArrayList<>();
 
     /**

@@ -26,6 +26,8 @@ public class PracticeTurnPhase extends WindowController implements Initializable
 
     public PracticeTurnPhase() throws IOException {
 
+
+
     }
 
     @Override

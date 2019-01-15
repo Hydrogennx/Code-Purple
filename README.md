@@ -2,19 +2,16 @@
 A two-player strategic bullet hell game for the BPA competition.
 
 ## TODO (Action Phase / General):
- * Fix character movement to be consistent
  * Change the hitbox for the player to be a diamond, and closer more accurate for the bullets
- * Implement multiple attacks via button
- * Create graphics for attacks and their bullets
  * Turn the buttons into ImageButtons
  * Begin HotseatInstance and/or HostInstance / ClientInstance
  * Create graphics for attacks and their bullets
+ * Begin HostInstance / ClientInstance
 
 ## TODO (Turn Phase):
  * Run strategic half of the game by everyone
  * Create Purple bars for Primary and Bonus
  * Prevent using certain attacks if Purple is low enough
- * Create 3 groups of 4 moves rather than a giant list of options
  * Add passive effects
  * Add multi-attacks
  * Allow players at some point to build decks
@@ -27,13 +24,17 @@ A two-player strategic bullet hell game for the BPA competition.
  * Log all relevant errors to a debug file
  * Generate crash reports via text file
  * Optionally email these crash reports for some reason
+ * Start character at center
  
 ## TODO (Silverware Polishing):
- * Clean up and redesign user interface
  * Add sound effects and music
  * More depth of content
+ * Purple tracer around the player
+ * Animated purple grid background
  
 ## TODO (Other): 
+ * Publishing page
+ * Credit page
  * Add documentation
  * Data flow diagrams for some reason
  * Add publisher credit then development credit

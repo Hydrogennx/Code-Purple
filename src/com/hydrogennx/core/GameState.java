@@ -5,11 +5,8 @@ package com.hydrogennx.core;
  */
 public enum GameState {
 
-    //Indicates that the player is in the main menu.
-    MENU,
-
-    //Indicates that the player is in the tutorial
-    TUTORIAL,
+    //Indicates that the player is still setting up the game, and therefore in a menu.
+    YET_TO_BEGIN,
 
     //Indicates that the player is deciding what move to make.
     TURN,

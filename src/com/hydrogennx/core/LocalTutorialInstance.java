@@ -2,7 +2,6 @@ package com.hydrogennx.core;
 
 import com.hydrogennx.controller.ActionPhase;
 import com.hydrogennx.controller.PracticeTurnPhase;
-import com.hydrogennx.controller.TurnPhase;
 import com.hydrogennx.core.attack.AttackSequence;
 import com.hydrogennx.core.javafx.ScreenFramework;
 import javafx.scene.paint.Color;
@@ -30,6 +29,23 @@ public class LocalTutorialInstance extends GameInstance {
 
         gameManager.screenFramework.wcm.getScreen(ScreenFramework.ACTION_PHASE_ID);
 
+    }
+
+    @Override
+    public void updateScreen() {
+        switch (gameState) {
+            case TURN:
+                gameManager.screenFramework.wcm.setScreen(ScreenFramework.TURN_PHASE_ID);
+                break;
+            case ACTION:
+                gameManager.screenFramework.wcm.setScreen(ScreenFramework.ACTION_PHASE_ID);
+                break;
+            case GAME_OVER:
+                gameManager.screenFramework.wcm.setScreen(ScreenFramework.GAME_OVER_ID);
+                break;
+            default:
+                return; //should not happen
+        }
     }
 
     @Override
@@ -75,7 +91,7 @@ public class LocalTutorialInstance extends GameInstance {
 
         gameManager.stopGame();
 
-        changeGameState(GameState.MENU);
+        changeGameState(GameState.YET_TO_BEGIN);
 
     }
 

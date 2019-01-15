@@ -13,8 +13,6 @@ import javafx.stage.Stage;
  */
 public class GameManager extends Application {
 
-    GameContext gameContext;
-
     public ScreenFramework screenFramework = new ScreenFramework();
     GameInstance gameInstance;
 
@@ -36,8 +34,6 @@ public class GameManager extends Application {
 
     public GameManager() {
 
-        gameContext = GameContext.INACTIVE;
-
         screenFramework.setGameManager(this);
         screenFramework.loadMenus();
 
@@ -48,12 +44,10 @@ public class GameManager extends Application {
     }
 
     public void updateScreen() {
-        switch (gameContext) {
-            case INACTIVE:
-                screenFramework.wcm.setScreen("MAIN_MENU");
-                break;
-            default:
-                gameInstance.updateScreen();
+        if (gameInstance != null) {
+            gameInstance.updateScreen();
+        } else {
+            screenFramework.wcm.setScreen(screenFramework.MAIN_MENU_ID);
         }
     }
 
@@ -61,7 +55,7 @@ public class GameManager extends Application {
 
         primaryScene = new Scene(screenFramework.wcm, 750, 500);
 
-        primaryStage.setTitle("First Jump JavaFX MainMenu");
+        primaryStage.setTitle("Code Purple");
         primaryStage.setScene(primaryScene);
         primaryStage.show();
 
@@ -71,7 +65,6 @@ public class GameManager extends Application {
     }
 
     public void startLocalPractice() {
-        gameContext = GameContext.LOCAL_PRACTICE;
         gameInstance = new LocalPracticeInstance(this);
 
         screenFramework.loadGameScreens();
@@ -80,8 +73,16 @@ public class GameManager extends Application {
 
     }
 
+    public void startNetworkGame() {
+        gameInstance = new HostInstance(this);
+
+        screenFramework.loadGameScreens();
+
+        updateScreen();
+
+    }
+
     public void startTutorial() {
-        gameContext = GameContext.LOCAL_PRACTICE;
         gameInstance = new LocalTutorialInstance(this);
 
         screenFramework.loadGameScreens();
@@ -130,7 +131,6 @@ public class GameManager extends Application {
 
     public void stopGame() {
 
-        gameContext = GameContext.INACTIVE;
         gameInstance = null;
 
     }

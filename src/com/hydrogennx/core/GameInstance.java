@@ -25,24 +25,7 @@ public abstract class GameInstance {
         this.gameManager = gameManager;
     }
 
-    public void updateScreen() {
-        switch (gameState) {
-            case TURN:
-                gameManager.screenFramework.wcm.setScreen(ScreenFramework.TURN_PHASE_ID);
-                break;
-            case ACTION:
-                gameManager.screenFramework.wcm.setScreen(ScreenFramework.ACTION_PHASE_ID);
-                break;
-            case GAME_OVER:
-                gameManager.screenFramework.wcm.setScreen(ScreenFramework.GAME_OVER_ID);
-                break;
-//            case TUTORIAL:
-//                gameManager.screenFramework.wcm.setScreen(ScreenFramework.TUTORIAL_PHASE_ID);
-//                break;
-            default:
-                return; //should not happen
-        }
-    }
+    public abstract void updateScreen();
 
     protected void changeGameState(GameState gameState) {
         this.gameState = gameState;

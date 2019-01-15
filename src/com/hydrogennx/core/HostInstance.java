@@ -6,7 +6,6 @@ import com.hydrogennx.core.attack.AttackSequence;
 import com.hydrogennx.core.javafx.ScreenFramework;
 import javafx.scene.paint.Color;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,10 +26,29 @@ public class HostInstance extends GameInstance {
 
         allPlayers.add(mainPlayer);
 
-        gameState = GameState.TURN;
+        gameState = GameState.YET_TO_BEGIN;
 
-        gameManager.screenFramework.wcm.getScreen(ScreenFramework.ACTION_PHASE_ID);
+        gameManager.screenFramework.wcm.getScreen(ScreenFramework.SERVER_SETUP_ID);
 
+    }
+
+    @Override
+    public void updateScreen() {
+        switch (gameState) {
+            case YET_TO_BEGIN:
+                gameManager.screenFramework.wcm.setScreen(ScreenFramework.SERVER_SETUP_ID);
+            case TURN:
+                gameManager.screenFramework.wcm.setScreen(ScreenFramework.TURN_PHASE_ID);
+                break;
+            case ACTION:
+                gameManager.screenFramework.wcm.setScreen(ScreenFramework.ACTION_PHASE_ID);
+                break;
+            case GAME_OVER:
+                gameManager.screenFramework.wcm.setScreen(ScreenFramework.GAME_OVER_ID);
+                break;
+            default:
+                return; //should not happen
+        }
     }
 
     @Override
@@ -77,7 +95,7 @@ public class HostInstance extends GameInstance {
 
         gameManager.stopGame();
 
-        changeGameState(GameState.MENU);
+        changeGameState(GameState.YET_TO_BEGIN);
 
     }
 

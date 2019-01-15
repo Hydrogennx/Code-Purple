@@ -32,6 +32,23 @@ public class LocalPracticeInstance extends GameInstance {
     }
 
     @Override
+    public void updateScreen() {
+        switch (gameState) {
+            case TURN:
+                gameManager.screenFramework.wcm.setScreen(ScreenFramework.TURN_PHASE_ID);
+                break;
+            case ACTION:
+                gameManager.screenFramework.wcm.setScreen(ScreenFramework.ACTION_PHASE_ID);
+                break;
+            case GAME_OVER:
+                gameManager.screenFramework.wcm.setScreen(ScreenFramework.GAME_OVER_ID);
+                break;
+            default:
+                return; //should not happen
+        }
+    }
+
+    @Override
     public void queueAttack(List<AttackSequence> attackSequences, Player attacker) {
         changeGameState(GameState.ACTION);
 
@@ -71,7 +88,7 @@ public class LocalPracticeInstance extends GameInstance {
 
         gameManager.stopGame();
 
-        changeGameState(GameState.MENU);
+        changeGameState(GameState.YET_TO_BEGIN);
 
     }
 

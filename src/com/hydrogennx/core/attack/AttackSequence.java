@@ -17,13 +17,19 @@ public abstract class AttackSequence {
     protected boolean timed = true; //Timed attacks end after a certain amount of time has passed.
     protected boolean attackOngoing = true;
 
+    protected int manaCost;
+
     protected double attackStartTime = 0;
 
     protected List<AttackStatusEffect> modifiers;
     protected GameActionPane context;
 
-    public AttackSequence() {
+    public AttackSequence(int manaCost) {
+
+        this.manaCost = manaCost;
+
         this.modifiers = new ArrayList<>();
+
     }
 
     /**
@@ -67,4 +73,26 @@ public abstract class AttackSequence {
     public boolean isOngoing() {
         return attackOngoing;
     }
+
+    public int getCost() {
+        return manaCost;
+    }
+
+    /**
+     * Gets the cost of a set of attacks.
+     * @param attackSequences The set of attacks that is being evaluated.
+     * @return The cost of this particular set of attacks.
+     */
+    public static int getCost(List<AttackSequence> attackSequences) {
+
+        int manaCost = 0;
+
+        for (int i = 0; i < attackSequences.size(); i++) {
+            manaCost += attackSequences.get(i).getCost() * (i + 1);
+        }
+
+        return manaCost;
+
+    }
+
 }

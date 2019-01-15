@@ -63,6 +63,26 @@ public abstract class GameInstance {
 
     }
 
+    /**
+     * Returns how much mana they get at the end of the next turn.
+     * @return How much mana players get at the end of the next turn.
+     */
+    public int getManaReturn() {
+
+        return turn + 2;
+
+    }
+
+    /**
+     * Returns how much mana is spent at the end of every turn regardless of the player's actual amount spent.
+     * @return How much mana is spent at the end of every turn regardless of the player's actual amount spent.
+     */
+    public int getManaWasted() {
+
+        return turn;
+
+    }
+
     //TODO create a ClientManager and a HostManager when we are ready to begin netcode.
 
     public abstract void queueAttack(List<AttackSequence> attackSequences, Player attacker);

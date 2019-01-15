@@ -15,6 +15,10 @@ public class HealDefense extends AttackSequence {
     double lastAttackTime;
     int numAttacks;
 
+    public HealDefense() {
+        super(1);
+    }
+
     @Override
     public void startAttack(GameActionPane context, double time) {
 

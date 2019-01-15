@@ -4,6 +4,8 @@ A two-player strategic bullet hell game for the BPA competition.
 ## TODO (Action Phase / General):
  * Change the hitbox for the player to be a diamond, and closer more accurate for the bullets
  * Turn the buttons into ImageButtons
+ * Begin HotseatInstance and/or HostInstance / ClientInstance
+ * Create graphics for attacks and their bullets
  * Begin HostInstance / ClientInstance
 
 ## TODO (Turn Phase):

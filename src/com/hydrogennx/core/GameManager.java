@@ -13,6 +13,8 @@ import javafx.stage.Stage;
  */
 public class GameManager extends Application {
 
+    Menu menu;
+
     public ScreenFramework screenFramework = new ScreenFramework();
     GameInstance gameInstance;
 
@@ -34,6 +36,7 @@ public class GameManager extends Application {
 
     public GameManager() {
 
+        menu = menu.INACTIVE;
         screenFramework.setGameManager(this);
         screenFramework.loadMenus();
 
@@ -49,6 +52,13 @@ public class GameManager extends Application {
         } else {
             screenFramework.wcm.setScreen(screenFramework.MAIN_MENU_ID);
         }
+        switch (menu) {
+            case INACTIVE:
+                screenFramework.wcm.setScreen("SETTING");
+                break;
+            default:
+                gameInstance.updateScreen();
+        }
     }
 
     protected void updateGameWindow() {
@@ -58,7 +68,6 @@ public class GameManager extends Application {
         primaryStage.setTitle("Code Purple");
         primaryStage.setScene(primaryScene);
         primaryStage.show();
-
 
         updateScreen();
 
@@ -74,6 +83,7 @@ public class GameManager extends Application {
     }
 
     public void startNetworkGame() {
+
         gameInstance = new HostInstance(this);
 
         screenFramework.loadGameScreens();

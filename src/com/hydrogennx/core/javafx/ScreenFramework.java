@@ -39,6 +39,7 @@ public class ScreenFramework {
 
         wcm.loadScreen(MAIN_MENU_ID, MAIN_MENU_FILE);
         wcm.loadScreen(SERVER_SETUP_ID, SERVER_SETUP_FILE);
+        wcm.loadScreen(SETTING_ID, SETTING_FILE);
 
         MainMenu mainMenu = (MainMenu) wcm.getController(MAIN_MENU_ID);
         mainMenu.setGameManager(gameManager);
@@ -50,6 +51,7 @@ public class ScreenFramework {
         wcm.loadScreen(SETTING_ID, SETTING_FILE);
         Setting setting = (Setting) wcm.getController(SETTING_ID);
         setting.setGameManager(gameManager);
+
     }
 
     public void loadGameScreens() {
@@ -64,11 +66,11 @@ public class ScreenFramework {
         GameOver gameOver = (GameOver) wcm.getController(GAME_OVER_ID);
         PracticeTurnPhase practiceTurnPhase = (PracticeTurnPhase) wcm.getController(PRACTICE_TURN_PHASE_ID);
 
-
         turnPhase.setGameInstance(gameManager.getGameInstance());
         actionPhase.setGameInstance(gameManager.getGameInstance());
         gameOver.setGameInstance(gameManager.getGameInstance());
         practiceTurnPhase.setGameInstance(gameManager.getGameInstance());
 
     }
+
 }

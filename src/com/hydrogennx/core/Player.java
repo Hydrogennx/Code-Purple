@@ -16,6 +16,7 @@ public class Player {
     String name;
 
     double health; //percentage, 0 to 1
+    int mana; //exact value
     List<AttackStatusEffect> statusEffects = new ArrayList<>();
 
     /**
@@ -30,6 +31,7 @@ public class Player {
         this.name = name;
 
         health = 1;
+        mana = 0;
         //statusEffects defaults to an empty arrayList
 
         //enemies should be empty using this constructor
@@ -71,4 +73,29 @@ public class Player {
         }
 
     }
+
+    public int getMana() {
+
+        return mana;
+
+    }
+
+    public void registerAttack(int manaCost, GameInstance gameInstance) {
+
+        mana -= gameInstance.getManaWasted();
+
+        if (mana < 0) {
+            mana = 0;
+        }
+
+        mana += gameInstance.getManaReturn();
+
+    }
+
+    public void setStartingMana(int mana) {
+
+        this.mana = mana;
+
+    }
+
 }

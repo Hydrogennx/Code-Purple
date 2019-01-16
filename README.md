@@ -5,6 +5,8 @@ A two-player strategic bullet hell game for the BPA competition.
  * Change the hitbox for the player to be a diamond, and closer more accurate for the bullets
  * Turn the buttons into ImageButtons
  * Begin HotseatInstance and/or HostInstance / ClientInstance
+ * Create graphics for attacks and their bullets
+ * Begin HostInstance / ClientInstance
 
 ## TODO (Turn Phase):
  * Run strategic half of the game by everyone
@@ -27,8 +29,12 @@ A two-player strategic bullet hell game for the BPA competition.
 ## TODO (Silverware Polishing):
  * Add sound effects and music
  * More depth of content
+ * Purple tracer around the player
+ * Animated purple grid background
  
 ## TODO (Other): 
+ * Publishing page
+ * Credit page
  * Add documentation
  * Data flow diagrams for some reason
  * Add publisher credit then development credit

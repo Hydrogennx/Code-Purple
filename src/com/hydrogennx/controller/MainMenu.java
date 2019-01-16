@@ -38,7 +38,7 @@ public class MainMenu extends WindowController implements Initializable {
     }
 
     @FXML
-    public void playButtonPressed() {
+    public void practiceButtonPressed() {
         gameManager.startLocalPractice();
         //Opens the playing menu
     }

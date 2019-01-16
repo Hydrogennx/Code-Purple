@@ -53,10 +53,6 @@ public class GameActionPane extends Pane {
                 shakeTime--;
                 //shakeIntensity;
 
-                System.out.println(xChange);
-                System.out.println(yChange);
-                System.out.println(shakeTime);
-
                 setTranslateX(xChange);
                 setTranslateY(yChange);
 
@@ -72,9 +68,6 @@ public class GameActionPane extends Pane {
 
         shakeIntensity = 2 + 14 * damage; //TODO change this equation so that shaking is more consistent, ie small shakes are felt and large ones don't kill your computer
         shakeTime = SHAKE_TOTAL_TIME;
-
-        //1% damage: 2 shake for 1 second
-        //100% damage: 14 shake for 1 second
 
     }
 

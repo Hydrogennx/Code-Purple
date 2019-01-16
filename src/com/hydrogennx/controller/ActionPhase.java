@@ -74,10 +74,6 @@ public class ActionPhase extends WindowController implements Initializable {
 
             boolean attackStillActive = attackSequence.update(time);
 
-            if (!attackStillActive) {
-                System.out.println("Attack is over!");
-            }
-
         }
 
         controllableCharacter.update(time);
@@ -85,7 +81,6 @@ public class ActionPhase extends WindowController implements Initializable {
         clearAttacks();
 
         if (attackSequences.isEmpty()) {
-            System.out.println("All attacks are over!");
             gameInstance.endAttack();
             reset();
         }

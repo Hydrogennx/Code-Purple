@@ -16,6 +16,8 @@ public abstract class GameInstance {
     GameManager gameManager;
     GameState gameState;
 
+    int turn;
+
     /**
      * List of all players, in no particular order.
      */
@@ -41,6 +43,26 @@ public abstract class GameInstance {
             actionPhase.update(time);
 
         }
+
+    }
+
+    /**
+     * Returns how much mana they get at the end of the next turn.
+     * @return How much mana players get at the end of the next turn.
+     */
+    public int getManaReturn() {
+
+        return turn + 2;
+
+    }
+
+    /**
+     * Returns how much mana is spent at the end of every turn regardless of the player's actual amount spent.
+     * @return How much mana is spent at the end of every turn regardless of the player's actual amount spent.
+     */
+    public int getManaWasted() {
+
+        return turn;
 
     }
 

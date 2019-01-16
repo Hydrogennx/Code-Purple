@@ -7,6 +7,7 @@ import com.hydrogennx.controller.TurnPhase;
 import javafx.scene.paint.Color;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Manages the bit of the game we care about.
@@ -24,6 +25,10 @@ public class LocalPracticeInstance extends GameInstance {
         mainPlayer.addEnemy(mainPlayer); //you are your own worst enemy, because you are your only enemy
 
         allPlayers.add(mainPlayer);
+
+        for (Player player : allPlayers) {
+            player.setStartingMana(1 + new Random().nextInt(5));
+        }
 
         gameState = GameState.TURN;
 
@@ -50,6 +55,18 @@ public class LocalPracticeInstance extends GameInstance {
 
     @Override
     public void queueAttack(List<AttackSequence> attackSequences, Player attacker) {
+
+
+        int manaCost = AttackSequence.getCost(attackSequences);
+        System.out.println(manaCost);
+        System.out.println(attacker.getMana());
+
+        if (manaCost > attacker.getMana()) {
+            return;
+        }
+
+        attacker.registerAttack(manaCost, this);
+
         changeGameState(GameState.ACTION);
 
         ActionPhase actionPhase = (ActionPhase) gameManager.screenFramework.wcm.getController(ScreenFramework.ACTION_PHASE_ID);

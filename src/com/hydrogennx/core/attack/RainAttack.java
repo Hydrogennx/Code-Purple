@@ -23,6 +23,8 @@ public class RainAttack extends AttackSequence {
      */
     public RainAttack(Direction direction) {
 
+        super(1);
+
         this.direction = direction;
 
     }

@@ -48,10 +48,6 @@ public class MainMenu extends WindowController implements Initializable {
         gameManager.startNetworkGame();
     }
 
-    public void tutorialButtonPressed() {
-        gameManager.startTutorial();
-        //Opens the tutorial
-    }
 
     public void optionButtonPressed() {
         gameManager.startOption();

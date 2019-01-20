@@ -9,6 +9,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -18,10 +21,12 @@ import java.util.ResourceBundle;
 public class TurnPhase extends WindowController implements Initializable {
 
     private GameInstance gameInstance;
-
+    @FXML
+    private ImageView instructions = new ImageView();
     @FXML
     private ProgressBar mainHealthBar;
     private ProgressIndicator waitingCircle = new ProgressIndicator();
+    private boolean visible = false;
 
     public TurnPhase() throws IOException {
 
@@ -74,6 +79,18 @@ public class TurnPhase extends WindowController implements Initializable {
 
         gameInstance.queueAttack(attacks, gameInstance.getCurrentPlayer());
 
+    }
+
+    @FXML
+    public void helpButtonPressed() {
+
+        if (!visible) {
+            instructions.setVisible(true);
+            visible = true;
+        } else if (visible) {
+            instructions.setVisible(false);
+            visible = false;
+        }
     }
 
     public void backButton() {

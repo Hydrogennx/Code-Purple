@@ -92,15 +92,6 @@ public class GameManager extends Application {
 
     }
 
-    public void startTutorial() {
-        gameInstance = new LocalTutorialInstance(this);
-
-        screenFramework.loadGameScreens();
-
-        updateScreen();
-
-    }
-
     public void startOption() {
         screenFramework.loadOptions();
         updateScreen();

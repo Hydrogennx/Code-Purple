@@ -1,6 +1,5 @@
 package com.hydrogennx.core.network;
 
-import com.hydrogennx.core.GameInstance;
 import com.hydrogennx.core.Player;
 import com.hydrogennx.core.attack.AttackSequence;
 
@@ -13,18 +12,18 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Server extends Thread {
-
-    private GameInstance gameInstance;
+public class Server extends NetworkThread {
 
     private ServerSocket socketServer;
 
     private ObjectInputStream in;
     private ObjectOutputStream out;
 
-    public Server(GameInstance logHandler) {
+    private boolean serverRunning;
 
-        this.gameInstance = logHandler;
+    public Server() {
+
+        start();
 
     }
 
@@ -34,9 +33,13 @@ public class Server extends Thread {
         try {
             socketServer = new ServerSocket(Protocol.PORT);
 
-            while (true) {
+            System.out.println("Host started");
+
+            while (serverRunning) {
                 listen();
             }
+
+            socketServer.close();
 
         } catch (IOException e) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, e);
@@ -54,7 +57,7 @@ public class Server extends Thread {
             out = new ObjectOutputStream(server.getOutputStream());
 
             infoLoop:
-            while (true) {
+            while (serverRunning) {
 
                 Protocol messageType = (Protocol) in.readObject();
 
@@ -126,4 +129,9 @@ public class Server extends Thread {
 
     }
 
+    public void closeConnection() {
+
+        serverRunning = false;
+
+    }
 }

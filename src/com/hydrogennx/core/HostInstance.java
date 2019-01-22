@@ -1,9 +1,11 @@
 package com.hydrogennx.core;
 
 import com.hydrogennx.controller.ActionPhase;
+import com.hydrogennx.controller.ServerSetup;
 import com.hydrogennx.controller.TurnPhase;
 import com.hydrogennx.core.attack.AttackSequence;
 import com.hydrogennx.core.javafx.ScreenFramework;
+import com.hydrogennx.core.network.Server;
 import javafx.scene.paint.Color;
 
 import java.util.List;
@@ -15,20 +17,20 @@ public class HostInstance extends GameInstance {
 
     Player mainPlayer;
 
+    ServerSetup serverSetup;
+
     public HostInstance(GameManager gameManager) {
         super(gameManager);
 
         mainPlayer = new Player(Color.RED, "Host");
 
-        //TODO add players as they join
-
-        mainPlayer.addEnemy(mainPlayer);
-
         allPlayers.add(mainPlayer);
 
         gameState = GameState.YET_TO_BEGIN;
 
-        gameManager.screenFramework.wcm.getScreen(ScreenFramework.SERVER_SETUP_ID);
+        serverSetup = (ServerSetup) gameManager.screenFramework.wcm.getController(ScreenFramework.SERVER_SETUP_ID);
+
+        serverSetup.setGameInstance(this);
 
     }
 
@@ -37,6 +39,7 @@ public class HostInstance extends GameInstance {
         switch (gameState) {
             case YET_TO_BEGIN:
                 gameManager.screenFramework.wcm.setScreen(ScreenFramework.SERVER_SETUP_ID);
+                break;
             case TURN:
                 gameManager.screenFramework.wcm.setScreen(ScreenFramework.TURN_PHASE_ID);
                 break;
@@ -111,8 +114,18 @@ public class HostInstance extends GameInstance {
 
     @Override
     public void addPlayer(Player player) {
+        if (gameState == GameState.YET_TO_BEGIN) {
+            allPlayers.add(player);
 
+            for (Player enemy : allPlayers) {
+                if (!player.equals(enemy)) {
+                    player.addEnemy(enemy);
+                }
+            }
+
+            if (allPlayers.size() == 2) {
+                serverSetup.setGameCanBegin(true);
+            }
+        }
     }
-
-
 }

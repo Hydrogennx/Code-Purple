@@ -3,6 +3,9 @@ package com.hydrogennx.controller;
 import com.hydrogennx.core.GameManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,6 +29,37 @@ public class MainMenu extends WindowController implements Initializable {
 //        System.out.println("JavaFX test successful.");
 //
 //    }
+
+    @FXML
+    TextField ipTextField;
+
+    @FXML
+    Button joinGameButton;
+
+    @FXML
+    Label connectionLog;
+
+    @FXML
+    public void ipChanged() {
+
+        if (ipTextField.getText().length() > 0) {
+
+            joinGameButton.setDisable(false);
+
+        } else {
+
+            joinGameButton.setDisable(true);
+
+        }
+
+    }
+
+    @FXML
+    public void joinGame() {
+
+        gameManager.joinGame(ipTextField.getText());
+
+    }
 
     public MainMenu() throws IOException {
 
@@ -54,7 +88,7 @@ public class MainMenu extends WindowController implements Initializable {
     }
 
     public void optionButtonPressed() {
-        gameManager.startOption();
+        gameManager.openSettingsMenu();
     }
 
     public void setGameManager(GameManager gameManager) {

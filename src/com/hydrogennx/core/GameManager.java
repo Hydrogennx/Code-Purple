@@ -1,19 +1,27 @@
 package com.hydrogennx.core;
 
 import com.hydrogennx.core.javafx.*;
+import com.hydrogennx.core.network.Client;
+import com.hydrogennx.core.network.NetworkThread;
+import com.hydrogennx.core.network.ServerStatus;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.*;
+
 /**
- * A game manager designed to work with JavaFX, rather than Swing, libraries.
- * All the methods and such are copy-pasted from the other. Inheritance was attempted, but failed.
- * Also, one version is going to be temporary anyway -- we don't much have to worry about changing both.
+ * A game manager to create instances of the various gametypes that exist.
  */
 public class GameManager extends Application {
 
     Menu menu;
+
+    public static final String SETTINGS_FILE = "settings";
+    Settings settings;
+
+    private NetworkThread networkInstance;
 
     public ScreenFramework screenFramework = new ScreenFramework();
     GameInstance gameInstance;
@@ -36,9 +44,11 @@ public class GameManager extends Application {
 
     public GameManager() {
 
-        menu = menu.INACTIVE;
+        menu = menu.MAIN_MENU;
         screenFramework.setGameManager(this);
         screenFramework.loadMenus();
+
+        loadSettings();
 
         gameInstance = null;
 
@@ -50,14 +60,13 @@ public class GameManager extends Application {
         if (gameInstance != null) {
             gameInstance.updateScreen();
         } else {
-            screenFramework.wcm.setScreen(screenFramework.MAIN_MENU_ID);
-        }
-        switch (menu) {
-            case INACTIVE:
-                screenFramework.wcm.setScreen("SETTING");
-                break;
-            default:
-                gameInstance.updateScreen();
+            switch (menu) {
+                case MAIN_MENU:
+                    screenFramework.wcm.setScreen(screenFramework.MAIN_MENU_ID);
+                    break;
+                case SETTINGS:
+                    screenFramework.wcm.setScreen(screenFramework.SETTING_ID);
+            }
         }
     }
 
@@ -92,6 +101,18 @@ public class GameManager extends Application {
 
     }
 
+    public void joinGame(String ip) {
+
+        gameInstance = new ClientInstance(this);
+
+
+
+        screenFramework.loadGameScreens();
+
+        updateScreen();
+
+    }
+
     public void startTutorial() {
         gameInstance = new LocalTutorialInstance(this);
 
@@ -101,8 +122,9 @@ public class GameManager extends Application {
 
     }
 
-    public void startOption() {
+    public void openSettingsMenu() {
         screenFramework.loadOptions();
+        menu = Menu.SETTINGS;
         updateScreen();
     }
 
@@ -143,5 +165,65 @@ public class GameManager extends Application {
 
         gameInstance = null;
 
+        if (networkInstance != null) {
+            networkInstance.closeConnection();
+            networkInstance = null;
+        }
+
+
     }
+
+    public Settings getSettings() {
+
+        return settings;
+
+    }
+
+    public void saveSettings() {
+
+        try {
+
+            FileOutputStream file = new FileOutputStream(SETTINGS_FILE);
+            ObjectOutputStream out = new ObjectOutputStream(file);
+
+            out.writeObject(settings);
+
+            out.close();
+            file.close();
+
+        } catch (IOException e) {
+
+            System.out.println("Error saving settings!");
+
+        }
+
+    }
+
+    public void loadSettings() {
+
+        try {
+
+            FileInputStream file = new FileInputStream(SETTINGS_FILE);
+            ObjectInputStream in = new ObjectInputStream(file);
+
+            settings = (Settings) in.readObject();
+
+            in.close();
+            file.close();
+
+        } catch (IOException e) {
+
+            System.out.println("Error loading settings, using defaults!");
+
+            settings = new Settings();
+
+        } catch (ClassNotFoundException e) {
+
+            System.err.println(e.getStackTrace());
+            System.out.println("Using default settings");
+
+        }
+
+    }
+
 }

@@ -26,7 +26,7 @@ public class ScreenFramework {
     public final static String MAIN_MENU_FILE = "MainMenu.fxml";
     public final static String GAME_OVER_FILE = "GameOver.fxml";
     public final static String PRACTICE_TURN_FILE = "PracticeTurnPhase.fxml";
-    public final static String SETTING_FILE = "Setting.fxml";
+    public final static String SETTING_FILE = "SettingsMenu.fxml";
     public final static String SERVER_SETUP_FILE = "ServerSetup.fxml";
 
     public void setGameManager(GameManager gameManager) {
@@ -42,6 +42,7 @@ public class ScreenFramework {
         wcm.loadScreen(SETTING_ID, SETTING_FILE);
 
         MainMenu mainMenu = (MainMenu) wcm.getController(MAIN_MENU_ID);
+
         mainMenu.setGameManager(gameManager);
 
 
@@ -49,7 +50,7 @@ public class ScreenFramework {
 
     public void loadOptions() {
         wcm.loadScreen(SETTING_ID, SETTING_FILE);
-        Setting setting = (Setting) wcm.getController(SETTING_ID);
+        SettingsMenu setting = (SettingsMenu) wcm.getController(SETTING_ID);
         setting.setGameManager(gameManager);
 
     }

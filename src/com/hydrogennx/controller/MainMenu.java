@@ -1,6 +1,7 @@
 package com.hydrogennx.controller;
 
 import com.hydrogennx.core.GameManager;
+import com.hydrogennx.core.network.Server;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -80,6 +81,9 @@ public class MainMenu extends WindowController implements Initializable {
     @FXML
     public void hostGameButtonPressed() {
         gameManager.startNetworkGame();
+        Server server = new Server();
+        server.gameInstance = gameManager.getGameInstance();
+
     }
 
 

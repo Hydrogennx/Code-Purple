@@ -1,5 +1,6 @@
 package com.hydrogennx.core.network;
 
+import com.hydrogennx.core.GameManager;
 import com.hydrogennx.core.Player;
 import com.hydrogennx.core.attack.AttackSequence;
 
@@ -21,6 +22,7 @@ public class Server extends NetworkThread {
 
     private boolean serverRunning;
 
+
     public Server() {
 
         start();
@@ -34,7 +36,7 @@ public class Server extends NetworkThread {
             socketServer = new ServerSocket(Protocol.PORT);
 
             System.out.println("Host started");
-
+            serverRunning = true;
             while (serverRunning) {
                 listen();
             }

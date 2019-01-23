@@ -28,9 +28,11 @@ public class Client extends NetworkThread {
         try {
             socketClient = new Socket(ip, Protocol.PORT);
             serverStatus = ServerStatus.CONNECTED;
+            System.out.println("connected");
         } catch (IOException e) {
             e.printStackTrace();
             serverStatus = ServerStatus.INVALID;
+            System.out.println("invalid cOnnEctIOn");
         }
 
     }

@@ -5,32 +5,40 @@ import com.hydrogennx.controller.ServerSetup;
 import com.hydrogennx.controller.TurnPhase;
 import com.hydrogennx.core.attack.AttackSequence;
 import com.hydrogennx.core.javafx.ScreenFramework;
+import com.hydrogennx.core.network.Client;
 import com.hydrogennx.core.network.Server;
-import javafx.scene.paint.Color;
+import javafx.application.Platform;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Controls the server side of a two-player network session.
  */
-public class HostInstance extends GameInstance {
+public class NetworkGameInstance extends GameInstance {
 
     Player mainPlayer;
 
-    ServerSetup serverSetup;
+    Client client;
+    Server server;
 
-    public HostInstance(GameManager gameManager) {
+    boolean hosting;
+
+    List<Player> serversidePlayerList = new ArrayList<>();
+
+    public NetworkGameInstance(GameManager gameManager, boolean host) {
         super(gameManager);
 
-        mainPlayer = new Player(Color.RED, "Host");
+        mainPlayer = new Player(PlayerColor.BLUE, gameManager.getSettings().getUsername());
 
         allPlayers.add(mainPlayer);
 
         gameState = GameState.YET_TO_BEGIN;
 
-        serverSetup = (ServerSetup) gameManager.screenFramework.wcm.getController(ScreenFramework.SERVER_SETUP_ID);
-
-        serverSetup.setGameInstance(this);
+        if (host) {
+            hosting = true;
+            server = new Server(this);
+        }
 
     }
 
@@ -38,16 +46,16 @@ public class HostInstance extends GameInstance {
     public void updateScreen() {
         switch (gameState) {
             case YET_TO_BEGIN:
-                gameManager.screenFramework.wcm.setScreen(ScreenFramework.SERVER_SETUP_ID);
+                gameManager.setScreen(ScreenFramework.SERVER_SETUP_ID);
                 break;
             case TURN:
-                gameManager.screenFramework.wcm.setScreen(ScreenFramework.TURN_PHASE_ID);
+                gameManager.setScreen(ScreenFramework.TURN_PHASE_ID);
                 break;
             case ACTION:
-                gameManager.screenFramework.wcm.setScreen(ScreenFramework.ACTION_PHASE_ID);
+                gameManager.setScreen(ScreenFramework.ACTION_PHASE_ID);
                 break;
             case GAME_OVER:
-                gameManager.screenFramework.wcm.setScreen(ScreenFramework.GAME_OVER_ID);
+                gameManager.setScreen(ScreenFramework.GAME_OVER_ID);
                 break;
             default:
                 return; //should not happen
@@ -61,7 +69,7 @@ public class HostInstance extends GameInstance {
 
         changeGameState(GameState.ACTION);
 
-        ActionPhase actionPhase = (ActionPhase) gameManager.screenFramework.wcm.getController(ScreenFramework.ACTION_PHASE_ID);
+        ActionPhase actionPhase = (ActionPhase) gameManager.getWindowController(ScreenFramework.ACTION_PHASE_ID);
         actionPhase.addAttackSequences(attackSequences);
 
     }
@@ -81,7 +89,7 @@ public class HostInstance extends GameInstance {
     public void endAttack() {
         changeGameState(GameState.TURN);
 
-        TurnPhase turnPhase = (TurnPhase) gameManager.screenFramework.wcm.getController(ScreenFramework.TURN_PHASE_ID);
+        TurnPhase turnPhase = (TurnPhase) gameManager.getWindowController(ScreenFramework.TURN_PHASE_ID);
         turnPhase.updateState();
 
     }
@@ -107,14 +115,18 @@ public class HostInstance extends GameInstance {
         return mainPlayer;
     }
 
-    @Override
     public void networkLog(String s) {
+
+        System.out.println(s);
 
     }
 
     @Override
     public void addPlayer(Player player) {
         if (gameState == GameState.YET_TO_BEGIN) {
+
+            if (allPlayers.contains(player)) return;
+
             allPlayers.add(player);
 
             for (Player enemy : allPlayers) {
@@ -124,8 +136,48 @@ public class HostInstance extends GameInstance {
             }
 
             if (allPlayers.size() == 2) {
+                ServerSetup serverSetup = (ServerSetup) gameManager.getWindowController(ScreenFramework.SERVER_SETUP_ID);
+
+                System.out.println(serverSetup); //is null for some reason
+
                 serverSetup.setGameCanBegin(true);
+
+                serverSetup.updatePlayers();
             }
         }
+    }
+
+    public void startGame() {
+
+        server.startGame();
+
+    }
+
+    public void addAllPlayers(List<Player> players) {
+        for (Player player : players) {
+            addPlayer(player);
+        }
+    }
+
+    public List<Player> getAllPlayers() {
+        return allPlayers;
+    }
+
+    public void joinGame(String ip) {
+
+        client = new Client(this, ip);
+
+    }
+
+    public void closeClient() {
+
+        client = null;
+
+    }
+
+    public boolean isHosting() {
+
+        return hosting;
+
     }
 }

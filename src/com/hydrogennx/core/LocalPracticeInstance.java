@@ -20,7 +20,7 @@ public class LocalPracticeInstance extends GameInstance {
     public LocalPracticeInstance(GameManager gameManager) {
         super(gameManager);
 
-        mainPlayer = new Player(Color.AQUA, "Practice");
+        mainPlayer = new Player(PlayerColor.BLUE, "Practice");
 
         mainPlayer.addEnemy(mainPlayer); //you are your own worst enemy, because you are your only enemy
 
@@ -32,25 +32,6 @@ public class LocalPracticeInstance extends GameInstance {
 
         gameState = GameState.TURN;
 
-        gameManager.screenFramework.wcm.getScreen(ScreenFramework.ACTION_PHASE_ID);
-
-    }
-
-    @Override
-    public void updateScreen() {
-        switch (gameState) {
-            case TURN:
-                gameManager.screenFramework.wcm.setScreen(ScreenFramework.TURN_PHASE_ID);
-                break;
-            case ACTION:
-                gameManager.screenFramework.wcm.setScreen(ScreenFramework.ACTION_PHASE_ID);
-                break;
-            case GAME_OVER:
-                gameManager.screenFramework.wcm.setScreen(ScreenFramework.GAME_OVER_ID);
-                break;
-            default:
-                return; //should not happen
-        }
     }
 
     @Override
@@ -69,7 +50,7 @@ public class LocalPracticeInstance extends GameInstance {
 
         changeGameState(GameState.ACTION);
 
-        ActionPhase actionPhase = (ActionPhase) gameManager.screenFramework.wcm.getController(ScreenFramework.ACTION_PHASE_ID);
+        ActionPhase actionPhase = (ActionPhase) gameManager.getWindowController(ScreenFramework.ACTION_PHASE_ID);
         actionPhase.addAttackSequences(attackSequences);
     }
 
@@ -88,7 +69,7 @@ public class LocalPracticeInstance extends GameInstance {
     public void endAttack() {
         changeGameState(GameState.TURN);
 
-        TurnPhase turnPhase = (TurnPhase) gameManager.screenFramework.wcm.getController(ScreenFramework.TURN_PHASE_ID);
+        TurnPhase turnPhase = (TurnPhase) gameManager.getWindowController(ScreenFramework.TURN_PHASE_ID);
         turnPhase.updateState();
 
     }
@@ -112,11 +93,6 @@ public class LocalPracticeInstance extends GameInstance {
     @Override
     public Player getCurrentPlayer() {
         return mainPlayer;
-    }
-
-    @Override
-    public void networkLog(String s) {
-        //nothing
     }
 
     @Override

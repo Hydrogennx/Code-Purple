@@ -1,10 +1,11 @@
 package com.hydrogennx.controller;
 
-import com.hydrogennx.core.HostInstance;
-import com.hydrogennx.core.network.Server;
+import com.hydrogennx.core.NetworkGameInstance;
+import com.hydrogennx.core.Player;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 public class ServerSetup extends WindowController {
 
@@ -15,9 +16,27 @@ public class ServerSetup extends WindowController {
     Button startGameButton;
 
     @FXML
-    Button stopHostingButton;
+    Button stopSessionButton;
 
-    HostInstance gameInstance;
+    @FXML
+    Button joinGameButton;
+
+    @FXML
+    TextField ipTextField;
+
+    NetworkGameInstance gameInstance;
+
+    int refreshes;
+
+    @FXML
+    public void startGame() {
+        gameInstance.startGame();
+    }
+
+    public void hideIpEntryField() {
+        joinGameButton.setDisable(true);
+        ipTextField.setDisable(true);
+    }
 
     public void setGameCanBegin(boolean serverCanBegin) {
 
@@ -29,17 +48,50 @@ public class ServerSetup extends WindowController {
 
     }
 
-    public void setGameInstance(HostInstance hostInstance) {
+    public void setGameInstance(NetworkGameInstance networkGameInstance) {
         if (this.gameInstance == null) {
-            this.gameInstance = hostInstance;
+            this.gameInstance = networkGameInstance;
+
+            if (networkGameInstance.isHosting()) {
+
+                hideIpEntryField();
+
+            }
         }
     }
 
     @FXML
-    public void stopHosting() {
+    public void joinGame() {
+        gameInstance.joinGame(ipTextField.getText());
+    }
+
+    @FXML
+    public void stopSession() {
 
         gameInstance.endGame();
 
     }
 
+    @FXML
+    public void refreshPlayerList() {
+
+        updatePlayers();
+
+    }
+
+    public void updatePlayers() {
+
+        refreshes++;
+
+        String playerListText = "";
+
+        for (Player player : gameInstance.getAllPlayers()) {
+
+            playerListText += player.getName() + "\n";
+
+        }
+
+        playerList.setText(playerListText + refreshes);
+
+    }
 }

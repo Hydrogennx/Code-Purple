@@ -2,6 +2,7 @@ package com.hydrogennx.core.javafx;
 
 import com.hydrogennx.controller.*;
 import com.hydrogennx.core.GameManager;
+import com.hydrogennx.core.NetworkGameInstance;
 
 /**
  * A static helper class. Loads an instance of every screen,
@@ -37,7 +38,6 @@ public class ScreenFramework {
     public void loadMenus() {
 
         wcm.loadScreen(MAIN_MENU_ID, MAIN_MENU_FILE);
-        wcm.loadScreen(SERVER_SETUP_ID, SERVER_SETUP_FILE);
         wcm.loadScreen(SETTING_ID, SETTING_FILE);
 
         MainMenu mainMenu = (MainMenu) wcm.getController(MAIN_MENU_ID);
@@ -67,6 +67,12 @@ public class ScreenFramework {
         turnPhase.setGameInstance(gameManager.getGameInstance());
         actionPhase.setGameInstance(gameManager.getGameInstance());
         gameOver.setGameInstance(gameManager.getGameInstance());
+
+        if (gameManager.getGameInstance() instanceof NetworkGameInstance) {
+            wcm.loadScreen(SERVER_SETUP_ID, SERVER_SETUP_FILE);
+            ServerSetup serverSetup = (ServerSetup) wcm.getController(SERVER_SETUP_ID);
+            serverSetup.setGameInstance((NetworkGameInstance) gameManager.getGameInstance());
+        }
 
     }
 

@@ -1,7 +1,9 @@
 package com.hydrogennx.core;
 
+import com.hydrogennx.core.attack.AttackSequence;
 import javafx.scene.paint.Color;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,13 +12,16 @@ import java.util.List;
  * This includes health and status effects, but not details like the player's location or invulnerability frames.
  * This class is in both the TurnPhase and ActionPhase.
  */
-public class Player {
+public class Player implements Serializable {
 
-    Color color;
+    PlayerColor color;
     String name;
 
     double health; //percentage, 0 to 1
     int mana; //exact value
+
+    List<AttackSequence> attacksQueued;
+
     List<AttackStatusEffect> statusEffects = new ArrayList<>();
 
     /**
@@ -25,7 +30,7 @@ public class Player {
      */
     List<Player> enemies = new ArrayList<>();
 
-    public Player(Color color, String name) {
+    public Player(PlayerColor color, String name) {
 
         this.color = color;
         this.name = name;
@@ -95,6 +100,12 @@ public class Player {
     public void setStartingMana(int mana) {
 
         this.mana = mana;
+
+    }
+
+    public String getName() {
+
+        return name;
 
     }
 

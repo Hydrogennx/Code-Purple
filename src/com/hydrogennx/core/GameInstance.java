@@ -27,7 +27,21 @@ public abstract class GameInstance {
         this.gameManager = gameManager;
     }
 
-    public abstract void updateScreen();
+    public void updateScreen() {
+        switch (gameState) {
+            case TURN:
+                gameManager.setScreen(ScreenFramework.TURN_PHASE_ID);
+                break;
+            case ACTION:
+                gameManager.setScreen(ScreenFramework.ACTION_PHASE_ID);
+                break;
+            case GAME_OVER:
+                gameManager.setScreen(ScreenFramework.GAME_OVER_ID);
+                break;
+            default:
+                return; //should not happen
+        }
+    }
 
     protected void changeGameState(GameState gameState) {
         this.gameState = gameState;
@@ -38,7 +52,7 @@ public abstract class GameInstance {
 
         if (gameState == GameState.ACTION) {
 
-            ActionPhase actionPhase = (ActionPhase) gameManager.screenFramework.wcm.getController(ScreenFramework.ACTION_PHASE_ID);
+            ActionPhase actionPhase = (ActionPhase) gameManager.getWindowController(ScreenFramework.ACTION_PHASE_ID);
 
             actionPhase.update(time);
 
@@ -80,8 +94,6 @@ public abstract class GameInstance {
     public abstract void endGame();
 
     public abstract Player getCurrentPlayer();
-
-    public abstract void networkLog(String s);
 
     public abstract void addPlayer(Player player);
 

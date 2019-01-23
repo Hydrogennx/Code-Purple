@@ -1,8 +1,9 @@
 package com.hydrogennx.core.network;
 
-import com.hydrogennx.core.GameManager;
+import com.hydrogennx.core.NetworkGameInstance;
 import com.hydrogennx.core.Player;
 import com.hydrogennx.core.attack.AttackSequence;
+import javafx.application.Platform;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -20,10 +21,14 @@ public class Server extends NetworkThread {
     private ObjectInputStream in;
     private ObjectOutputStream out;
 
+    private ServerStatus serverStatus = ServerStatus.UNDETERMINED;
+
     private boolean serverRunning;
 
 
-    public Server() {
+    public Server(NetworkGameInstance gameInstance) {
+
+        super(gameInstance);
 
         start();
 
@@ -37,6 +42,9 @@ public class Server extends NetworkThread {
 
             System.out.println("Host started");
             serverRunning = true;
+
+            serverStatus = ServerStatus.ONLINE;
+
             while (serverRunning) {
                 listen();
             }
@@ -55,8 +63,8 @@ public class Server extends NetworkThread {
 
             gameInstance.networkLog("Recieved a request from " + server.getRemoteSocketAddress());
 
-            in = new ObjectInputStream(server.getInputStream());
             out = new ObjectOutputStream(server.getOutputStream());
+            in = new ObjectInputStream(server.getInputStream());
 
             infoLoop:
             while (serverRunning) {
@@ -97,6 +105,16 @@ public class Server extends NetworkThread {
 
     }
 
+    public void startGame() {
+
+        try {
+            out.writeObject(Protocol.START_GAME);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     private void updateGameState() throws IOException, ClassNotFoundException {
 
         Player player = (Player) in.readObject();
@@ -125,9 +143,11 @@ public class Server extends NetworkThread {
 
     private void addPlayer() throws IOException, ClassNotFoundException {
 
+        out.writeObject(gameInstance.getAllPlayers());
+
         Player player = (Player) in.readObject();
 
-        gameInstance.addPlayer(player);
+        Platform.runLater(() -> gameInstance.addPlayer(player));
 
     }
 

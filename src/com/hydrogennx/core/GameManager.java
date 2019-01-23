@@ -1,9 +1,9 @@
 package com.hydrogennx.core;
 
+import com.hydrogennx.controller.WindowController;
 import com.hydrogennx.core.javafx.*;
 import com.hydrogennx.core.network.Client;
 import com.hydrogennx.core.network.NetworkThread;
-import com.hydrogennx.core.network.ServerStatus;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -21,9 +21,7 @@ public class GameManager extends Application {
     public static final String SETTINGS_FILE = "settings";
     Settings settings;
 
-    private NetworkThread networkInstance;
-
-    public ScreenFramework screenFramework = new ScreenFramework();
+    private ScreenFramework screenFramework = new ScreenFramework();
     GameInstance gameInstance;
 
     Stage primaryStage;
@@ -93,7 +91,7 @@ public class GameManager extends Application {
 
     public void startNetworkGame() {
 
-        gameInstance = new HostInstance(this);
+        gameInstance = new NetworkGameInstance(this, true);
 
         screenFramework.loadGameScreens();
 
@@ -101,9 +99,9 @@ public class GameManager extends Application {
 
     }
 
-    public void joinGame(String ip) {
+    public void joinGame() {
 
-        gameInstance = new ClientInstance(this, new Client(ip));
+        gameInstance = new NetworkGameInstance(this, false);
 
         screenFramework.loadGameScreens();
 
@@ -153,11 +151,6 @@ public class GameManager extends Application {
     public void stopGame() {
 
         gameInstance = null;
-
-        if (networkInstance != null) {
-            networkInstance.closeConnection();
-            networkInstance = null;
-        }
 
 
     }
@@ -215,4 +208,11 @@ public class GameManager extends Application {
 
     }
 
+    public WindowController getWindowController(String windowControllerId) {
+        return screenFramework.wcm.getController(windowControllerId);
+    }
+
+    public void setScreen(String windowControllerId) {
+        screenFramework.wcm.setScreen(windowControllerId);
+    }
 }

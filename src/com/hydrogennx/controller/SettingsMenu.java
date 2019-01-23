@@ -39,7 +39,7 @@ public class SettingsMenu extends WindowController implements Initializable {
     }
 
     public void cancelButtonPressed() {
-        gameManager.screenFramework.wcm.setScreen(ScreenFramework.MAIN_MENU_ID);
+        gameManager.setScreen(ScreenFramework.MAIN_MENU_ID);
     }
 
     public void setGameManager(GameManager gameManager) {

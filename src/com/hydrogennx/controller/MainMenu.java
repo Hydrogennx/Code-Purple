@@ -55,13 +55,6 @@ public class MainMenu extends WindowController implements Initializable {
 
     }
 
-    @FXML
-    public void joinGame() {
-
-        gameManager.joinGame(ipTextField.getText());
-
-    }
-
     public MainMenu() throws IOException {
 
     }
@@ -81,9 +74,11 @@ public class MainMenu extends WindowController implements Initializable {
     @FXML
     public void hostGameButtonPressed() {
         gameManager.startNetworkGame();
-        Server server = new Server();
-        server.gameInstance = gameManager.getGameInstance();
+    }
 
+    @FXML
+    public void joinGame() {
+        gameManager.joinGame();
     }
 
 

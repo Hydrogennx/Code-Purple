@@ -103,18 +103,7 @@ public class GameManager extends Application {
 
     public void joinGame(String ip) {
 
-        gameInstance = new ClientInstance(this);
-
-
-
-        screenFramework.loadGameScreens();
-
-        updateScreen();
-
-    }
-
-    public void startTutorial() {
-        gameInstance = new LocalTutorialInstance(this);
+        gameInstance = new ClientInstance(this, new Client(ip));
 
         screenFramework.loadGameScreens();
 

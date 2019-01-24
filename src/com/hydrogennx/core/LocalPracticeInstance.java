@@ -84,6 +84,8 @@ public class LocalPracticeInstance extends GameInstance {
     @Override
     public void endGame() {
 
+        super.endGame();
+
         gameManager.stopGame();
 
         changeGameState(GameState.YET_TO_BEGIN);

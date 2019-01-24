@@ -114,6 +114,8 @@ public class NetworkGameInstance extends GameInstance {
     @Override
     public void endGame() {
 
+        super.endGame();
+
         gameManager.stopGame();
 
         if (isHosting()) {

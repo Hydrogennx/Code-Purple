@@ -16,6 +16,9 @@ public abstract class GameInstance {
     GameManager gameManager;
     GameState gameState;
 
+    /**
+     * The current turn all players are on.
+     */
     int turn;
 
     /**
@@ -47,7 +50,7 @@ public abstract class GameInstance {
     }
 
     /**
-     * Returns how much mana they get at the end of the next turn.
+     * Returns how much mana players get at the end of the next turn.
      * @return How much mana players get at the end of the next turn.
      */
     public int getManaReturn() {

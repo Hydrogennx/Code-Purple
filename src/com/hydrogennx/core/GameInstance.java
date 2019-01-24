@@ -74,6 +74,7 @@ public abstract class GameInstance {
 
         actionMusic = new MediaPlayer(action);
         actionMusic.play();
+
     }
 
     public void setMusicIsCalm(boolean calm) {

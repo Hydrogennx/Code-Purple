@@ -6,6 +6,8 @@ import com.hydrogennx.core.javafx.WindowControllerManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -18,7 +20,8 @@ import java.util.ResourceBundle;
 
 
 public class SettingsMenu extends WindowController implements Initializable {
-
+    MediaPlayer pressedMusic;
+    MediaPlayer releasedMusic;
     private GameManager gameManager = null;
     public WindowControllerManager wcm = new WindowControllerManager();
 
@@ -67,6 +70,23 @@ public class SettingsMenu extends WindowController implements Initializable {
             System.err.println(ex);
         }
 
+    }
+    @FXML
+    public void mousePressed() {
+        String mouseDownMusicFile = "src/com/hydrogennx/core/resource/MouseDown.mp3";
+        Media pressed = new Media(new File(mouseDownMusicFile).toURI().toString());
+
+        pressedMusic = new MediaPlayer(pressed);
+        pressedMusic.play();
+    }
+
+    @FXML
+    public void mouseReleased() {
+        String mouseUpMusicFile = "src/com/hydrogennx/core/resource/MouseUp.mp3";
+        Media released = new Media(new File(mouseUpMusicFile).toURI().toString());
+
+        releasedMusic = new MediaPlayer(released);
+        releasedMusic.play();
     }
 
 }

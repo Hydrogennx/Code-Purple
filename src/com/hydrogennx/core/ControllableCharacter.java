@@ -3,6 +3,10 @@ package com.hydrogennx.core;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.io.File;
 
 //TODO figure out how to add custom JavaFX elements via SceneBuilder.
 
@@ -10,6 +14,8 @@ import javafx.scene.image.ImageView;
  * Represents the object controlled by the player during the ActionPhase sessions.
  */
 public class ControllableCharacter extends Group {
+
+    MediaPlayer hitMusic;
 
     final static double FRAMES_TO_FULL_SPEED = 4;
     final static double TOP_SPEED = 16;
@@ -203,10 +209,17 @@ public class ControllableCharacter extends Group {
 
             invulnerabilityFrames = INVULNERABILITY_FRAMES;
         }
+        String hitMusicFile = "src/com/hydrogennx/core/resource/hit.mp3";
+        Media hit = new Media(new File(hitMusicFile).toURI().toString());
+
+        hitMusic = new MediaPlayer(hit);
+        hitMusic.play();
+
 
     }
 
     public boolean isDead() {
+
 
         return getPlayer().getHealth() <= 0;
 

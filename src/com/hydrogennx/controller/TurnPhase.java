@@ -11,7 +11,10 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -19,7 +22,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class TurnPhase extends WindowController implements Initializable {
-
+    MediaPlayer pressedMusic;
+    MediaPlayer releasedMusic;
     private GameInstance gameInstance;
     @FXML
     private ImageView instructions = new ImageView();
@@ -91,6 +95,23 @@ public class TurnPhase extends WindowController implements Initializable {
             instructions.setVisible(false);
             visible = false;
         }
+    }
+    @FXML
+    public void mousePressed() {
+        String mouseDownMusicFile = "src/com/hydrogennx/core/resource/MouseDown.mp3";
+        Media pressed = new Media(new File(mouseDownMusicFile).toURI().toString());
+
+        pressedMusic = new MediaPlayer(pressed);
+        pressedMusic.play();
+    }
+
+    @FXML
+    public void mouseReleased() {
+        String mouseUpMusicFile = "src/com/hydrogennx/core/resource/MouseUp.mp3";
+        Media released = new Media(new File(mouseUpMusicFile).toURI().toString());
+
+        releasedMusic = new MediaPlayer(released);
+        releasedMusic.play();
     }
 
     public void backButton() {

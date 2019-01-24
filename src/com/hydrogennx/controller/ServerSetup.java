@@ -6,9 +6,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.io.File;
 
 public class ServerSetup extends WindowController {
-
+    MediaPlayer pressedMusic;
+    MediaPlayer releasedMusic;
     @FXML
     Label playerList;
 
@@ -93,5 +98,22 @@ public class ServerSetup extends WindowController {
 
         playerList.setText(playerListText + refreshes);
 
+    }
+    @FXML
+    public void mousePressed() {
+        String mouseDownMusicFile = "src/com/hydrogennx/core/resource/MouseDown.mp3";
+        Media pressed = new Media(new File(mouseDownMusicFile).toURI().toString());
+
+        pressedMusic = new MediaPlayer(pressed);
+        pressedMusic.play();
+    }
+
+    @FXML
+    public void mouseReleased() {
+        String mouseUpMusicFile = "src/com/hydrogennx/core/resource/MouseUp.mp3";
+        Media released = new Media(new File(mouseUpMusicFile).toURI().toString());
+
+        releasedMusic = new MediaPlayer(released);
+        releasedMusic.play();
     }
 }

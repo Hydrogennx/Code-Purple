@@ -6,6 +6,8 @@ public class Settings implements Serializable {
 
     String username;
 
+    boolean musicEnabled;
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -13,5 +15,9 @@ public class Settings implements Serializable {
     public String getUsername() {
         return username;
     }
+
+    public void setMusicEnabled(boolean musicEnabled) { this.musicEnabled = musicEnabled; }
+
+    public boolean getMusicEnabled() { return musicEnabled; }
 
 }

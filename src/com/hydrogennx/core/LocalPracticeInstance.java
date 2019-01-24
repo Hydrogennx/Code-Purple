@@ -26,9 +26,7 @@ public class LocalPracticeInstance extends GameInstance {
 
         allPlayers.add(mainPlayer);
 
-        for (Player player : allPlayers) {
-            player.setStartingMana(1 + new Random().nextInt(5));
-        }
+        mainPlayer.setStartingMana(1000);
 
         gameState = GameState.TURN;
 
@@ -61,6 +59,13 @@ public class LocalPracticeInstance extends GameInstance {
 
     @Override
     public void updatePlayerState(Player player) {
+        //nothing
+    }
+
+    @Override
+    public int getManaReturn() {
+
+        return turn + 200;
 
     }
 

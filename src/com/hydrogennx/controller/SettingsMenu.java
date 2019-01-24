@@ -5,6 +5,7 @@ import com.hydrogennx.core.javafx.ScreenFramework;
 import com.hydrogennx.core.javafx.WindowControllerManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -20,13 +21,15 @@ import java.util.ResourceBundle;
 
 
 public class SettingsMenu extends WindowController implements Initializable {
-    MediaPlayer pressedMusic;
-    MediaPlayer releasedMusic;
+
     private GameManager gameManager = null;
     public WindowControllerManager wcm = new WindowControllerManager();
 
     @FXML
     TextField nameTextField;
+
+    @FXML
+    CheckBox musicEnabledCheckbox;
 
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -35,14 +38,16 @@ public class SettingsMenu extends WindowController implements Initializable {
     public void saveButtonPressed() {
 
         gameManager.getSettings().setUsername(nameTextField.getText());
-        System.out.println(gameManager.getSettings().getUsername());
+        gameManager.getSettings().setMusicEnabled(musicEnabledCheckbox.isSelected());
 
         gameManager.saveSettings();
+
+        gameManager.toMainMenu();
 
     }
 
     public void cancelButtonPressed() {
-        gameManager.setScreen(ScreenFramework.MAIN_MENU_ID);
+        gameManager.toMainMenu();
     }
 
     public void setGameManager(GameManager gameManager) {
@@ -50,6 +55,7 @@ public class SettingsMenu extends WindowController implements Initializable {
             this.gameManager = gameManager;
 
             nameTextField.setText(gameManager.getSettings().getUsername());
+            musicEnabledCheckbox.setSelected(gameManager.getSettings().getMusicEnabled());
         }
     }
 

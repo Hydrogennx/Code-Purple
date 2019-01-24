@@ -92,6 +92,10 @@ public class Client extends NetworkThread {
                     Player player = (Player) in.readObject();
                     Platform.runLater(() -> gameInstance.recallAttack(player));
                 } break;
+                case UPDATE: {
+                    Player player = (Player) in.readObject();
+                    Platform.runLater(() -> gameInstance.updatePlayerState(player));
+                }
 
             }
 
@@ -147,4 +151,16 @@ public class Client extends NetworkThread {
         }
 
     }
+
+    public void sendUpdate(Player player) {
+
+        try {
+            out.writeObject(Protocol.UPDATE);
+            out.writeObject(player);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

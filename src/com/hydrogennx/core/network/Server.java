@@ -113,6 +113,7 @@ public class Server extends NetworkThread {
             System.out.println("Trying to start the game");
             out.writeObject(Protocol.START_GAME);
             System.out.println("Client has been told to start the game");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -172,4 +173,14 @@ public class Server extends NetworkThread {
 
     }
 
+    public void sendUpdate(Player player) {
+
+        try {
+            out.writeObject(Protocol.UPDATE);
+            out.writeObject(player);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

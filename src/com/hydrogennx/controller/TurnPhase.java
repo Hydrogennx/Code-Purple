@@ -7,6 +7,7 @@ import com.hydrogennx.core.attack.HealDefense;
 import com.hydrogennx.core.attack.RainAttack;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
@@ -22,14 +23,33 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class TurnPhase extends WindowController implements Initializable {
-    MediaPlayer pressedMusic;
-    MediaPlayer releasedMusic;
+
     private GameInstance gameInstance;
+
     @FXML
     private ImageView instructions = new ImageView();
+
     @FXML
     private ProgressBar mainHealthBar;
-    private ProgressIndicator waitingCircle = new ProgressIndicator();
+
+    @FXML
+    private Label mainName;
+
+    @FXML
+    private ImageView mainColor;
+
+    @FXML
+    private ProgressBar otherHealthBar;
+
+    @FXML
+    private Label otherName;
+
+    @FXML
+    private ImageView otherColor;
+
+    @FXML
+    private ProgressIndicator waitingCircle;
+
     private boolean visible = false;
 
     public TurnPhase() throws IOException {
@@ -127,12 +147,29 @@ public class TurnPhase extends WindowController implements Initializable {
 
         mainHealthBar.setProgress(gameInstance.getCurrentPlayer().getHealth());
 
+        if (gameInstance instanceof NetworkGameInstance) {
+
+            NetworkGameInstance networkGameInstance = (NetworkGameInstance) gameInstance;
+
+            otherHealthBar.setProgress(networkGameInstance.getOtherPlayer().getHealth());
+
+        }
 
     }
 
     public void setGameInstance(GameInstance gameInstance) {
         if (this.gameInstance == null) {
             this.gameInstance = gameInstance;
+
+            if (!(gameInstance instanceof NetworkGameInstance)) {
+
+                otherHealthBar.setVisible(false);
+                otherName.setVisible(false);
+                otherColor.setVisible(false);
+                waitingCircle.setVisible(false);
+
+            }
+
         }
     }
 }

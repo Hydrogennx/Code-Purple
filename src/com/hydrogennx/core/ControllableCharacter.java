@@ -154,7 +154,6 @@ public class ControllableCharacter extends Group {
 
         location = new Location();
 
-        //SettingsMenu the location doesn't work correctly right now
         //location.setActualX(context.getWidth() / 2);
         //location.setActualY(context.getHeight() / 2);
         location.setActualX(getLayoutX());

@@ -9,10 +9,7 @@ import com.hydrogennx.core.network.Client;
 import com.hydrogennx.core.network.Server;
 import javafx.application.Platform;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Controls the server side of a two-player network session.
@@ -111,13 +108,32 @@ public class NetworkGameInstance extends GameInstance {
     }
 
     @Override
-    public void updatePlayerState(Player player) {
+    public void updatePlayerState(Player playerToUpdate) {
+
+        for (Player player : allPlayers) {
+
+            if (player.getName().equals(playerToUpdate.getName())) {
+
+                player.update(playerToUpdate);
+
+            }
+
+        }
 
     }
 
 
     @Override
     public void endAttack() {
+
+        if (isHosting()) {
+            server.sendUpdate(mainPlayer);
+        } else {
+            client.sendUpdate(mainPlayer);
+        }
+
+        System.out.println("Update sent.");
+
         changeGameState(GameState.TURN);
 
         TurnPhase turnPhase = (TurnPhase) gameManager.getWindowController(ScreenFramework.TURN_PHASE_ID);
@@ -127,6 +143,14 @@ public class NetworkGameInstance extends GameInstance {
 
     @Override
     public void registerDefeat() {
+
+        if (isHosting()) {
+            server.sendUpdate(mainPlayer);
+        } else {
+            client.sendUpdate(mainPlayer);
+        }
+
+        System.out.println("Update sent.");
 
         changeGameState(GameState.GAME_OVER);
 
@@ -141,7 +165,7 @@ public class NetworkGameInstance extends GameInstance {
 
         if (isHosting()) {
             server.closeConnection();
-        } else {
+        } else if (client != null) {
             client.closeConnection();
         }
 
@@ -180,8 +204,6 @@ public class NetworkGameInstance extends GameInstance {
 
             if (allPlayers.size() == 2 && isHosting()) {
 
-                System.out.println(serverSetup); //is null for some reason
-
                 serverSetup.setGameCanBegin(true);
             }
         }
@@ -196,6 +218,18 @@ public class NetworkGameInstance extends GameInstance {
     }
 
     public void startGame() {
+
+        int startingMana = 1 + new Random().nextInt(5);
+
+        if (isHosting()) {
+            for (Player player : allPlayers) {
+
+                player.setStartingMana(startingMana);
+
+                server.sendUpdate(player);
+
+            }
+        }
 
         gameState = GameState.TURN;
 
@@ -247,6 +281,17 @@ public class NetworkGameInstance extends GameInstance {
         } else {
             //nothing
         }
+
+    }
+
+    public Player getOtherPlayer() {
+
+        for (Player player: allPlayers) {
+            if (mainPlayer.equals(player)) continue;
+            else return player;
+        }
+
+        return null;
 
     }
 }

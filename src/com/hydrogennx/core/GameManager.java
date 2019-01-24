@@ -197,6 +197,9 @@ public class GameManager extends Application {
 
             settings = new Settings();
 
+            settings.setUsername("Player");
+            settings.setMusicEnabled(true);
+
         } catch (ClassNotFoundException e) {
 
             System.err.println(e.getStackTrace());
@@ -212,5 +215,13 @@ public class GameManager extends Application {
 
     public void setScreen(String windowControllerId) {
         screenFramework.wcm.setScreen(windowControllerId);
+    }
+
+    public void toMainMenu() {
+
+        menu = Menu.MAIN_MENU;
+
+        setScreen(ScreenFramework.MAIN_MENU_ID);
+
     }
 }

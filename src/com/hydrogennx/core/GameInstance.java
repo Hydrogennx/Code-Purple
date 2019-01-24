@@ -65,6 +65,9 @@ public abstract class GameInstance {
     }
 
     public void playMusic() {
+
+        if (!gameManager.getSettings().getMusicEnabled()) return;
+
         String calmMusicFile = "src/com/hydrogennx/core/resource/calm.mp3";
         Media calm = new Media(new File(calmMusicFile).toURI().toString());
 
@@ -82,15 +85,20 @@ public abstract class GameInstance {
 
     public void setMusicIsCalm(boolean calm) {
 
-        this.calm = calm;
+        if (gameManager.getSettings().getMusicEnabled()) {
 
-        if (calm) {
-            double currentTime = actionMusic.getCurrentTime().toMillis() * MUSIC_SPEED_RATIO;
-            calmMusic.seek(new Duration(currentTime));
-        } else {
-            double currentTime = calmMusic.getCurrentTime().toMillis() / MUSIC_SPEED_RATIO;
-            actionMusic.seek(new Duration(currentTime));
+            this.calm = calm;
+
+            if (calm) {
+                double currentTime = actionMusic.getCurrentTime().toMillis() * MUSIC_SPEED_RATIO;
+                calmMusic.seek(new Duration(currentTime));
+            } else {
+                double currentTime = calmMusic.getCurrentTime().toMillis() / MUSIC_SPEED_RATIO;
+                actionMusic.seek(new Duration(currentTime));
+            }
+
         }
+
     }
 
     protected void changeGameState(GameState gameState) {
@@ -99,7 +107,6 @@ public abstract class GameInstance {
 
         if (gameState == GameState.ACTION) {
             setMusicIsCalm(false);
-            System.out.println("Music no longer calm.");
         } else {
             setMusicIsCalm(true);
         }
@@ -116,16 +123,20 @@ public abstract class GameInstance {
 
         }
 
-        if (calm) {
-            calmVolume += 1.0 / 72.0;
-            if (calmVolume > 1) calmVolume = 1;
-        } else {
-            calmVolume -= 1.0 / 72.0;
-            if (calmVolume < 0) calmVolume = 0;
-        }
+        if (gameManager.getSettings().getMusicEnabled()) {
 
-        calmMusic.setVolume(calmVolume);
-        actionMusic.setVolume(1 - calmVolume);
+            if (calm) {
+                calmVolume += 1.0 / 72.0;
+                if (calmVolume > 1) calmVolume = 1;
+            } else {
+                calmVolume -= 1.0 / 72.0;
+                if (calmVolume < 0) calmVolume = 0;
+            }
+
+            calmMusic.setVolume(calmVolume);
+            actionMusic.setVolume(1 - calmVolume);
+
+        }
 
     }
 
@@ -162,8 +173,10 @@ public abstract class GameInstance {
 
     public void endGame() {
 
-        calmMusic.stop();
-        actionMusic.stop();
+        if (gameManager.getSettings().getMusicEnabled()) {
+            calmMusic.stop();
+            actionMusic.stop();
+        }
 
     }
 

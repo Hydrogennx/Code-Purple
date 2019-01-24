@@ -16,7 +16,7 @@ public class DiamondBullet extends SpriteBullet {
 
     public DiamondBullet(GameActionPane context, AttackSequence source, Location location, Velocity velocity) {
 
-        super(context, source, location, velocity, 0.25);
+        super(context, source, location, velocity, 0.15);
 
         //TODO create a dictionary for image ids rather than hard-coding them.
         sprite.setImage(new Image("/com/hydrogennx/core/resource/tracer-bullet.png"));

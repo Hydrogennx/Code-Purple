@@ -109,4 +109,10 @@ public class Player implements Serializable {
 
     }
 
+    public void update(Player otherPlayer) {
+
+        this.mana = otherPlayer.mana;
+        this.health = otherPlayer.health;
+
+    }
 }

@@ -6,6 +6,7 @@ import com.hydrogennx.core.GameActionPane;
 import com.hydrogennx.core.GameInstance;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -31,6 +32,9 @@ public class ActionPhase extends WindowController implements Initializable {
 
     @FXML
     private ControllableCharacter controllableCharacter;
+
+    @FXML
+    private Label healthLabel;
 
     private double attackStartTime;
     private List<AttackSequence> attackSequences = new ArrayList<>();
@@ -62,6 +66,7 @@ public class ActionPhase extends WindowController implements Initializable {
      */
     public void update(double time) {
         healthBar.setProgress(gameInstance.getCurrentPlayer().getHealth());
+        healthLabel.setText(((int)(gameInstance.getCurrentPlayer().getHealth() * 100)) + " / 100");
 
         if (attackStartTime == 0) {
             attackStartTime = time;

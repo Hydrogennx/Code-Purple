@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.text.*?>
-<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -24,7 +20,7 @@
              <ControllableCharacter fx:id="controllableCharacter" layoutX="170.0" layoutY="200.0" />
          </children>
       </GameActionPane>
-      <Label layoutX="241.0" layoutY="16.0" text="100 / 100 (probably not really)" AnchorPane.leftAnchor="240.0">
+      <Label fx:id="healthLabel" layoutX="241.0" layoutY="16.0" text="100 / 100" AnchorPane.leftAnchor="240.0">
          <font>
             <Font name="Calibri Light" size="12.0" />
          </font>

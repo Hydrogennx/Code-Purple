@@ -106,6 +106,12 @@ public class NetworkGameInstance extends GameInstance {
 
         gameManager.stopGame();
 
+        if (isHosting()) {
+            server.closeConnection();
+        } else {
+            client.closeConnection();
+        }
+
         changeGameState(GameState.YET_TO_BEGIN);
 
     }
@@ -135,21 +141,32 @@ public class NetworkGameInstance extends GameInstance {
                 }
             }
 
-            if (allPlayers.size() == 2) {
-                ServerSetup serverSetup = (ServerSetup) gameManager.getWindowController(ScreenFramework.SERVER_SETUP_ID);
+            ServerSetup serverSetup = (ServerSetup) gameManager.getWindowController(ScreenFramework.SERVER_SETUP_ID);
+
+            serverSetup.updatePlayers();
+
+            if (allPlayers.size() == 2 && isHosting()) {
 
                 System.out.println(serverSetup); //is null for some reason
 
                 serverSetup.setGameCanBegin(true);
-
-                serverSetup.updatePlayers();
             }
         }
     }
 
-    public void startGame() {
+    public void beginNetworkGame() {
 
         server.startGame();
+
+        startGame();
+
+    }
+
+    public void startGame() {
+
+        gameState = GameState.TURN;
+
+        updateScreen();
 
     }
 
@@ -172,12 +189,31 @@ public class NetworkGameInstance extends GameInstance {
     public void closeClient() {
 
         client = null;
+        client.closeConnection();
 
     }
 
     public boolean isHosting() {
 
         return hosting;
+
+    }
+
+    public void removePlayer(Player player) {
+
+        if (gameState == GameState.YET_TO_BEGIN) {
+            allPlayers.remove(player);
+
+            ServerSetup serverSetup = (ServerSetup) gameManager.getWindowController(ScreenFramework.SERVER_SETUP_ID);
+
+            serverSetup.setGameCanBegin(false);
+            serverSetup.updatePlayers();
+
+        } else if (gameState != GameState.GAME_OVER) {
+            registerDefeat();
+        } else {
+            //nothing
+        }
 
     }
 }

@@ -6,7 +6,8 @@ package com.hydrogennx.core.network;
 public enum Protocol {
 
     JOIN_GAME, SEND_ATTACK, CANCEL_ATTACK, UPDATE, END_CONNECTION,
-    REGISTER_PLAYER, START_GAME, CANCEL_ATTACK_CONFIRMED;
+    START_GAME, CANCEL_ATTACK_CONFIRMED;
+    //REGISTER_PLAYER -- not used for the 2 player version of this game
 
     static final int PORT = 24077;
 

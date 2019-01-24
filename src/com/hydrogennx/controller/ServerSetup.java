@@ -30,7 +30,7 @@ public class ServerSetup extends WindowController {
 
     @FXML
     public void startGame() {
-        gameInstance.startGame();
+        gameInstance.beginNetworkGame();
     }
 
     public void hideIpEntryField() {

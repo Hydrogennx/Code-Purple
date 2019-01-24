@@ -99,16 +99,20 @@ public class Server extends NetworkThread {
 
     }
 
-    private void registerLeaving() {
+    private void registerLeaving() throws IOException, ClassNotFoundException {
 
-        //
+        Player player = (Player) in.readObject();
+
+        gameInstance.removePlayer(player);
 
     }
 
     public void startGame() {
 
         try {
+            System.out.println("Trying to start the game");
             out.writeObject(Protocol.START_GAME);
+            System.out.println("Client has been told to start the game");
         } catch (IOException e) {
             e.printStackTrace();
         }

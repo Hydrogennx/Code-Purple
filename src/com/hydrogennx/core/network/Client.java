@@ -2,6 +2,7 @@ package com.hydrogennx.core.network;
 
 import com.hydrogennx.core.NetworkGameInstance;
 import com.hydrogennx.core.Player;
+import com.hydrogennx.core.attack.AttackSequence;
 import javafx.application.Platform;
 
 import java.io.IOException;
@@ -70,7 +71,7 @@ public class Client extends NetworkThread {
 
             Protocol messageType = (Protocol) in.readObject();
 
-            gameInstance.networkLog("Recieved a request from " + socketClient.getRemoteSocketAddress());
+            gameInstance.networkLog("Received a request from " + socketClient.getRemoteSocketAddress());
 
             switch (messageType) {
 
@@ -122,6 +123,18 @@ public class Client extends NetworkThread {
             e.printStackTrace();
         }
 
+
+    }
+
+    public void sendAttack(List<AttackSequence> attackSequences, Player player) {
+
+        try {
+            out.writeObject(Protocol.SEND_ATTACK);
+            out.writeObject(attackSequences);
+            out.writeObject(player);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }

@@ -10,7 +10,9 @@ import com.hydrogennx.core.network.Server;
 import javafx.application.Platform;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Controls the server side of a two-player network session.
@@ -25,6 +27,8 @@ public class NetworkGameInstance extends GameInstance {
     boolean hosting;
 
     List<Player> serversidePlayerList = new ArrayList<>();
+
+    Map<Player, List<AttackSequence>> queuedAttacks = new HashMap<>();
 
     public NetworkGameInstance(GameManager gameManager, boolean host) {
         super(gameManager);
@@ -64,6 +68,12 @@ public class NetworkGameInstance extends GameInstance {
 
     @Override
     public void queueAttack(List<AttackSequence> attackSequences, Player player) {
+
+        if (!isHosting()) {
+            client.sendAttack(attackSequences, player);
+        } else {
+            queuedAttacks.put(player, attackSequences);
+        }
 
         //queue attack, and if all players have a queued attack...
 

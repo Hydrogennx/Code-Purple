@@ -25,7 +25,6 @@ public class ScreenFramework {
     public final static String ACTION_PHASE_FILE = "ActionPhase.fxml";
     public final static String MAIN_MENU_FILE = "MainMenu.fxml";
     public final static String GAME_OVER_FILE = "GameOver.fxml";
-    public final static String PRACTICE_TURN_FILE = "PracticeTurnPhase.fxml";
     public final static String SETTING_FILE = "SettingsMenu.fxml";
     public final static String SERVER_SETUP_FILE = "ServerSetup.fxml";
 

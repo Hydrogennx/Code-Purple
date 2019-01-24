@@ -67,25 +67,32 @@ public class NetworkGameInstance extends GameInstance {
     }
 
     @Override
-    public void queueAttack(List<AttackSequence> attackSequences, Player player) {
+    public void queueAttack(Player player, List<AttackSequence> attackSequences) {
 
         if (!isHosting()) {
             client.sendAttack(attackSequences, player);
         } else {
+            server.sendAttack(attackSequences, player);
             queuedAttacks.put(player, attackSequences);
         }
 
-        //queue attack, and if all players have a queued attack...
+        if (queuedAttacks.size() == 2) {
 
-        changeGameState(GameState.ACTION);
+            changeGameState(GameState.ACTION);
 
-        ActionPhase actionPhase = (ActionPhase) gameManager.getWindowController(ScreenFramework.ACTION_PHASE_ID);
-        actionPhase.addAttackSequences(attackSequences);
+            ActionPhase actionPhase = (ActionPhase) gameManager.getWindowController(ScreenFramework.ACTION_PHASE_ID);
+            actionPhase.addAttackSequences(attackSequences);
+
+            queuedAttacks.clear();
+
+        }
 
     }
 
     @Override
-    public void recallAttack(List<AttackSequence> attackSequences, Player attacker) {
+    public void recallAttack(Player attacker) {
+
+        queuedAttacks.remove(attacker);
 
     }
 

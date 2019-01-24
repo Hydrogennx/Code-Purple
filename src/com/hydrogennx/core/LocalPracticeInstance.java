@@ -35,7 +35,7 @@ public class LocalPracticeInstance extends GameInstance {
     }
 
     @Override
-    public void queueAttack(List<AttackSequence> attackSequences, Player attacker) {
+    public void queueAttack(Player attacker, List<AttackSequence> attackSequences) {
 
 
         int manaCost = AttackSequence.getCost(attackSequences);
@@ -55,7 +55,7 @@ public class LocalPracticeInstance extends GameInstance {
     }
 
     @Override
-    public void recallAttack(List<AttackSequence> attackSequences, Player attacker) {
+    public void recallAttack(Player attacker) {
         //nothing
     }
 

@@ -11,7 +11,7 @@ import java.util.List;
  * An attack sequence. A list of these are sent to the defender, even though that list usually only contains one item.
  * Each one has an attack type and its modifiers, which as of right now only includes status effects on contact.
  */
-public abstract class AttackSequence {
+public abstract class AttackSequence implements Serializable {
 
     public static final double ATTACK_LENGTH = 10.0; //all attacks default to 10 seconds
 
@@ -23,7 +23,7 @@ public abstract class AttackSequence {
     protected double attackStartTime = 0;
 
     protected List<AttackStatusEffect> modifiers;
-    protected GameActionPane context;
+    transient protected GameActionPane context;
 
     public AttackSequence(int manaCost) {
 

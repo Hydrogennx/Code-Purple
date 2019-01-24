@@ -132,16 +132,15 @@ public class Server extends NetworkThread {
         List<AttackSequence> attackSequences = (List<AttackSequence>) in.readObject();
         Player attacker = (Player) in.readObject();
 
-        gameInstance.queueAttack(attackSequences, attacker);
+        Platform.runLater(() -> gameInstance.queueAttack(attacker, attackSequences));
 
     }
 
     private void unregisterAttack() throws IOException, ClassNotFoundException {
 
-        List<AttackSequence> attackSequences = (List<AttackSequence>) in.readObject();
         Player attacker = (Player) in.readObject();
 
-        gameInstance.recallAttack(attackSequences, attacker);
+        Platform.runLater(() -> gameInstance.recallAttack(attacker));
 
     }
 
@@ -160,4 +159,17 @@ public class Server extends NetworkThread {
         serverRunning = false;
 
     }
+
+    public void sendAttack(List<AttackSequence> attackSequences, Player player) {
+
+        try {
+            out.writeObject(Protocol.SEND_ATTACK);
+            out.writeObject(attackSequences);
+            out.writeObject(player);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

@@ -52,7 +52,7 @@ public class Client extends NetworkThread {
 
             joinGame();
 
-            while (true) {
+            while (!socketClient.isClosed()) {
                 listen();
             }
 
@@ -78,12 +78,20 @@ public class Client extends NetworkThread {
                 case START_GAME:
                     Platform.runLater(() -> gameInstance.startGame());
                     break;
-                case CANCEL_ATTACK_CONFIRMED:
-                    break;
-                case SEND_ATTACK:
-                    break;
-                case CANCEL_ATTACK:
-                    break;
+                case SEND_ATTACK: {
+                    Player player = (Player) in.readObject();
+                    List<AttackSequence> attackSequences = (List<AttackSequence>) in.readObject();
+                    Platform.runLater(() -> gameInstance.queueAttack(player, attackSequences));
+                } break;
+                case CANCEL_ATTACK: {
+                    Player player = (Player) in.readObject();
+                    Platform.runLater(() -> gameInstance.recallAttack(player));
+                    out.writeObject(Protocol.CANCEL_ATTACK_CONFIRMED);
+                } break;
+                case CANCEL_ATTACK_CONFIRMED: {
+                    Player player = (Player) in.readObject();
+                    Platform.runLater(() -> gameInstance.recallAttack(player));
+                } break;
 
             }
 
@@ -119,6 +127,7 @@ public class Client extends NetworkThread {
             out.writeObject(Protocol.END_CONNECTION);
             out.writeObject(gameInstance.getCurrentPlayer());
             socketClient.close();
+            System.out.println("Client closed");
         } catch (IOException e) {
             e.printStackTrace();
         }

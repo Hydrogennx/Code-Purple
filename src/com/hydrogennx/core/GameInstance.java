@@ -151,9 +151,9 @@ public abstract class GameInstance {
 
     //TODO create a ClientManager and a HostManager when we are ready to begin netcode.
 
-    public abstract void queueAttack(List<AttackSequence> attackSequences, Player attacker);
+    public abstract void queueAttack(Player attacker, List<AttackSequence> attackSequences);
 
-    public abstract void recallAttack(List<AttackSequence> attackSequences, Player attacker);
+    public abstract void recallAttack(Player attacker);
 
     public abstract void updatePlayerState(Player player);
 

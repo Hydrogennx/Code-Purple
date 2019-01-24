@@ -1,9 +1,7 @@
 package com.hydrogennx.core;
 
 import com.hydrogennx.controller.WindowController;
-import com.hydrogennx.core.javafx.*;
-import com.hydrogennx.core.network.Client;
-import com.hydrogennx.core.network.NetworkThread;
+import com.hydrogennx.core.javafx.ScreenFramework;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;

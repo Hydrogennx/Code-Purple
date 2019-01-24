@@ -53,16 +53,6 @@ public class ScreenFramework {
 
     }
 
-    public void loadServerSetupScreen() {
-
-        wcm.loadScreen(SERVER_SETUP_ID, SERVER_SETUP_FILE);
-
-        ServerSetup serverSetup = (ServerSetup) wcm.getController(SERVER_SETUP_ID);
-
-        serverSetup.setGameInstance(gameManager.getGameInstance());
-
-    }
-
     public void loadGameScreens() {
 
         wcm.loadScreen(TURN_PHASE_ID, TURN_PHASE_FILE);

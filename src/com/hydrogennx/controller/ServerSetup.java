@@ -99,21 +99,5 @@ public class ServerSetup extends WindowController {
         playerList.setText(playerListText + refreshes);
 
     }
-    @FXML
-    public void mousePressed() {
-        String mouseDownMusicFile = "src/com/hydrogennx/core/resource/MouseDown.mp3";
-        Media pressed = new Media(new File(mouseDownMusicFile).toURI().toString());
 
-        pressedMusic = new MediaPlayer(pressed);
-        pressedMusic.play();
-    }
-
-    @FXML
-    public void mouseReleased() {
-        String mouseUpMusicFile = "src/com/hydrogennx/core/resource/MouseUp.mp3";
-        Media released = new Media(new File(mouseUpMusicFile).toURI().toString());
-
-        releasedMusic = new MediaPlayer(released);
-        releasedMusic.play();
-    }
 }

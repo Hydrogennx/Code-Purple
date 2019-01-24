@@ -81,7 +81,7 @@ public class Client extends NetworkThread {
                 case SEND_ATTACK: {
                     Player player = (Player) in.readObject();
                     List<AttackSequence> attackSequences = (List<AttackSequence>) in.readObject();
-                    Platform.runLater(() -> gameInstance.queueAttack(player, attackSequences));
+                    Platform.runLater(() -> gameInstance.queueAttackLocally(player, attackSequences));
                 } break;
                 case CANCEL_ATTACK: {
                     Player player = (Player) in.readObject();
@@ -138,9 +138,10 @@ public class Client extends NetworkThread {
     public void sendAttack(List<AttackSequence> attackSequences, Player player) {
 
         try {
+            System.out.println("Sending attack");
             out.writeObject(Protocol.SEND_ATTACK);
-            out.writeObject(attackSequences);
             out.writeObject(player);
+            out.writeObject(attackSequences);
         } catch (IOException e) {
             e.printStackTrace();
         }

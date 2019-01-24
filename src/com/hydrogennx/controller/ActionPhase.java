@@ -7,7 +7,10 @@ import com.hydrogennx.core.GameInstance;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -15,6 +18,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class ActionPhase extends WindowController implements Initializable {
+
+    MediaPlayer defeatMusic;
 
     private GameInstance gameInstance;
 
@@ -87,10 +92,14 @@ public class ActionPhase extends WindowController implements Initializable {
 
         if (controllableCharacter.isDead()) {
             gameInstance.registerDefeat();
+            String defeatMusicFile = "src/com/hydrogennx/core/resource/defeat.mp3";
+            Media defeat = new Media(new File(defeatMusicFile).toURI().toString());
+
+            defeatMusic = new MediaPlayer(defeat);
+            defeatMusic.play();
         }
 
     }
-
     /**
      * Resets this ActionPhase to be indistinguishible from a newly created one.
      * Some variables are not reset, because their values should have already been previously, and instances where they are not should be detected and solved, not forgotten.

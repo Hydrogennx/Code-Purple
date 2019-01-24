@@ -1,9 +1,16 @@
 package com.hydrogennx.controller;
 
 import com.hydrogennx.core.GameManager;
+import com.hydrogennx.core.network.Server;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,7 +19,8 @@ import java.util.ResourceBundle;
 public class MainMenu extends WindowController implements Initializable {
 
     private GameManager gameManager = null;
-
+MediaPlayer pressedMusic;
+MediaPlayer releasedMusic;
 //    public static void main(String[] args) {
 //        launch(args);
 //    }
@@ -26,6 +34,32 @@ public class MainMenu extends WindowController implements Initializable {
 //        System.out.println("JavaFX test successful.");
 //
 //    }
+
+    @FXML
+    TextField ipTextField;
+
+    @FXML
+    Button joinGameButton;
+
+
+
+    @FXML
+    Label connectionLog;
+
+    @FXML
+    public void ipChanged() {
+
+        if (ipTextField.getText().length() > 0) {
+
+            joinGameButton.setDisable(false);
+
+        } else {
+
+            joinGameButton.setDisable(true);
+
+        }
+
+    }
 
     public MainMenu() throws IOException {
 
@@ -48,13 +82,32 @@ public class MainMenu extends WindowController implements Initializable {
         gameManager.startNetworkGame();
     }
 
-    public void tutorialButtonPressed() {
-        gameManager.startTutorial();
-        //Opens the tutorial
+    @FXML
+    public void joinGame() {
+        gameManager.joinGame();
     }
 
+    @FXML
+    public void mousePressed() {
+        String mouseDownMusicFile = "src/com/hydrogennx/core/resource/MouseDown.mp3";
+        Media pressed = new Media(new File(mouseDownMusicFile).toURI().toString());
+
+        pressedMusic = new MediaPlayer(pressed);
+        pressedMusic.play();
+    }
+
+    @FXML
+    public void mouseReleased() {
+        String mouseUpMusicFile = "src/com/hydrogennx/core/resource/MouseUp.mp3";
+        Media released = new Media(new File(mouseUpMusicFile).toURI().toString());
+
+        releasedMusic = new MediaPlayer(released);
+        releasedMusic.play();
+    }
+
+    @FXML
     public void optionButtonPressed() {
-        gameManager.startOption();
+        gameManager.openSettingsMenu();
     }
 
     public void setGameManager(GameManager gameManager) {

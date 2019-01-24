@@ -2,7 +2,7 @@ package com.hydrogennx.core;
 
 public enum Menu {
 
-    INACTIVE,
+    MAIN_MENU,
 
-    SETTING;
+    SETTINGS;
 }

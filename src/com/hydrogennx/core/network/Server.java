@@ -1,8 +1,9 @@
 package com.hydrogennx.core.network;
 
-import com.hydrogennx.core.GameInstance;
+import com.hydrogennx.core.NetworkGameInstance;
 import com.hydrogennx.core.Player;
 import com.hydrogennx.core.attack.AttackSequence;
+import javafx.application.Platform;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -13,18 +14,23 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Server extends Thread {
-
-    private GameInstance gameInstance;
+public class Server extends NetworkThread {
 
     private ServerSocket socketServer;
 
     private ObjectInputStream in;
     private ObjectOutputStream out;
 
-    public Server(GameInstance logHandler) {
+    private ServerStatus serverStatus = ServerStatus.UNDETERMINED;
 
-        this.gameInstance = logHandler;
+    private boolean serverRunning;
+
+
+    public Server(NetworkGameInstance gameInstance) {
+
+        super(gameInstance);
+
+        start();
 
     }
 
@@ -34,9 +40,16 @@ public class Server extends Thread {
         try {
             socketServer = new ServerSocket(Protocol.PORT);
 
-            while (true) {
+            System.out.println("Host started");
+            serverRunning = true;
+
+            serverStatus = ServerStatus.ONLINE;
+
+            while (serverRunning) {
                 listen();
             }
+
+            socketServer.close();
 
         } catch (IOException e) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, e);
@@ -50,11 +63,11 @@ public class Server extends Thread {
 
             gameInstance.networkLog("Recieved a request from " + server.getRemoteSocketAddress());
 
-            in = new ObjectInputStream(server.getInputStream());
             out = new ObjectOutputStream(server.getOutputStream());
+            in = new ObjectInputStream(server.getInputStream());
 
             infoLoop:
-            while (true) {
+            while (serverRunning) {
 
                 Protocol messageType = (Protocol) in.readObject();
 
@@ -86,9 +99,23 @@ public class Server extends Thread {
 
     }
 
-    private void registerLeaving() {
+    private void registerLeaving() throws IOException, ClassNotFoundException {
 
-        //
+        Player player = (Player) in.readObject();
+
+        gameInstance.removePlayer(player);
+
+    }
+
+    public void startGame() {
+
+        try {
+            System.out.println("Trying to start the game");
+            out.writeObject(Protocol.START_GAME);
+            System.out.println("Client has been told to start the game");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -120,10 +147,17 @@ public class Server extends Thread {
 
     private void addPlayer() throws IOException, ClassNotFoundException {
 
+        out.writeObject(gameInstance.getAllPlayers());
+
         Player player = (Player) in.readObject();
 
-        gameInstance.addPlayer(player);
+        Platform.runLater(() -> gameInstance.addPlayer(player));
 
     }
 
+    public void closeConnection() {
+
+        serverRunning = false;
+
+    }
 }

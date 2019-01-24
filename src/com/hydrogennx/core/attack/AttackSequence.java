@@ -3,6 +3,7 @@ package com.hydrogennx.core.attack;
 import com.hydrogennx.core.AttackStatusEffect;
 import com.hydrogennx.core.GameActionPane;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 

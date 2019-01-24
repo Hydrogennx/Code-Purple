@@ -2,6 +2,7 @@ package com.hydrogennx.core.javafx;
 
 import com.hydrogennx.controller.*;
 import com.hydrogennx.core.GameManager;
+import com.hydrogennx.core.NetworkGameInstance;
 
 /**
  * A static helper class. Loads an instance of every screen,
@@ -18,15 +19,13 @@ public class ScreenFramework {
     public final static String ACTION_PHASE_ID = "ACTION_PHASE";
     public final static String MAIN_MENU_ID = "MAIN_MENU";
     public final static String GAME_OVER_ID = "GAME_OVER";
-    public final static String PRACTICE_TURN_PHASE_ID = "PRACTICE_TURN_PHASE";
     public final static String SETTING_ID = "SETTINGS";
     public final static String SERVER_SETUP_ID = "SERVER_SETUP";
     public final static String TURN_PHASE_FILE = "TurnPhase.fxml";
     public final static String ACTION_PHASE_FILE = "ActionPhase.fxml";
     public final static String MAIN_MENU_FILE = "MainMenu.fxml";
     public final static String GAME_OVER_FILE = "GameOver.fxml";
-    public final static String PRACTICE_TURN_FILE = "PracticeTurnPhase.fxml";
-    public final static String SETTING_FILE = "Setting.fxml";
+    public final static String SETTING_FILE = "SettingsMenu.fxml";
     public final static String SERVER_SETUP_FILE = "ServerSetup.fxml";
 
     public void setGameManager(GameManager gameManager) {
@@ -41,6 +40,7 @@ public class ScreenFramework {
         wcm.loadScreen(SETTING_ID, SETTING_FILE);
 
         MainMenu mainMenu = (MainMenu) wcm.getController(MAIN_MENU_ID);
+
         mainMenu.setGameManager(gameManager);
 
 
@@ -48,7 +48,7 @@ public class ScreenFramework {
 
     public void loadOptions() {
         wcm.loadScreen(SETTING_ID, SETTING_FILE);
-        Setting setting = (Setting) wcm.getController(SETTING_ID);
+        SettingsMenu setting = (SettingsMenu) wcm.getController(SETTING_ID);
         setting.setGameManager(gameManager);
 
     }
@@ -68,17 +68,20 @@ public class ScreenFramework {
         wcm.loadScreen(TURN_PHASE_ID, TURN_PHASE_FILE);
         wcm.loadScreen(ACTION_PHASE_ID, ACTION_PHASE_FILE);
         wcm.loadScreen(GAME_OVER_ID, GAME_OVER_FILE);
-        wcm.loadScreen(PRACTICE_TURN_PHASE_ID, PRACTICE_TURN_FILE);
 
         TurnPhase turnPhase = (TurnPhase) wcm.getController(TURN_PHASE_ID);
         ActionPhase actionPhase = (ActionPhase) wcm.getController(ACTION_PHASE_ID);
         GameOver gameOver = (GameOver) wcm.getController(GAME_OVER_ID);
-        PracticeTurnPhase practiceTurnPhase = (PracticeTurnPhase) wcm.getController(PRACTICE_TURN_PHASE_ID);
 
         turnPhase.setGameInstance(gameManager.getGameInstance());
         actionPhase.setGameInstance(gameManager.getGameInstance());
         gameOver.setGameInstance(gameManager.getGameInstance());
-        practiceTurnPhase.setGameInstance(gameManager.getGameInstance());
+
+        if (gameManager.getGameInstance() instanceof NetworkGameInstance) {
+            wcm.loadScreen(SERVER_SETUP_ID, SERVER_SETUP_FILE);
+            ServerSetup serverSetup = (ServerSetup) wcm.getController(SERVER_SETUP_ID);
+            serverSetup.setGameInstance((NetworkGameInstance) gameManager.getGameInstance());
+        }
 
     }
 

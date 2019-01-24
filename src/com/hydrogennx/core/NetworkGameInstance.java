@@ -66,6 +66,30 @@ public class NetworkGameInstance extends GameInstance {
         }
     }
 
+    public void queueAttackLocally(Player player, List<AttackSequence> attackSequences) {
+
+        queuedAttacks.put(player, attackSequences);
+
+        if (queuedAttacks.size() == 2) {
+
+            changeGameState(GameState.ACTION);
+
+            ActionPhase actionPhase = (ActionPhase) gameManager.getWindowController(ScreenFramework.ACTION_PHASE_ID);
+
+            for (Player attacker : getAllPlayers()) {
+
+                if (mainPlayer.isEnemyOf(attacker)) {
+                    actionPhase.addAttackSequences(queuedAttacks.get(attacker));
+                }
+
+            }
+
+            queuedAttacks.clear();
+
+        }
+
+    }
+
     @Override
     public void queueAttack(Player player, List<AttackSequence> attackSequences) {
 
@@ -73,19 +97,9 @@ public class NetworkGameInstance extends GameInstance {
             client.sendAttack(attackSequences, player);
         } else {
             server.sendAttack(attackSequences, player);
-            queuedAttacks.put(player, attackSequences);
         }
 
-        if (queuedAttacks.size() == 2) {
-
-            changeGameState(GameState.ACTION);
-
-            ActionPhase actionPhase = (ActionPhase) gameManager.getWindowController(ScreenFramework.ACTION_PHASE_ID);
-            actionPhase.addAttackSequences(attackSequences);
-
-            queuedAttacks.clear();
-
-        }
+        queueAttackLocally(player, attackSequences);
 
     }
 

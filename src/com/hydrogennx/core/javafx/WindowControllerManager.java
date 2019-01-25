@@ -1,6 +1,7 @@
 package com.hydrogennx.core.javafx;
 
 import com.hydrogennx.controller.WindowController;
+import com.hydrogennx.core.GameManager;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -17,9 +18,15 @@ import java.util.HashMap;
  */
 public class WindowControllerManager extends StackPane {
 
+
+    GameManager gameManager;
     private HashMap<String, Node> screens = new HashMap<>();
     private HashMap<String, WindowController> controllers = new HashMap<>();
     private Node currentScreen;
+
+    public WindowControllerManager(GameManager gameManager) {
+        this.gameManager = gameManager;
+    }
 
     public void loadScreen(String id, String resourceId) {
         try {
@@ -33,6 +40,7 @@ public class WindowControllerManager extends StackPane {
 
         } catch (IOException e) {
             System.err.println("Unable to load screen.");
+            gameManager.writeToLogFile(e);
             e.printStackTrace();
         }
     }

@@ -1,5 +1,6 @@
 package com.hydrogennx.core.network;
 
+import com.hydrogennx.core.GameManager;
 import com.hydrogennx.core.NetworkGameInstance;
 import com.hydrogennx.core.Player;
 import com.hydrogennx.core.attack.AttackSequence;
@@ -14,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Client extends NetworkThread {
+
 
     private ServerStatus serverStatus = ServerStatus.UNDETERMINED;
 
@@ -57,6 +59,7 @@ public class Client extends NetworkThread {
             }
 
         } catch (IOException e) {
+            gameInstance.getGameManager().writeToLogFile(e);
             e.printStackTrace();
             serverStatus = ServerStatus.INVALID;
             System.out.println("Invalid Connection");
@@ -103,6 +106,7 @@ public class Client extends NetworkThread {
             }
 
         } catch (IOException | ClassNotFoundException e) {
+            gameInstance.getGameManager().writeToLogFile(e);
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, e);
         }
 
@@ -122,6 +126,7 @@ public class Client extends NetworkThread {
             out.writeObject(gameInstance.getCurrentPlayer());
             Platform.runLater(() -> gameInstance.addAllPlayers(players));
         } catch (IOException | ClassNotFoundException e) {
+            gameInstance.getGameManager().writeToLogFile(e);
             e.printStackTrace();
         }
 
@@ -136,6 +141,7 @@ public class Client extends NetworkThread {
             socketClient.close();
             System.out.println("Client closed");
         } catch (IOException e) {
+            gameInstance.getGameManager().writeToLogFile(e);
             e.printStackTrace();
         }
 
@@ -150,6 +156,7 @@ public class Client extends NetworkThread {
             out.writeObject(player);
             out.writeObject(attackSequences);
         } catch (IOException e) {
+            gameInstance.getGameManager().writeToLogFile(e);
             e.printStackTrace();
         }
 
@@ -162,6 +169,7 @@ public class Client extends NetworkThread {
             out.writeObject(player);
             out.writeDouble(player.getHealth());
         } catch (IOException e) {
+            gameInstance.getGameManager().writeToLogFile(e);
             e.printStackTrace();
         }
 

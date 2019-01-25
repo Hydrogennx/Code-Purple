@@ -13,7 +13,7 @@ public class ScreenFramework {
 
     GameManager gameManager;
 
-    public WindowControllerManager wcm = new WindowControllerManager();
+    public WindowControllerManager wcm = new WindowControllerManager(gameManager);
 
     public final static String TURN_PHASE_ID = "TURN_PHASE";
     public final static String ACTION_PHASE_ID = "ACTION_PHASE";

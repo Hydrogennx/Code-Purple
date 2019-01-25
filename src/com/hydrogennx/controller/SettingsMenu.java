@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 public class SettingsMenu extends WindowController implements Initializable {
 
     private GameManager gameManager = null;
-    public WindowControllerManager wcm = new WindowControllerManager();
+    public WindowControllerManager wcm = new WindowControllerManager(gameManager);
 
     @FXML
     TextField nameTextField;

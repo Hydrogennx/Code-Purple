@@ -11,6 +11,11 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * A game manager to create instances of the various gametypes that exist.
@@ -34,6 +39,8 @@ public class GameManager extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+
+
 
         this.primaryStage = primaryStage;
 
@@ -199,7 +206,7 @@ public class GameManager extends Application {
             file.close();
 
         } catch (IOException e) {
-
+            writeToLogFile(e);
             System.out.println("Error saving settings!");
 
         }
@@ -219,7 +226,7 @@ public class GameManager extends Application {
             file.close();
 
         } catch (IOException e) {
-
+            writeToLogFile(e);
             System.out.println("Error loading settings, using defaults!");
 
             settings = new Settings();
@@ -228,7 +235,7 @@ public class GameManager extends Application {
             settings.setMusicEnabled(true);
 
         } catch (ClassNotFoundException e) {
-
+            writeToLogFile(e);
             System.err.println(e.getStackTrace());
             System.out.println("Using default settings");
 
@@ -252,22 +259,19 @@ public class GameManager extends Application {
 
     }
 
-    public void writeToLogFile(String message) {
-        String fileName = "Log"; // File you want to write to (will overwrite file)
+    public void writeToLogFile(Exception message) {
+        String fileName = "Log";
+        LocalDateTime now = LocalDateTime.now();
+        String toWrite = now + ": " + message.toString();
+        System.out.println(toWrite);
         try {
-            File jarFile = new File(SettingsMenu.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-            fileName = jarFile.getParent() + File.separator + fileName;  // File.separator is the same as a "/"
-
             FileWriter fileWriter = new FileWriter(fileName);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            bufferedWriter.write(message + "\n");
-            bufferedWriter.close();
-            fileWriter.close();
-        } catch (IOException ex) {
-            System.out.println("Error writing to file '" + fileName + "'");
-        } catch (Exception ex) {
-            System.err.println(ex);
+            Files.write(Paths.get(fileName), toWrite.getBytes(), StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
 
     }
 }

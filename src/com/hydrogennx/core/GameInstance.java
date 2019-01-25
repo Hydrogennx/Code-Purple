@@ -48,6 +48,10 @@ public abstract class GameInstance {
 
     }
 
+    public GameManager getGameManager() {
+        return gameManager;
+    }
+
     public void updateScreen() {
         switch (gameState) {
             case TURN:

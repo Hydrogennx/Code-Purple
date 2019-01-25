@@ -1,5 +1,6 @@
 package com.hydrogennx.core.network;
 
+import com.hydrogennx.core.GameManager;
 import com.hydrogennx.core.NetworkGameInstance;
 import com.hydrogennx.core.Player;
 import com.hydrogennx.core.attack.AttackSequence;
@@ -24,7 +25,6 @@ public class Server extends NetworkThread {
     private ServerStatus serverStatus = ServerStatus.UNDETERMINED;
 
     private boolean serverRunning;
-
 
     public Server(NetworkGameInstance gameInstance) {
 
@@ -52,6 +52,7 @@ public class Server extends NetworkThread {
             socketServer.close();
 
         } catch (IOException e) {
+            gameInstance.getGameManager().writeToLogFile(e);
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, e);
         }
 
@@ -94,6 +95,7 @@ public class Server extends NetworkThread {
             }
 
         } catch (IOException | ClassNotFoundException e) {
+            gameInstance.getGameManager().writeToLogFile(e);
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, e);
         }
 
@@ -115,6 +117,7 @@ public class Server extends NetworkThread {
             System.out.println("Client has been told to start the game");
 
         } catch (IOException e) {
+            gameInstance.getGameManager().writeToLogFile(e);
             e.printStackTrace();
         }
 
@@ -171,6 +174,7 @@ public class Server extends NetworkThread {
             out.writeObject(player);
             out.writeObject(attackSequences);
         } catch (IOException e) {
+            gameInstance.getGameManager().writeToLogFile(e);
             e.printStackTrace();
         }
 
@@ -183,6 +187,7 @@ public class Server extends NetworkThread {
             out.writeObject(player);
             out.writeDouble(player.getHealth());
         } catch (IOException e) {
+            gameInstance.getGameManager().writeToLogFile(e);
             e.printStackTrace();
         }
 

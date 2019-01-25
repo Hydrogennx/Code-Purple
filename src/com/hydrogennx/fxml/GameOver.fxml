@@ -13,7 +13,7 @@
             <Image url="@../core/resource/menuBackground.png" />
          </image>
       </ImageView>
-      <Label fx:id="label" alignment="CENTER" layoutX="322.0" layoutY="89.0" prefHeight="17.0" prefWidth="106.0" text="Game Over!" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="322.0" AnchorPane.rightAnchor="322.0" />
+      <Label fx:id="label" alignment="CENTER" layoutX="173.0" layoutY="87.0" prefHeight="17.0" prefWidth="405.0" text="Game Over!" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="173.0" AnchorPane.rightAnchor="172.0" />
       <SoundButton fx:id="mainMenuButton" layoutX="322.0" layoutY="116.0" mnemonicParsing="false" onAction="#mainMenuButtonPressed" text="Main Menu" AnchorPane.leftAnchor="322.0" AnchorPane.rightAnchor="322.0" />
    </children>
 </AnchorPane>

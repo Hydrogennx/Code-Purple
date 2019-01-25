@@ -1,4 +1,5 @@
 .button {
+    -fx-font: 12px "Consolas";
     -fx-border-color: #ffffff;
     -fx-background-color: #000000;
     -fx-text-fill: #ffffff;
@@ -10,4 +11,16 @@
 
 .button-clicked {
     -fx-border-color: #8800ff;
+}
+
+.label {
+    -fx-font: 12px "Consolas";
+    -fx-text-fill: #ffffff;
+}
+
+.text-field {
+    -fx-font: 12px "Consolas";
+    -fx-border-color: #ffffff;
+    -fx-background-color: #000000;
+    -fx-text-fill: #ffffff;
 }

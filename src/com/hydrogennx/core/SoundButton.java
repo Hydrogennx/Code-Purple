@@ -15,33 +15,33 @@ public class SoundButton extends Button {
 
     public SoundButton() {
 
+        //go to default style
 
-        setOnMousePressed(new EventHandler<MouseEvent>() {
+        setOnMousePressed(me -> {
 
-            public void handle(MouseEvent me) {
+            getStyleClass().add("button-clicked");
 
-                String mouseDownMusicFile = "src/com/hydrogennx/core/resource/MouseDown.mp3";
-                Media pressed = new Media(new File(mouseDownMusicFile).toURI().toString());
+            String mouseDownMusicFile = "src/com/hydrogennx/core/resource/MouseDown.mp3";
+            Media pressed = new Media(new File(mouseDownMusicFile).toURI().toString());
 
-                pressedSound = new MediaPlayer(pressed);
-                pressedSound.play();
-
-            }
+            pressedSound = new MediaPlayer(pressed);
+            pressedSound.play();
 
         });
 
+        setOnMouseEntered(me -> getStyleClass().add("button-hover"));
 
-        setOnMouseReleased(new EventHandler<MouseEvent>() {
+        setOnMouseExited(me -> getStyleClass().remove("button-hover"));
 
-            public void handle(MouseEvent me) {
+        setOnMouseReleased(me -> {
 
-                String mouseUpMusicFile = "src/com/hydrogennx/core/resource/MouseUp.mp3";
-                Media released = new Media(new File(mouseUpMusicFile).toURI().toString());
+            getStyleClass().remove("button-clicked");
 
-                releasedSound = new MediaPlayer(released);
-                releasedSound.play();
+            String mouseUpMusicFile = "src/com/hydrogennx/core/resource/MouseUp.mp3";
+            Media released = new Media(new File(mouseUpMusicFile).toURI().toString());
 
-            }
+            releasedSound = new MediaPlayer(released);
+            releasedSound.play();
 
         });
     }

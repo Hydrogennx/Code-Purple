@@ -1,5 +1,6 @@
 package com.hydrogennx.core;
 
+import com.hydrogennx.controller.SettingsMenu;
 import com.hydrogennx.controller.MainMenu;
 import com.hydrogennx.controller.WindowController;
 import com.hydrogennx.core.javafx.ScreenFramework;
@@ -27,7 +28,9 @@ public class GameManager extends Application {
     Stage primaryStage;
     Scene primaryScene;
 
-    public static void main(String[] args) { launch(args); }
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void start(Stage primaryStage) {
@@ -121,14 +124,13 @@ public class GameManager extends Application {
 
     long lastFramePrintMillis = 0;
     int frames = 0;
+
     protected void startLoop() {
 
         final long startNanoTime = System.nanoTime();
 
-        new AnimationTimer()
-        {
-            public void handle(long currentNanoTime)
-            {
+        new AnimationTimer() {
+            public void handle(long currentNanoTime) {
                 double t = (currentNanoTime - startNanoTime) / 1000000000.0;
 
                 if (menu == Menu.MAIN_MENU) {
@@ -245,6 +247,25 @@ public class GameManager extends Application {
         menu = Menu.MAIN_MENU;
 
         setScreen(ScreenFramework.MAIN_MENU_ID);
+
+    }
+
+    public void writeToLogFile(String message) {
+        String fileName = "Log"; // File you want to write to (will overwrite file)
+        try {
+            File jarFile = new File(SettingsMenu.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+            fileName = jarFile.getParent() + File.separator + fileName;  // File.separator is the same as a "/"
+
+            FileWriter fileWriter = new FileWriter(fileName);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(message + "\n");
+            bufferedWriter.close();
+            fileWriter.close();
+        } catch (IOException ex) {
+            System.out.println("Error writing to file '" + fileName + "'");
+        } catch (Exception ex) {
+            System.err.println(ex);
+        }
 
     }
 }

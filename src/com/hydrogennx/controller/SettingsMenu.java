@@ -59,40 +59,5 @@ public class SettingsMenu extends WindowController implements Initializable {
         }
     }
 
-    public void writeToFile() {
-        String fileName = "settings"; // File you want to write to (will overwrite file)
-        try {
-            File jarFile = new File(SettingsMenu.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-            fileName = jarFile.getParent() + File.separator + fileName;  // File.separator is the same as a "/"
-
-            FileWriter fileWriter = new FileWriter(fileName);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            bufferedWriter.write(gameManager.getSettings().getUsername());
-            bufferedWriter.close();
-            fileWriter.close();
-        } catch (IOException ex) {
-            System.out.println("Error writing to file '" + fileName + "'");
-        } catch (Exception ex) {
-            System.err.println(ex);
-        }
-
-    }
-//    @FXML
-//    public void mousePressed() {
-//        String mouseDownMusicFile = "src/com/hydrogennx/core/resource/MouseDown.mp3";
-//        Media pressed = new Media(new File(mouseDownMusicFile).toURI().toString());
-//
-//        pressedMusic = new MediaPlayer(pressed);
-//        pressedMusic.play();
-//    }
-//
-//    @FXML
-//    public void mouseReleased() {
-//        String mouseUpMusicFile = "src/com/hydrogennx/core/resource/MouseUp.mp3";
-//        Media released = new Media(new File(mouseUpMusicFile).toURI().toString());
-//
-//        releasedMusic = new MediaPlayer(released);
-//        releasedMusic.play();
-//    }
 
 }

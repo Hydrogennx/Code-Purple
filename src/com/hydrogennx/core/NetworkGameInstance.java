@@ -35,6 +35,8 @@ public class NetworkGameInstance extends GameInstance {
 
         gameState = GameState.YET_TO_BEGIN;
 
+        mainPlayer.setStartingMana(1000);
+
         if (host) {
             hosting = true;
             server = new Server(this);
@@ -96,6 +98,16 @@ public class NetworkGameInstance extends GameInstance {
     @Override
     public void queueAttack(Player player, List<AttackSequence> attackSequences) {
 
+        int manaCost = AttackSequence.getCost(attackSequences);
+        System.out.println(manaCost);
+        System.out.println(player.getMana());
+
+        if (manaCost > player.getMana()) {
+            return;
+        }
+
+        player.registerAttack(manaCost, this);
+
         if (!isHosting()) {
             client.sendAttack(attackSequences, player);
         } else {
@@ -104,6 +116,11 @@ public class NetworkGameInstance extends GameInstance {
 
         queueAttackLocally(player, attackSequences);
 
+    }
+
+    @Override
+    public int getManaReturn() {
+        return turn+200;
     }
 
     @Override

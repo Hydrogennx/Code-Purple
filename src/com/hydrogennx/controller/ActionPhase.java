@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
 public class ActionPhase extends WindowController implements Initializable {
 
     MediaPlayer defeatMusic;
+    MediaPlayer victoryMusic;
 
     private GameInstance gameInstance;
 
@@ -99,6 +100,11 @@ public class ActionPhase extends WindowController implements Initializable {
         clearAttacks();
 
         if (attackSequences.isEmpty()) {
+            String victoryMusicFile = "src/com/hydrogennx/core/resource/victory.mp3";
+            Media victory = new Media(new File(victoryMusicFile).toURI().toString());
+
+            victoryMusic = new MediaPlayer(victory);
+            victoryMusic.play();
             gameInstance.endAttack();
             reset();
         }

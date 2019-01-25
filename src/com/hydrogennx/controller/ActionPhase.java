@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -56,6 +58,12 @@ public class ActionPhase extends WindowController implements Initializable {
 
         //gamePane.setScaleY(-1);
         healthBar.setProgress(1);
+
+        BackgroundImage myBI= new BackgroundImage(new Image("/com/hydrogennx/core/resource/background-image.png",750,500,false,true),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+
+        gamePane.setBackground(new Background(myBI));
 
     }
 

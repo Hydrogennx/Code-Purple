@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.Button?>
+<?import com.hydrogennx.core.SoundButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<?import com.hydrogennx.core.SoundButton?>
-<AnchorPane prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hydrogennx.controller.MainMenu">
+<AnchorPane prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hydrogennx.controller.MainMenu">
   <children>
-    <Label fx:id="titleLabel" alignment="CENTER" layoutX="331.0" layoutY="117.0" text="Code Purple" AnchorPane.topAnchor="117.0" />
+    <Label fx:id="titleLabel" alignment="CENTER" layoutX="331.0" layoutY="117.0" text="Code Purple" textFill="WHITE" AnchorPane.topAnchor="117.0" />
     <SoundButton fx:id="practiceButton" alignment="CENTER" layoutX="248.0" layoutY="142.0" mnemonicParsing="false" onAction="#practiceButtonPressed" prefHeight="25.0" prefWidth="232.0" text="Local Practice" AnchorPane.leftAnchor="248.0" AnchorPane.rightAnchor="270.0" AnchorPane.topAnchor="142.0" />
     <SoundButton fx:id="exitButton" alignment="CENTER" layoutX="248.0" layoutY="289.0" mnemonicParsing="false" onAction="#exitButtonPressed" prefHeight="25.0" prefWidth="232.0" text="Quit" AnchorPane.leftAnchor="248.0" AnchorPane.rightAnchor="270.0" AnchorPane.topAnchor="289.0" />
       <SoundButton fx:id="optionButton" alignment="CENTER" layoutX="248.0" layoutY="249.0" mnemonicParsing="false" onAction="#optionButtonPressed" prefHeight="25.0" prefWidth="232.0" text="Options" AnchorPane.leftAnchor="248.0" AnchorPane.rightAnchor="270.0" AnchorPane.topAnchor="249.0" />

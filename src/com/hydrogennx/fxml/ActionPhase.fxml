@@ -20,7 +20,7 @@
              <ControllableCharacter fx:id="controllableCharacter" layoutX="170.0" layoutY="200.0" />
          </children>
       </GameActionPane>
-      <Label fx:id="healthLabel" layoutX="241.0" layoutY="16.0" text="100 / 100" AnchorPane.leftAnchor="240.0">
+      <Label fx:id="healthLabel" layoutX="241.0" layoutY="16.0" text="100 / 100" textFill="WHITE" AnchorPane.leftAnchor="240.0">
          <font>
             <Font name="Calibri Light" size="12.0" />
          </font>

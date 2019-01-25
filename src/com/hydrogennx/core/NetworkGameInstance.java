@@ -7,7 +7,6 @@ import com.hydrogennx.core.attack.AttackSequence;
 import com.hydrogennx.core.javafx.ScreenFramework;
 import com.hydrogennx.core.network.Client;
 import com.hydrogennx.core.network.Server;
-import javafx.application.Platform;
 
 import java.util.*;
 
@@ -67,6 +66,13 @@ public class NetworkGameInstance extends GameInstance {
 
         queuedAttacks.put(player, attackSequences);
 
+        if (!player.equals(mainPlayer)) {
+
+            TurnPhase turnPhase = (TurnPhase) gameManager.getWindowController(ScreenFramework.TURN_PHASE_ID);
+            turnPhase.setOtherPlayerDecision(true);
+
+        }
+
         if (queuedAttacks.size() == 2) {
 
             changeGameState(GameState.ACTION);
@@ -110,11 +116,16 @@ public class NetworkGameInstance extends GameInstance {
     @Override
     public void updatePlayerState(Player playerToUpdate) {
 
+        System.out.println("Updating " + playerToUpdate.getName());
+
         for (Player player : allPlayers) {
 
             if (player.getName().equals(playerToUpdate.getName())) {
 
                 player.update(playerToUpdate);
+
+                System.out.println("Updated " + player.getName());
+                System.out.println("Health: " + playerToUpdate.getHealth() + " to " + player.getHealth() + "");
 
             }
 
@@ -132,12 +143,14 @@ public class NetworkGameInstance extends GameInstance {
             client.sendUpdate(mainPlayer);
         }
 
-        System.out.println("Update sent.");
+        System.out.println("Update sent, health: " + mainPlayer.getHealth());
 
         changeGameState(GameState.TURN);
 
         TurnPhase turnPhase = (TurnPhase) gameManager.getWindowController(ScreenFramework.TURN_PHASE_ID);
         turnPhase.updateState();
+
+        turnPhase.setOtherPlayerDecision(false);
 
     }
 
@@ -150,7 +163,7 @@ public class NetworkGameInstance extends GameInstance {
             client.sendUpdate(mainPlayer);
         }
 
-        System.out.println("Update sent.");
+        System.out.println("Update sent, game over. Health: " + mainPlayer.getHealth());
 
         changeGameState(GameState.GAME_OVER);
 

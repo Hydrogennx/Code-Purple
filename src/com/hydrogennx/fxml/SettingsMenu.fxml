@@ -13,14 +13,14 @@
       <Pane prefHeight="500.0" prefWidth="750.0">
          <children>
             <TextField fx:id="nameTextField" layoutX="101.0" layoutY="11.0" text="No Name" />
-            <Label layoutX="14.0" layoutY="14.0" text="Nickname:">
+            <Label layoutX="14.0" layoutY="14.0" text="Nickname:" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
             <SoundButton layoutX="688.0" layoutY="459.0" mnemonicParsing="false" onAction="#saveButtonPressed" text="Save" />
             <SoundButton layoutX="616.0" layoutY="459.0" mnemonicParsing="false" onAction="#cancelButtonPressed" text="Cancel" />
-            <CheckBox fx:id="musicEnabledCheckbox" layoutX="15.0" layoutY="53.0" mnemonicParsing="false" text="Music Enabled" />
+            <CheckBox fx:id="musicEnabledCheckbox" layoutX="15.0" layoutY="53.0" mnemonicParsing="false" text="Music Enabled" textFill="WHITE" />
          </children></Pane>
    </children>
 </AnchorPane>

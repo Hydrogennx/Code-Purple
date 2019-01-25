@@ -51,6 +51,7 @@ public class WindowControllerManager extends StackPane {
         getChildren().remove(currentScreen);
         getChildren().add(nextScreen);
         currentScreen = nextScreen;
+        currentScreen.setStyle("-fx-background-color: black;");
         return true;
     }
 

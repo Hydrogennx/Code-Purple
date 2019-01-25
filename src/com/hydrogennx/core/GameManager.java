@@ -5,6 +5,7 @@ import com.hydrogennx.core.javafx.ScreenFramework;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -68,7 +69,9 @@ public class GameManager extends Application {
 
     protected void updateGameWindow() {
 
-        primaryScene = new Scene(screenFramework.wcm, 750, 500);
+        primaryScene = new Scene(screenFramework.wcm, 750, 500, Color.BLACK);
+
+        primaryScene.setFill(Color.BLACK);
 
         primaryStage.setTitle("Code Purple");
         primaryStage.setScene(primaryScene);

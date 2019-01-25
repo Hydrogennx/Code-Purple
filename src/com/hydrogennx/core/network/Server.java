@@ -103,7 +103,7 @@ public class Server extends NetworkThread {
 
         Player player = (Player) in.readObject();
 
-        gameInstance.removePlayer(player);
+        Platform.runLater(() -> gameInstance.removePlayer(player));
 
     }
 

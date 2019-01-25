@@ -50,6 +50,9 @@ public class TurnPhase extends WindowController implements Initializable {
     @FXML
     private ProgressIndicator waitingCircle;
 
+    List<ImageView> mainMana = new ArrayList<>();
+    List<ImageView> bonusMana = new ArrayList<>();
+
     private boolean visible = false;
 
     public TurnPhase() throws IOException {
@@ -172,4 +175,16 @@ public class TurnPhase extends WindowController implements Initializable {
 
         }
     }
+
+    public void setOtherPlayerDecision(boolean decided) {
+
+        if (decided) {
+            waitingCircle.setProgress(1);
+        } else {
+            waitingCircle.setProgress(-1);
+        }
+
+
+    }
+
 }

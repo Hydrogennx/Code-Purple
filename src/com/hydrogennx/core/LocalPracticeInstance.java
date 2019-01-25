@@ -4,8 +4,11 @@ import com.hydrogennx.controller.ActionPhase;
 import com.hydrogennx.core.attack.AttackSequence;
 import com.hydrogennx.core.javafx.ScreenFramework;
 import com.hydrogennx.controller.TurnPhase;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 
+import java.io.File;
 import java.util.List;
 import java.util.Random;
 
@@ -76,6 +79,8 @@ public class LocalPracticeInstance extends GameInstance {
 
     @Override
     public void registerDefeat() {
+
+        super.registerDefeat();
 
         changeGameState(GameState.GAME_OVER);
 

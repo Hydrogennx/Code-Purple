@@ -72,15 +72,15 @@ public abstract class GameInstance {
 
         if (!gameManager.getSettings().getMusicEnabled()) return;
 
-        String calmMusicFile = "src/com/hydrogennx/core/resource/calm.mp3";
-        Media calm = new Media(new File(calmMusicFile).toURI().toString());
+        String calmMusicFile = getClass().getResource("/calm.mp3").toString();
+        Media calm = new Media(calmMusicFile);
 
         calmMusic = new MediaPlayer(calm);
         calmMusic.play();
         calmMusic.setCycleCount(MediaPlayer.INDEFINITE);
 
-        String actionMusicFile = "src/com/hydrogennx/core/resource/action.mp3";
-        Media action = new Media(new File(actionMusicFile).toURI().toString());
+        String actionMusicFile = getClass().getResource("/action.mp3").toString();
+        Media action = new Media(actionMusicFile);
 
         actionMusic = new MediaPlayer(action);
         actionMusic.play();
@@ -171,7 +171,19 @@ public abstract class GameInstance {
     public abstract void recallAttack(Player attacker);
 
     public abstract void endAttack();
-    public abstract void registerDefeat();
+
+    public void registerDefeat() {
+
+        MediaPlayer defeatMusic;
+
+        String defeatMusicFile = getClass().getResource("/defeat.mp3").toString();
+
+        Media defeat = new Media(defeatMusicFile);
+
+        defeatMusic = new MediaPlayer(defeat);
+        defeatMusic.play();
+
+    }
 
     public void endGame() {
 

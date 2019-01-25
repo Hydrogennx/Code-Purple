@@ -16,15 +16,12 @@ public class SoundButton extends Button {
 
     public SoundButton() {
 
-        //go to default style
-
-
         setOnMousePressed(me -> {
 
             getStyleClass().add("button-clicked");
 
-            String mouseDownMusicFile = "src/com/hydrogennx/core/resource/MouseDown.mp3";
-            Media pressed = new Media(new File(mouseDownMusicFile).toURI().toString());
+            String mouseDownMusicFile = getClass().getResource("/MouseDown.mp3").toString();
+            Media pressed = new Media(mouseDownMusicFile);
 
             pressedSound = new MediaPlayer(pressed);
             pressedSound.play();
@@ -34,8 +31,8 @@ public class SoundButton extends Button {
         setOnMouseEntered(me -> {
             getStyleClass().add("button-hover");
 
-            String mouseHoverFile = "src/com/hydrogennx/core/resource/hover.mp3";
-            Media hover = new Media(new File(mouseHoverFile).toURI().toString());
+            String mouseHoverFile = getClass().getResource("/hover.mp3").toString();
+            Media hover = new Media(mouseHoverFile);
 
             hoverSound = new MediaPlayer(hover);
             hoverSound.play();
@@ -48,8 +45,8 @@ public class SoundButton extends Button {
 
             getStyleClass().remove("button-clicked");
 
-            String mouseUpMusicFile = "src/com/hydrogennx/core/resource/MouseUp.mp3";
-            Media released = new Media(new File(mouseUpMusicFile).toURI().toString());
+            String mouseUpMusicFile = getClass().getResource("/MouseUp.mp3").toString();
+            Media released = new Media(mouseUpMusicFile);
 
             releasedSound = new MediaPlayer(released);
             releasedSound.play();

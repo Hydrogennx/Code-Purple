@@ -22,9 +22,6 @@ import java.util.ResourceBundle;
 
 public class ActionPhase extends WindowController implements Initializable {
 
-    MediaPlayer defeatMusic;
-    MediaPlayer victoryMusic;
-
     private GameInstance gameInstance;
 
     @FXML
@@ -60,7 +57,9 @@ public class ActionPhase extends WindowController implements Initializable {
         //gamePane.setScaleY(-1);
         healthBar.setProgress(1);
 
-        BackgroundImage myBI= new BackgroundImage(new Image("/com/hydrogennx/core/resource/background-image.png",750,500,false,true),
+        URL backgroundImageLocation = getClass().getResource("/background-image.png");
+
+        BackgroundImage myBI= new BackgroundImage(new Image(backgroundImageLocation.toString(),750,500,false,true),
                 BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
 
@@ -100,22 +99,14 @@ public class ActionPhase extends WindowController implements Initializable {
         clearAttacks();
 
         if (attackSequences.isEmpty()) {
-            String victoryMusicFile = "src/com/hydrogennx/core/resource/victory.mp3";
-            Media victory = new Media(new File(victoryMusicFile).toURI().toString());
 
-            victoryMusic = new MediaPlayer(victory);
-            victoryMusic.play();
             gameInstance.endAttack();
             reset();
+
         }
 
         if (controllableCharacter.isDead()) {
             gameInstance.registerDefeat();
-            String defeatMusicFile = "src/com/hydrogennx/core/resource/defeat.mp3";
-            Media defeat = new Media(new File(defeatMusicFile).toURI().toString());
-
-            defeatMusic = new MediaPlayer(defeat);
-            defeatMusic.play();
         }
 
     }

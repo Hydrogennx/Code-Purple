@@ -8,7 +8,10 @@ import com.hydrogennx.core.attack.AttackSequence;
 import com.hydrogennx.core.javafx.ScreenFramework;
 import com.hydrogennx.core.network.Client;
 import com.hydrogennx.core.network.Server;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
+import java.io.File;
 import java.util.*;
 
 /**
@@ -181,6 +184,8 @@ public class NetworkGameInstance extends GameInstance {
     @Override
     public void registerDefeat() {
 
+        super.registerDefeat();
+
         if (isHosting()) {
             server.sendUpdate(mainPlayer);
         } else {
@@ -196,6 +201,15 @@ public class NetworkGameInstance extends GameInstance {
     public void registerVictory() {
 
         changeGameState(GameState.GAME_OVER);
+
+        MediaPlayer victoryMusic;
+
+        String victoryMusicFile = getClass().getResource("/victory.mp3").toString();
+
+        Media defeat = new Media(new File(victoryMusicFile).toURI().toString());
+
+        victoryMusic = new MediaPlayer(defeat);
+        victoryMusic.play();
 
         GameOver gameOver = (GameOver) gameManager.getWindowController(ScreenFramework.GAME_OVER_ID);
 

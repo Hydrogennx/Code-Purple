@@ -84,7 +84,7 @@ public class GameManager extends Application {
 
         primaryScene.setFill(Color.BLACK);
 
-        primaryScene.getStylesheets().add("com/hydrogennx/core/resource/stylesheet.css");
+        primaryScene.getStylesheets().add(getClass().getResource("/stylesheet.css").toString());
 
         primaryStage.setTitle("Code Purple");
         primaryStage.setScene(primaryScene);

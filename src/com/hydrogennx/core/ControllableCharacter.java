@@ -204,15 +204,17 @@ public class ControllableCharacter extends Group {
         getPlayer().registerDamage(damage);
 
         if (damage > 0) { //deals damage as opposed to healing
+
+            String hitMusicFile = getClass().getResource("/hit.mp3").toString();
+            Media hit = new Media(hitMusicFile);
+
+            hitMusic = new MediaPlayer(hit);
+            hitMusic.play();
+
             context.setShake(damage);
 
             invulnerabilityFrames = INVULNERABILITY_FRAMES;
         }
-        String hitMusicFile = "src/com/hydrogennx/core/resource/hit.mp3";
-        Media hit = new Media(new File(hitMusicFile).toURI().toString());
-
-        hitMusic = new MediaPlayer(hit);
-        hitMusic.play();
 
 
     }

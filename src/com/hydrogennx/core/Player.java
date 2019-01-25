@@ -115,4 +115,10 @@ public class Player implements Serializable {
         this.health = otherPlayer.health;
 
     }
+
+    public void setHealth(double health) {
+
+        this.health = health;
+
+    }
 }

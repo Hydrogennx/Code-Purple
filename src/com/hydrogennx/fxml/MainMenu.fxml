@@ -2,6 +2,8 @@
 
 <?import com.hydrogennx.core.SoundButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hydrogennx.controller.MainMenu">
@@ -12,5 +14,15 @@
       <SoundButton fx:id="optionButton" alignment="CENTER" layoutX="259.0" layoutY="259.0" mnemonicParsing="false" onAction="#optionButtonPressed" prefHeight="25.0" prefWidth="232.0" text="Options" AnchorPane.leftAnchor="259.0" AnchorPane.rightAnchor="259.0" AnchorPane.topAnchor="252.0" />
       <SoundButton fx:id="hostGameButton" layoutX="259.0" layoutY="182.0" mnemonicParsing="false" onAction="#hostGameButtonPressed" prefHeight="25.0" prefWidth="232.0" text="Host Game" AnchorPane.leftAnchor="259.0" AnchorPane.rightAnchor="259.0" AnchorPane.topAnchor="180.0" />
       <SoundButton fx:id="joinGameButton" layoutX="259.0" layoutY="219.0" mnemonicParsing="false" onAction="#joinGame" prefHeight="25.0" prefWidth="232.0" text="Join Game" AnchorPane.leftAnchor="259.0" AnchorPane.rightAnchor="259.0" AnchorPane.topAnchor="216.0" />
+      <ImageView fx:id="devCredit" fitHeight="500.0" fitWidth="756.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../core/resource/DevelopmentCredit.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="publisherCredit" fitHeight="500.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../core/resource/PublishingCredit.png" />
+         </image>
+      </ImageView>
   </children>
 </AnchorPane>

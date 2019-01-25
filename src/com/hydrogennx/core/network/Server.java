@@ -123,6 +123,9 @@ public class Server extends NetworkThread {
     private void updateGameState() throws IOException, ClassNotFoundException {
 
         Player player = (Player) in.readObject();
+        double health = in.readDouble();
+
+        player.setHealth(health);
 
         gameInstance.updatePlayerState(player);
 
@@ -178,6 +181,7 @@ public class Server extends NetworkThread {
         try {
             out.writeObject(Protocol.UPDATE);
             out.writeObject(player);
+            out.writeDouble(player.getHealth());
         } catch (IOException e) {
             e.printStackTrace();
         }

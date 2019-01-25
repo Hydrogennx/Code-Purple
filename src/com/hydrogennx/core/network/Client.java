@@ -94,6 +94,9 @@ public class Client extends NetworkThread {
                 } break;
                 case UPDATE: {
                     Player player = (Player) in.readObject();
+                    double health = in.readDouble();
+
+                    player.setHealth(health);
                     Platform.runLater(() -> gameInstance.updatePlayerState(player));
                 }
 
@@ -157,6 +160,7 @@ public class Client extends NetworkThread {
         try {
             out.writeObject(Protocol.UPDATE);
             out.writeObject(player);
+            out.writeDouble(player.getHealth());
         } catch (IOException e) {
             e.printStackTrace();
         }

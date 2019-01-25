@@ -135,8 +135,6 @@ public class GameManager extends Application {
 
                     MainMenu mainMenu = (MainMenu) screenFramework.wcm.getController(ScreenFramework.MAIN_MENU_ID);
 
-                    System.out.println(t);
-
                     mainMenu.updateTransition(t);
 
                 }

@@ -118,6 +118,8 @@ public class GameManager extends Application {
         updateScreen();
     }
 
+    long lastFramePrintMillies = 0;
+    int frames = 0;
     protected void startLoop() {
 
         final long startNanoTime = System.nanoTime();
@@ -131,8 +133,15 @@ public class GameManager extends Application {
                 if (getGameInstance() != null) {
 
                     getGameInstance().update(t);
-
+                    frames++;
                 }
+                if(System.currentTimeMillis()-lastFramePrintMillies>1000)
+                {
+                    System.out.println("FPS: "+frames);
+                    frames = 0;
+                    lastFramePrintMillies = System.currentTimeMillis();
+                }
+
 
             }
         }.start();

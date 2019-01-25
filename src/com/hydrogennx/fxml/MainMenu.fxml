@@ -8,6 +8,11 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hydrogennx.controller.MainMenu">
   <children>
+      <ImageView fitHeight="500.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../core/resource/menuBackground.png" />
+         </image>
+      </ImageView>
     <Label fx:id="titleLabel" alignment="CENTER" layoutX="334.0" layoutY="119.0" text="Code Purple" textFill="WHITE" AnchorPane.leftAnchor="334.0" AnchorPane.rightAnchor="334.0" AnchorPane.topAnchor="119.0" />
     <SoundButton fx:id="practiceButton" alignment="CENTER" layoutX="259.0" layoutY="144.0" mnemonicParsing="false" onAction="#practiceButtonPressed" prefHeight="25.0" prefWidth="232.0" text="Local Practice" AnchorPane.leftAnchor="259.0" AnchorPane.rightAnchor="259.0" AnchorPane.topAnchor="144.0" />
     <SoundButton fx:id="exitButton" alignment="CENTER" layoutX="259.0" layoutY="296.0" mnemonicParsing="false" onAction="#exitButtonPressed" prefHeight="25.0" prefWidth="232.0" text="Quit" AnchorPane.leftAnchor="259.0" AnchorPane.rightAnchor="259.0" AnchorPane.topAnchor="288.0" />

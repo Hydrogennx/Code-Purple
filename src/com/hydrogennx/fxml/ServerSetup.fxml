@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.hydrogennx.core.SoundButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<?import com.hydrogennx.core.SoundButton?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hydrogennx.controller.ServerSetup">
    <children>
+      <ImageView fitHeight="500.0" fitWidth="750.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../core/resource/menuBackground.png" />
+         </image>
+      </ImageView>
       <Pane layoutX="14.0" layoutY="72.0" prefHeight="315.0" prefWidth="256.0">
          <children>
             <Label fx:id="playerList" layoutX="14.0" layoutY="14.0" text="Waiting for players..." textFill="WHITE" />
          </children>
       </Pane>
-      <SoundButton fx:id="startGameButton" disable="true" layoutX="368.0" layoutY="335.0" mnemonicParsing="false" onAction="#startGame" prefHeight="43.0" prefWidth="218.0" text="Begin">
+      <SoundButton fx:id="startGameButton" disable="true" layoutX="518.0" layoutY="435.0" mnemonicParsing="false" onAction="#startGame" prefHeight="43.0" prefWidth="218.0" text="Begin">
          <font>
             <Font size="24.0" />
          </font></SoundButton>
-      <SoundButton fx:id="stopSessionButton" layoutX="363.0" layoutY="14.0" mnemonicParsing="false" onAction="#stopSession" prefHeight="51.0" prefWidth="218.0" text="Leave">
+      <SoundButton fx:id="stopSessionButton" layoutX="518.0" layoutY="14.0" mnemonicParsing="false" onAction="#stopSession" prefHeight="51.0" prefWidth="218.0" text="Leave">
          <font>
             <Font size="24.0" />
          </font></SoundButton>
@@ -26,6 +33,6 @@
       <SoundButton fx:id="joinGameButton" layoutX="191.0" layoutY="14.0" mnemonicParsing="false" onAction="#joinGame" text="Connect" />
       <Label layoutX="14.0" layoutY="18.0" text="IP:" textFill="WHITE" />
       <Label fx:id="connectionLog" layoutX="19.0" layoutY="49.0" textFill="RED" />
-      <SoundButton fx:id="refreshButton" layoutX="525.0" layoutY="72.0" mnemonicParsing="false" onAction="#refreshPlayerList" text="Refresh" />
+      <SoundButton fx:id="refreshButton" layoutX="270.0" layoutY="14.0" mnemonicParsing="false" onAction="#refreshPlayerList" text="Refresh" />
    </children>
 </AnchorPane>

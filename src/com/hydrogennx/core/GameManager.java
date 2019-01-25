@@ -1,6 +1,7 @@
 package com.hydrogennx.core;
 
 import com.hydrogennx.controller.SettingsMenu;
+import com.hydrogennx.controller.MainMenu;
 import com.hydrogennx.controller.WindowController;
 import com.hydrogennx.core.javafx.ScreenFramework;
 import javafx.animation.AnimationTimer;
@@ -121,7 +122,7 @@ public class GameManager extends Application {
         updateScreen();
     }
 
-    long lastFramePrintMillies = 0;
+    long lastFramePrintMillis = 0;
     int frames = 0;
 
     protected void startLoop() {
@@ -132,15 +133,26 @@ public class GameManager extends Application {
             public void handle(long currentNanoTime) {
                 double t = (currentNanoTime - startNanoTime) / 1000000000.0;
 
+                if (menu == Menu.MAIN_MENU) {
+
+                    MainMenu mainMenu = (MainMenu) screenFramework.wcm.getController(ScreenFramework.MAIN_MENU_ID);
+
+                    System.out.println(t);
+
+                    mainMenu.updateTransition(t);
+
+                }
+
                 if (getGameInstance() != null) {
 
                     getGameInstance().update(t);
                     frames++;
                 }
-                if (System.currentTimeMillis() - lastFramePrintMillies > 1000) {
-                    System.out.println("FPS: " + frames);
+                if(System.currentTimeMillis()- lastFramePrintMillis >1000)
+                {
+                    System.out.println("FPS: "+frames);
                     frames = 0;
-                    lastFramePrintMillies = System.currentTimeMillis();
+                    lastFramePrintMillis = System.currentTimeMillis();
                 }
 
 

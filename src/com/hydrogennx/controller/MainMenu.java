@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -35,30 +36,13 @@ public class MainMenu extends WindowController implements Initializable {
 //    }
 
     @FXML
-    TextField ipTextField;
-
-    @FXML
     Button joinGameButton;
 
-
+    @FXML
+    ImageView publisherCredit;
 
     @FXML
-    Label connectionLog;
-
-    @FXML
-    public void ipChanged() {
-
-        if (ipTextField.getText().length() > 0) {
-
-            joinGameButton.setDisable(false);
-
-        } else {
-
-            joinGameButton.setDisable(true);
-
-        }
-
-    }
+    ImageView devCredit;
 
     public MainMenu() throws IOException {
 
@@ -99,6 +83,19 @@ public class MainMenu extends WindowController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+    }
+
+    public void updateTransition(double time) {
+
+        if (time < 3) {
+            publisherCredit.setOpacity(1 - (time - 2));
+        } else if (time > 5 && time < 6) {
+            devCredit.setOpacity(1 - (time - 5));
+        } else if (time > 6) {
+            devCredit.setVisible(false);
+            publisherCredit.setVisible(false);
+        }
 
     }
 }

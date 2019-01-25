@@ -12,10 +12,12 @@ public class SoundButton extends Button {
 
     MediaPlayer pressedSound;
     MediaPlayer releasedSound;
+    MediaPlayer hoverSound;
 
     public SoundButton() {
 
         //go to default style
+
 
         setOnMousePressed(me -> {
 
@@ -29,7 +31,16 @@ public class SoundButton extends Button {
 
         });
 
-        setOnMouseEntered(me -> getStyleClass().add("button-hover"));
+        setOnMouseEntered(me -> {
+            getStyleClass().add("button-hover");
+
+            String mouseHoverFile = "src/com/hydrogennx/core/resource/hover.mp3";
+            Media hover = new Media(new File(mouseHoverFile).toURI().toString());
+
+            hoverSound = new MediaPlayer(hover);
+            hoverSound.play();
+
+        });
 
         setOnMouseExited(me -> getStyleClass().remove("button-hover"));
 

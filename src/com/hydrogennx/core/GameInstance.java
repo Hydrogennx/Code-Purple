@@ -170,8 +170,6 @@ public abstract class GameInstance {
 
     public abstract void recallAttack(Player attacker);
 
-    public abstract void updatePlayerState(Player player);
-
     public abstract void endAttack();
     public abstract void registerDefeat();
 

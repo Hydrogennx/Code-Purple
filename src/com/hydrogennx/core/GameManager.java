@@ -144,8 +144,6 @@ public class GameManager extends Application {
 
                     MainMenu mainMenu = (MainMenu) screenFramework.wcm.getController(ScreenFramework.MAIN_MENU_ID);
 
-                    System.out.println(t);
-
                     mainMenu.updateTransition(t);
 
                 }
@@ -258,6 +256,7 @@ public class GameManager extends Application {
         setScreen(ScreenFramework.MAIN_MENU_ID);
 
     }
+
 
     public void writeToLogFile(Exception message) {
         String fileName = "Log";

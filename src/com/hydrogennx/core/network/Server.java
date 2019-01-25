@@ -84,7 +84,8 @@ public class Server extends NetworkThread {
                         unregisterAttack();
                         break;
                     case UPDATE:
-                        updateGameState();
+                        System.out.println("Got a request from the client to update");
+                        updatePlayerState();
                         break;
                     case END_CONNECTION:
                         registerLeaving();
@@ -123,14 +124,18 @@ public class Server extends NetworkThread {
 
     }
 
-    private void updateGameState() throws IOException, ClassNotFoundException {
+    private void updatePlayerState() throws IOException, ClassNotFoundException {
 
         Player player = (Player) in.readObject();
+        System.out.println("Got the player");
         double health = in.readDouble();
+        System.out.println("Got the health");
 
         player.setHealth(health);
 
-        gameInstance.updatePlayerState(player);
+        System.out.println("Got all information, updating!");
+
+        gameInstance.updatePlayerState(player, health);
 
     }
 
@@ -186,6 +191,7 @@ public class Server extends NetworkThread {
             out.writeObject(Protocol.UPDATE);
             out.writeObject(player);
             out.writeDouble(player.getHealth());
+            System.out.println("Update sent from server");
         } catch (IOException e) {
             gameInstance.getGameManager().writeToLogFile(e);
             e.printStackTrace();

@@ -58,11 +58,6 @@ public class LocalPracticeInstance extends GameInstance {
     }
 
     @Override
-    public void updatePlayerState(Player player) {
-        //nothing
-    }
-
-    @Override
     public int getManaReturn() {
 
         return turn + 200;

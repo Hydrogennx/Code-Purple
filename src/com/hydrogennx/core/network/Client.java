@@ -95,7 +95,6 @@ public class Client extends NetworkThread {
                 case UPDATE: {
                     Player player = (Player) in.readObject();
                     double health = in.readDouble();
-
                     player.setHealth(health);
                     Platform.runLater(() -> gameInstance.updatePlayerState(player));
                 }

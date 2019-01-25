@@ -9,17 +9,17 @@
 <?import com.hydrogennx.core.ControllableCharacter?>
 <AnchorPane prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hydrogennx.controller.ActionPhase">
   <children>
+      <GameActionPane fx:id="gamePane" layoutX="12.0" prefHeight="500.0" prefWidth="750.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0">
+          <children>
+              <ControllableCharacter fx:id="controllableCharacter" layoutX="170.0" layoutY="200.0" />
+          </children>
+      </GameActionPane>
       <ProgressBar fx:id="healthBar" layoutX="33.0" layoutY="15.0" prefWidth="200.0" progress="1.0" AnchorPane.leftAnchor="32.0" />
       <ImageView fitHeight="8.0" fitWidth="8.0" layoutX="14.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="20.0">
          <image>
             <Image url="/com/hydrogennx/core/resource/heart.png" />
          </image>
       </ImageView>
-      <GameActionPane fx:id="gamePane" layoutX="12.0" prefHeight="500.0" prefWidth="750.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0">
-         <children>
-             <ControllableCharacter fx:id="controllableCharacter" layoutX="170.0" layoutY="200.0" />
-         </children>
-      </GameActionPane>
       <Label fx:id="healthLabel" layoutX="241.0" layoutY="16.0" text="100 / 100" textFill="WHITE" AnchorPane.leftAnchor="240.0">
          <font>
             <Font name="Calibri Light" size="12.0" />

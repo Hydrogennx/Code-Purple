@@ -15,6 +15,7 @@
 
 .label {
     -fx-font: 12px "Consolas";
+    -fx-text-fill: #ffffff;
 }
 
 .text-field {

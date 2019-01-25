@@ -35,7 +35,7 @@ public class Player implements Serializable {
         this.color = color;
         this.name = name;
 
-        health = 1;
+        health = 1.0;
         mana = 0;
         //statusEffects defaults to an empty arrayList
 

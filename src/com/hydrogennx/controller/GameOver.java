@@ -5,6 +5,7 @@ import com.hydrogennx.core.SoundButton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -17,6 +18,9 @@ public class GameOver extends WindowController implements Initializable {
 
     @FXML
     Button mainMenuButton;
+
+    @FXML
+    Label label;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -36,4 +40,9 @@ public class GameOver extends WindowController implements Initializable {
         gameInstance.endGame();
     }
 
+    public void setDisplayText(String string) {
+
+        label.setText(string);
+
+    }
 }

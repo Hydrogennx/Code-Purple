@@ -251,7 +251,7 @@ public class GameManager extends Application {
     }
 
     public void writeToLogFile(String message) {
-        String fileName = "Log"; // File you want to write to (will overwrite file)
+        String fileName = "log.txt"; // File you want to write to (will overwrite file)
         try {
             File jarFile = new File(SettingsMenu.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
             fileName = jarFile.getParent() + File.separator + fileName;  // File.separator is the same as a "/"

@@ -1,6 +1,7 @@
 package com.hydrogennx.core;
 
 import com.hydrogennx.controller.ActionPhase;
+import com.hydrogennx.controller.GameOver;
 import com.hydrogennx.controller.ServerSetup;
 import com.hydrogennx.controller.TurnPhase;
 import com.hydrogennx.core.attack.AttackSequence;
@@ -130,8 +131,7 @@ public class NetworkGameInstance extends GameInstance {
 
     }
 
-    @Override
-    public void updatePlayerState(Player playerToUpdate) {
+    public void updatePlayerState(Player playerToUpdate, double health) {
 
         System.out.println("Updating " + playerToUpdate.getName());
 
@@ -140,9 +140,16 @@ public class NetworkGameInstance extends GameInstance {
             if (player.getName().equals(playerToUpdate.getName())) {
 
                 player.update(playerToUpdate);
+                player.setHealth(health);
 
                 System.out.println("Updated " + player.getName());
                 System.out.println("Health: " + playerToUpdate.getHealth() + " to " + player.getHealth() + "");
+
+                if (player.getHealth() <= 0) {
+                    System.out.println("Your opponent is defeated.");
+
+                    registerVictory();
+                }
 
             }
 
@@ -183,6 +190,16 @@ public class NetworkGameInstance extends GameInstance {
         System.out.println("Update sent, game over. Health: " + mainPlayer.getHealth());
 
         changeGameState(GameState.GAME_OVER);
+
+    }
+
+    public void registerVictory() {
+
+        changeGameState(GameState.GAME_OVER);
+
+        GameOver gameOver = (GameOver) gameManager.getWindowController(ScreenFramework.GAME_OVER_ID);
+
+        gameOver.setDisplayText("Congratulations! You've won!");
 
     }
 

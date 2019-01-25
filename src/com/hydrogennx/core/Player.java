@@ -12,7 +12,7 @@ import java.util.List;
  * This includes health and status effects, but not details like the player's location or invulnerability frames.
  * This class is in both the TurnPhase and ActionPhase.
  */
-public class Player implements Serializable {
+public class Player implements Serializable, Cloneable {
 
     PlayerColor color;
     String name;
@@ -29,6 +29,10 @@ public class Player implements Serializable {
      * In the standard gamemode, this also indicates every player that will be attacked.
      */
     List<Player> enemies = new ArrayList<>();
+
+    public Player() {
+
+    }
 
     public Player(PlayerColor color, String name) {
 
@@ -121,4 +125,9 @@ public class Player implements Serializable {
         this.health = health;
 
     }
+
+    public Player copy() throws CloneNotSupportedException {
+        return (Player) clone();
+    }
+
 }

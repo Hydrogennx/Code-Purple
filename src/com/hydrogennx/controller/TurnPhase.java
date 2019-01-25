@@ -127,7 +127,7 @@ public class TurnPhase extends WindowController implements Initializable {
     /**
      * Updates the state of things in the TurnPhase.
      * As TurnPhase does not include any live action, this does not have to be called 60 times a second,
-     * and is instead run whenever the game switches to it.
+     * and is instead run whenever the game switches to it, or something changes.
      */
     public void updateState() {
 
@@ -138,6 +138,9 @@ public class TurnPhase extends WindowController implements Initializable {
             NetworkGameInstance networkGameInstance = (NetworkGameInstance) gameInstance;
 
             otherHealthBar.setProgress(networkGameInstance.getOtherPlayer().getHealth());
+
+            otherName.setText(networkGameInstance.getOtherPlayer().getName());
+            mainName.setText(networkGameInstance.getCurrentPlayer().getName());
 
         }
 

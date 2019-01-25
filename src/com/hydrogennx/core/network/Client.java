@@ -99,11 +99,7 @@ public class Client extends NetworkThread {
                     System.out.println("Got a request from the server to update");
                     Player player = (Player) in.readObject();
                     System.out.println("Got the player, health: " + player.getHealth());
-                    double health = in.readDouble();
-                    System.out.println("Got the health");
-                    player.setHealth(health);
-                    System.out.println("Got all information, updating!");
-                    Platform.runLater(() -> gameInstance.updatePlayerState(player, health));
+                    Platform.runLater(() -> gameInstance.updatePlayerState(player));
                 }
 
             }
@@ -128,6 +124,9 @@ public class Client extends NetworkThread {
             List<Player> players = (List<Player>) in.readObject();
             out.writeObject(gameInstance.getCurrentPlayer());
             Platform.runLater(() -> gameInstance.addAllPlayers(players));
+
+            out.flush();
+
         } catch (IOException | ClassNotFoundException e) {
             gameInstance.getGameManager().writeToLogFile(e);
             e.printStackTrace();
@@ -143,6 +142,7 @@ public class Client extends NetworkThread {
             out.writeObject(gameInstance.getCurrentPlayer());
             socketClient.close();
             System.out.println("Client closed");
+
         } catch (IOException e) {
             gameInstance.getGameManager().writeToLogFile(e);
             e.printStackTrace();
@@ -158,6 +158,9 @@ public class Client extends NetworkThread {
             out.writeObject(Protocol.SEND_ATTACK);
             out.writeObject(player);
             out.writeObject(attackSequences);
+
+            out.flush();
+
         } catch (IOException e) {
             gameInstance.getGameManager().writeToLogFile(e);
             e.printStackTrace();
@@ -169,10 +172,12 @@ public class Client extends NetworkThread {
 
         try {
             out.writeObject(Protocol.UPDATE);
-            out.writeObject(player);
-            out.writeDouble(player.getHealth());
-            System.out.println("Update sent from server");
-        } catch (IOException e) {
+            out.writeObject(player.copy());
+            System.out.println("Update sent from client, health:" + player.getHealth());
+
+            out.flush();
+
+        } catch (IOException | CloneNotSupportedException e) {
             gameInstance.getGameManager().writeToLogFile(e);
             e.printStackTrace();
         }

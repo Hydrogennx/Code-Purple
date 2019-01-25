@@ -134,7 +134,7 @@ public class NetworkGameInstance extends GameInstance {
 
     }
 
-    public void updatePlayerState(Player playerToUpdate, double health) {
+    public void updatePlayerState(Player playerToUpdate) {
 
         System.out.println("Updating " + playerToUpdate.getName());
 
@@ -143,10 +143,13 @@ public class NetworkGameInstance extends GameInstance {
             if (player.getName().equals(playerToUpdate.getName())) {
 
                 player.update(playerToUpdate);
-                player.setHealth(health);
 
                 System.out.println("Updated " + player.getName());
                 System.out.println("Health: " + playerToUpdate.getHealth() + " to " + player.getHealth() + "");
+
+                TurnPhase turnPhase = (TurnPhase) gameManager.getWindowController(ScreenFramework.TURN_PHASE_ID);
+
+                turnPhase.updateState();
 
                 if (player.getHealth() <= 0) {
                     System.out.println("Your opponent is defeated.");
@@ -206,7 +209,7 @@ public class NetworkGameInstance extends GameInstance {
 
         String victoryMusicFile = getClass().getResource("/victory.mp3").toString();
 
-        Media defeat = new Media(new File(victoryMusicFile).toURI().toString());
+        Media defeat = new Media(victoryMusicFile);
 
         victoryMusic = new MediaPlayer(defeat);
         victoryMusic.play();

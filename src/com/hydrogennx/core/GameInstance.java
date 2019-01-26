@@ -1,6 +1,7 @@
 package com.hydrogennx.core;
 
 import com.hydrogennx.controller.ActionPhase;
+import com.hydrogennx.controller.TurnPhase;
 import com.hydrogennx.core.attack.AttackSequence;
 import com.hydrogennx.core.javafx.ScreenFramework;
 import javafx.scene.media.Media;
@@ -34,7 +35,7 @@ public abstract class GameInstance {
     boolean calm = true;
     double calmVolume = 1.0;
 
-    int turn;
+    int turn = 1;
 
     /**
      * List of all players, in no particular order.
@@ -56,6 +57,8 @@ public abstract class GameInstance {
         switch (gameState) {
             case TURN:
                 gameManager.setScreen(ScreenFramework.TURN_PHASE_ID);
+                TurnPhase turnPhase = (TurnPhase) gameManager.getWindowController(ScreenFramework.TURN_PHASE_ID);
+                turnPhase.updateState();
                 break;
             case ACTION:
                 gameManager.setScreen(ScreenFramework.ACTION_PHASE_ID);
@@ -158,7 +161,7 @@ public abstract class GameInstance {
      * Returns how much mana is spent at the end of every turn regardless of the player's actual amount spent.
      * @return How much mana is spent at the end of every turn regardless of the player's actual amount spent.
      */
-    public int getManaWasted() {
+    public int getFreeMana() {
 
         return turn;
 

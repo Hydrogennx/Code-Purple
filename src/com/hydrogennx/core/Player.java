@@ -1,7 +1,6 @@
 package com.hydrogennx.core;
 
 import com.hydrogennx.core.attack.AttackSequence;
-import javafx.scene.paint.Color;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -83,21 +82,17 @@ public class Player implements Serializable, Cloneable {
 
     }
 
-    public int getMana() {
+    public int getStoredMana() {
 
         return mana;
 
     }
 
-    public void registerAttack(int manaCost, GameInstance gameInstance) {
+    public void registerAttack(int manaCost, int manaReturn) {
 
-        mana -= gameInstance.getManaWasted();
+        mana -= manaCost;
 
-        if (mana < 0) {
-            mana = 0;
-        }
-
-        mana += gameInstance.getManaReturn();
+        mana += manaReturn;
 
     }
 

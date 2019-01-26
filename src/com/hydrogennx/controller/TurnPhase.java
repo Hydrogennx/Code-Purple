@@ -12,10 +12,8 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+import javafx.scene.layout.Pane;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -25,6 +23,14 @@ import java.util.ResourceBundle;
 public class TurnPhase extends WindowController implements Initializable {
 
     private GameInstance gameInstance;
+
+    private final static Image PURPLE_BONUS = new Image(TurnPhase.class.getResource("/purple-bonus.png").toString());
+    private final static Image PURPLE_BONUS_EMPTY = new Image(TurnPhase.class.getResource("/purple-bonus-empty.png").toString());
+    private final static Image PURPLE_BONUS_NEXT = new Image(TurnPhase.class.getResource("/purple-bonus-next.png").toString());
+
+    private final static Image PURPLE_READY = new Image(TurnPhase.class.getResource("/purple-ready.png").toString());
+    private final static Image PURPLE_NEXT = new Image(TurnPhase.class.getResource("/purple-nearly-ready.png").toString());
+    private final static Image PURPLE_LOCKED = new Image(TurnPhase.class.getResource("/purple-locked-2.png").toString());
 
     @FXML
     private ImageView instructions = new ImageView();
@@ -49,6 +55,20 @@ public class TurnPhase extends WindowController implements Initializable {
 
     @FXML
     private ProgressIndicator waitingCircle;
+
+    @FXML
+    private Label manaLabel;
+
+    @FXML
+    private ImageView firstMainMana;
+
+    @FXML
+    private ImageView firstBonusMana;
+
+    @FXML
+    private Pane manaPane;
+
+    boolean manaBarsCreated = false;
 
     List<ImageView> mainMana = new ArrayList<>();
     List<ImageView> bonusMana = new ArrayList<>();
@@ -133,6 +153,8 @@ public class TurnPhase extends WindowController implements Initializable {
 
         mainHealthBar.setProgress(gameInstance.getCurrentPlayer().getHealth());
 
+        manaLabel.setText("Mana: " + (gameInstance.getCurrentPlayer().getStoredMana() + gameInstance.getFreeMana()) + "  Turn: " + gameInstance.getFreeMana());
+
         if (gameInstance instanceof NetworkGameInstance) {
 
             NetworkGameInstance networkGameInstance = (NetworkGameInstance) gameInstance;
@@ -143,6 +165,64 @@ public class TurnPhase extends WindowController implements Initializable {
             mainName.setText(networkGameInstance.getCurrentPlayer().getName());
 
         }
+
+        if (!manaBarsCreated) {
+            manaBarsCreated = true;
+            createManaBars();
+        }
+
+        updateManaBars();
+
+    }
+
+    public void updateManaBars() {
+
+        int storedMana = gameInstance.getCurrentPlayer().getStoredMana();
+        int freeMana = gameInstance.getFreeMana();
+
+        for (int i = 0; i < mainMana.size(); i++) {
+            if (freeMana > i + 1) {
+                mainMana.get(i).setImage(PURPLE_READY);
+            } else if (freeMana == i + 1) {
+                mainMana.get(i).setImage(PURPLE_NEXT);
+            } else {
+                mainMana.get(i).setImage(PURPLE_LOCKED);
+            }
+        }
+
+        for (int i = 0; i < bonusMana.size(); i++) {
+            if (storedMana > i + 1) {
+                bonusMana.get(i).setImage(PURPLE_BONUS);
+            } else if (storedMana + gameInstance.getManaReturn() > i + 1) {
+                bonusMana.get(i).setImage(PURPLE_BONUS_NEXT);
+            } else {
+                bonusMana.get(i).setImage(PURPLE_BONUS_EMPTY);
+            }
+        }
+
+    }
+
+    public void createManaBars() {
+
+        for (int i = 1; i < 8; i++) {
+            ImageView manaImage = new ImageView(firstMainMana.getImage());
+            manaImage.setX(firstMainMana.getLayoutX() + (i * manaImage.getImage().getWidth()));
+            manaImage.setY(firstMainMana.getLayoutY());
+            mainMana.add(manaImage);
+        }
+
+        for (int y = 0; y < 2; y++) {
+            for (int x = 0; x < 8; x++) {
+                if (x == 0 && y == 0) continue;
+                ImageView manaImage = new ImageView(firstBonusMana.getImage());
+                manaImage.setLayoutX(firstBonusMana.getLayoutX() + (x * manaImage.getImage().getWidth()));
+                manaImage.setLayoutY(firstBonusMana.getLayoutY() + (y * manaImage.getImage().getHeight()));
+                bonusMana.add(manaImage);
+            }
+        }
+
+        manaPane.getChildren().addAll(mainMana);
+        manaPane.getChildren().addAll(bonusMana);
 
     }
 

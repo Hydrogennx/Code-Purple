@@ -36,7 +36,8 @@ public class LocalPracticeInstance extends GameInstance {
         changeGameState(GameState.ACTION);
 
         ActionPhase actionPhase = (ActionPhase) gameManager.getWindowController(ScreenFramework.ACTION_PHASE_ID);
-        actionPhase.addAttackSequences(attackSequences);
+        actionPhase.addAttackSequences(attackSequences, false);
+        actionPhase.addAttackSequences(attackSequences, true);
     }
 
     @Override

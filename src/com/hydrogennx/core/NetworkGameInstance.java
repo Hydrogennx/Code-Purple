@@ -89,7 +89,15 @@ public class NetworkGameInstance extends GameInstance {
             for (Player attacker : getAllPlayers()) {
 
                 if (mainPlayer.isEnemyOf(attacker)) {
-                    actionPhase.addAttackSequences(queuedAttacks.get(attacker));
+
+                    actionPhase.addAttackSequences(queuedAttacks.get(attacker), false);
+
+                }
+
+                if (mainPlayer.equals(attacker)) {
+
+                    actionPhase.addAttackSequences(queuedAttacks.get(attacker), true);
+
                 }
 
             }

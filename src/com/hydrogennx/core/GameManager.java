@@ -14,8 +14,10 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 /**
  * A game manager to create instances of the various gametypes that exist.
@@ -23,7 +25,7 @@ import java.time.format.DateTimeFormatter;
 public class GameManager extends Application {
 
     Menu menu;
-
+    String fileName = "Log";
     public static final String SETTINGS_FILE = "settings";
     Settings settings;
 
@@ -38,8 +40,22 @@ public class GameManager extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
 
+        try {
+            BufferedWriter out = new BufferedWriter(new FileWriter(fileName));
+            out.close();
+
+        } catch (IOException e) {
+            System.out.println("Oof");
+        }
+        try {
+            if (true) {
+                throw new IOException();
+            }
+        } catch (IOException e) {
+            writeToLogFile(e);
+        }
 
 
         this.primaryStage = primaryStage;
@@ -259,17 +275,22 @@ public class GameManager extends Application {
 
 
     public void writeToLogFile(Exception message) {
-        String fileName = "Log";
-        LocalDateTime now = LocalDateTime.now();
-        String toWrite = now + ": " + message.toString();
+
+
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyy HH:mm:ss");
+        Date now = new Date();
+        String toWrite = format.format(now) + ": " + message.toString() + "\n";
         System.out.println(toWrite);
         try {
-            FileWriter fileWriter = new FileWriter(fileName);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            Files.write(Paths.get(fileName), toWrite.getBytes(), StandardOpenOption.APPEND);
+            BufferedWriter out = new BufferedWriter(new FileWriter(fileName, true));
+            out.write(toWrite);
+            out.close();
+//            FileWriter fileWriter = new FileWriter(fileName);
+//            Files.write(Paths.get(fileName), toWrite.getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
 
 
     }

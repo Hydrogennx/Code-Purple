@@ -17,6 +17,8 @@ public class HealDefense extends AttackSequence {
 
     public HealDefense() {
         super(1);
+
+        defensive = true;
     }
 
     @Override

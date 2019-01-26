@@ -56,7 +56,7 @@
             <Image url="@../core/resource/heart.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="instructions" fitHeight="535.0" fitWidth="750.0" layoutY="-35.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="instructions" fitHeight="500.0" fitWidth="750.0" pickOnBounds="true" visible="false">
          <image>
             <Image url="@../core/resource/tutorial-overlay.png" />
          </image></ImageView>

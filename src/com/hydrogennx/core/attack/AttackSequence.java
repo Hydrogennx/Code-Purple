@@ -16,6 +16,7 @@ public abstract class AttackSequence implements Serializable {
     public static final double ATTACK_LENGTH = 10.0; //all attacks default to 10 seconds
 
     protected boolean timed = true; //Timed attacks end after a certain amount of time has passed.
+    protected boolean defensive = false; //Defensive moves act on the user, not the opponent.
     protected boolean attackOngoing = true;
 
     protected int manaCost;
@@ -96,4 +97,9 @@ public abstract class AttackSequence implements Serializable {
 
     }
 
+    public boolean isDefensive() {
+
+        return defensive;
+
+    }
 }

@@ -11,7 +11,6 @@ import com.hydrogennx.core.network.Server;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-import java.io.File;
 import java.util.*;
 
 /**
@@ -56,6 +55,8 @@ public class NetworkGameInstance extends GameInstance {
                 break;
             case TURN:
                 gameManager.setScreen(ScreenFramework.TURN_PHASE_ID);
+                TurnPhase turnPhase = (TurnPhase) gameManager.getWindowController(ScreenFramework.TURN_PHASE_ID);
+                turnPhase.updateState();
                 break;
             case ACTION:
                 gameManager.setScreen(ScreenFramework.ACTION_PHASE_ID);
@@ -88,7 +89,15 @@ public class NetworkGameInstance extends GameInstance {
             for (Player attacker : getAllPlayers()) {
 
                 if (mainPlayer.isEnemyOf(attacker)) {
-                    actionPhase.addAttackSequences(queuedAttacks.get(attacker));
+
+                    actionPhase.addAttackSequences(queuedAttacks.get(attacker), false);
+
+                }
+
+                if (mainPlayer.equals(attacker)) {
+
+                    actionPhase.addAttackSequences(queuedAttacks.get(attacker), true);
+
                 }
 
             }
@@ -104,13 +113,17 @@ public class NetworkGameInstance extends GameInstance {
 
         int manaCost = AttackSequence.getCost(attackSequences);
         System.out.println(manaCost);
-        System.out.println(player.getMana());
+        System.out.println(player.getStoredMana());
 
-        if (manaCost > player.getMana()) {
+        if (manaCost > player.getStoredMana() + getFreeMana()) {
             return;
         }
 
-        player.registerAttack(manaCost, this);
+        if (manaCost < getFreeMana()) {
+            manaCost = getFreeMana();
+        }
+
+        player.registerAttack(manaCost - getFreeMana(), getManaReturn());
 
         if (!isHosting()) {
             client.sendAttack(attackSequences, player);
@@ -124,7 +137,7 @@ public class NetworkGameInstance extends GameInstance {
 
     @Override
     public int getManaReturn() {
-        return turn+200;
+        return 2;
     }
 
     @Override
@@ -166,6 +179,8 @@ public class NetworkGameInstance extends GameInstance {
 
     @Override
     public void endAttack() {
+
+        turn++;
 
         if (isHosting()) {
             server.sendUpdate(mainPlayer);

@@ -96,9 +96,7 @@ public class Client extends NetworkThread {
                     Platform.runLater(() -> gameInstance.recallAttack(player));
                 } break;
                 case UPDATE: {
-                    System.out.println("Got a request from the server to update");
                     Player player = (Player) in.readObject();
-                    System.out.println("Got the player, health: " + player.getHealth());
                     Platform.runLater(() -> gameInstance.updatePlayerState(player));
                 }
 
@@ -141,7 +139,6 @@ public class Client extends NetworkThread {
             out.writeObject(Protocol.END_CONNECTION);
             out.writeObject(gameInstance.getCurrentPlayer());
             socketClient.close();
-            System.out.println("Client closed");
 
         } catch (IOException e) {
             gameInstance.getGameManager().writeToLogFile(e);
@@ -154,7 +151,6 @@ public class Client extends NetworkThread {
     public void sendAttack(List<AttackSequence> attackSequences, Player player) {
 
         try {
-            System.out.println("Sending attack");
             out.writeObject(Protocol.SEND_ATTACK);
             out.writeObject(player);
             out.writeObject(attackSequences);
@@ -173,7 +169,6 @@ public class Client extends NetworkThread {
         try {
             out.writeObject(Protocol.UPDATE);
             out.writeObject(player.copy());
-            System.out.println("Update sent from client, health:" + player.getHealth());
 
             out.flush();
 

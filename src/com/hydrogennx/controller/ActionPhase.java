@@ -152,9 +152,13 @@ public class ActionPhase extends WindowController implements Initializable {
      * Register the attacks that this action phase should use.
      * @param attackSequences
      */
-    public void addAttackSequences(List<AttackSequence> attackSequences) {
+    public void addAttackSequences(List<AttackSequence> attackSequences, boolean defensive) {
 
-        this.attackSequences.addAll(attackSequences);
+        for (AttackSequence attack : attackSequences) {
+            if (attack.isDefensive() == defensive) {
+                this.attackSequences.add(attack);
+            }
+        }
 
     }
 

@@ -40,7 +40,6 @@ public class Server extends NetworkThread {
         try {
             socketServer = new ServerSocket(Protocol.PORT);
 
-            System.out.println("Host started");
             serverRunning = true;
 
             serverStatus = ServerStatus.ONLINE;
@@ -62,8 +61,6 @@ public class Server extends NetworkThread {
 
         try (Socket server = socketServer.accept()) {
 
-            gameInstance.networkLog("Recieved a request from " + server.getRemoteSocketAddress());
-
             out = new ObjectOutputStream(server.getOutputStream());
             in = new ObjectInputStream(server.getInputStream());
 
@@ -84,7 +81,6 @@ public class Server extends NetworkThread {
                         unregisterAttack();
                         break;
                     case UPDATE:
-                        System.out.println("Got a request from the client to update");
                         updatePlayerState();
                         break;
                     case END_CONNECTION:
@@ -113,9 +109,7 @@ public class Server extends NetworkThread {
     public void startGame() {
 
         try {
-            System.out.println("Trying to start the game");
             out.writeObject(Protocol.START_GAME);
-            System.out.println("Client has been told to start the game");
 
         } catch (IOException e) {
             gameInstance.getGameManager().writeToLogFile(e);
@@ -127,9 +121,6 @@ public class Server extends NetworkThread {
     private void updatePlayerState() throws IOException, ClassNotFoundException {
 
         Player player = (Player) in.readObject();
-        System.out.println("Got the player, health: " + player.getHealth());
-
-        System.out.println("Got all information, updating!");
 
         Platform.runLater(() -> gameInstance.updatePlayerState(player));
 
@@ -188,7 +179,6 @@ public class Server extends NetworkThread {
         try {
             out.writeObject(Protocol.UPDATE);
             out.writeObject(player.copy());
-            System.out.println("Update sent from server, health:" + player.getHealth());
 
             out.flush();
 

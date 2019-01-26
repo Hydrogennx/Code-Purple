@@ -21,15 +21,15 @@
       <Pane layoutX="12.0" layoutY="148.0" prefHeight="204.0" prefWidth="257.0">
          <children>
           <Label layoutX="14.0" layoutY="14.0" text="Choose one attack:" textFill="WHITE" />
-          <SoundButton layoutX="14.0" layoutY="40.0" mnemonicParsing="false" onAction="#funAttack" text="Fun Attack (1)" />
-          <SoundButton layoutX="14.0" layoutY="85.0" mnemonicParsing="false" onAction="#boringAttack" text="Radial Attack (2)" />
-            <SoundButton layoutX="16.0" layoutY="125.0" mnemonicParsing="false" onAction="#mixedAttack" text="Risky Attack (6)" />
-          <SoundButton layoutX="14.0" layoutY="167.0" mnemonicParsing="false" onAction="#allAtOnce" text="Very Fun Attack (7)" />
+          <SoundButton layoutX="14.0" layoutY="40.0" mnemonicParsing="false" onAction="#funAttack" text="Drizzle (1)" />
+          <SoundButton layoutX="14.0" layoutY="85.0" mnemonicParsing="false" onAction="#boringAttack" text="Spiral (2)" />
+          <SoundButton layoutX="16.0" layoutY="125.0" mnemonicParsing="false" onAction="#mixedAttack" text="Healing Hail (6)" />
+          <SoundButton layoutX="14.0" layoutY="167.0" mnemonicParsing="false" onAction="#allAtOnce" text="Rainstorm (7)" />
          </children>
       </Pane>
       <ProgressIndicator fx:id="waitingCircle" layoutX="617.0" layoutY="64.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="74.0" prefWidth="74.0" AnchorPane.rightAnchor="14.0" />
       <ProgressBar fx:id="otherHealthBar" layoutX="360.0" layoutY="13.0" nodeOrientation="LEFT_TO_RIGHT" prefWidth="200.0" progress="1.0" AnchorPane.rightAnchor="40.0" />
-      <Label fx:id="otherName" layoutX="673.79541015625" layoutY="35.0" text="Oppponent" textFill="WHITE" AnchorPane.rightAnchor="14.20458984375" />
+      <Label fx:id="otherName" layoutX="673.79541015625" layoutY="35.0" text="Opponent" textFill="WHITE" AnchorPane.rightAnchor="14.20458984375" />
       <Pane fx:id="manaPane" layoutX="12.0" layoutY="53.0" prefHeight="91.0" prefWidth="184.0" AnchorPane.leftAnchor="12.0">
          <children>
             <ImageView fx:id="firstBonusMana" fitHeight="16.0" fitWidth="16.0" layoutX="12.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
